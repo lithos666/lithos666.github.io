@@ -1,0 +1,691 @@
+/* ═══════════════════════════════════════════════════════
+   Year One Projects — 大一学年实践作品集
+   
+   Design language: Apple glassmorphism + cosmic accent
+   Tabs: smooth spring animation, each tab has unique color
+   Cards: glass-morphism with colored accents per project
+   ═══════════════════════════════════════════════════════ */
+
+.year-one-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: clamp(80px, 10vw, 140px) clamp(24px, 6vw, 80px);
+  /* Match WorksSection: semi-transparent dark gradient */
+  background: linear-gradient(180deg, rgba(5, 5, 16, 0.45) 0%, rgba(8, 8, 26, 0.5) 50%, rgba(5, 5, 16, 0.45) 100%);
+  overflow: hidden;
+}
+
+/* Ambient glow orbs — same style as works section */
+.y1-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(120px);
+  opacity: 0.7;
+}
+
+.y1-glow-1 {
+  width: 650px;
+  height: 650px;
+  top: -200px;
+  right: -120px;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.06) 0%, transparent 70%);
+}
+
+.y1-glow-2 {
+  width: 550px;
+  height: 550px;
+  bottom: -180px;
+  left: -120px;
+  background: radial-gradient(circle, rgba(124, 77, 255, 0.055) 0%, transparent 70%);
+}
+
+.y1-glow-3 {
+  width: 400px;
+  height: 400px;
+  top: 42%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(0, 191, 165, 0.04) 0%, transparent 70%);
+}
+
+/* ═══════════════════════════════════════════
+   HEADER ══════════════════════════════════ */
+.y1-header {
+  text-align: center;
+  margin-bottom: 28px;              /* was 56px — reduced gap */
+  position: relative;
+  z-index: 1;
+}
+
+.y1-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 100px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  margin-bottom: 20px;
+}
+
+.y1-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.y1-subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.06em;
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════
+   TAB NAVIGATION — Grid 均匀分布 ══════════════ */
+.y1-tabs {
+  display: grid;
+  /* 大屏6列 → 中屏5列 → 小屏4列 */
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: center;       /* 最后一行不满时居中 */
+  gap: 10px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  padding: 0 clamp(16px, 3vw, 48px);
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.y1-tab {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;    /* 内部内容左对齐 */
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.y1-tab:hover {
+  background: var(--tab-accent);
+  transform: translateY(-1px);
+}
+
+.y1-tab--active {
+  background: var(--tab-accent);
+}
+
+.y1-tab-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.y1-tab-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.y1-tab-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+  letter-spacing: 0.01em;
+}
+
+.y1-tab-sub {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 400;
+}
+
+.y1-tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  border-radius: 1px;
+}
+
+/* ═══════════════════════════════════════════
+   CONTENT AREA ════════════════════════════ */
+.y1-content {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════
+   PROJECT CARD — Glass morphism with accent ═════════════ */
+.y1-card {
+  border-radius: 20px;
+  padding: 36px 40px;
+  background: rgba(6, 4, 12, 0.7);
+  backdrop-filter: blur(30px) saturate(140%);
+  -webkit-backdrop-filter: blur(30px) saturate(140%);
+  border: 1px solid var(--card-accent, rgba(255, 64, 129, 0.12));
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+    0 20px 60px -20px rgba(0, 0, 0, 0.5),
+    0 0 80px -20px var(--card-accent-bg, transparent);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.y1-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 24px 72px -20px rgba(0, 0, 0, 0.55),
+    0 0 100px -20px var(--card-accent-bg, transparent),
+    0 0 40px -10px var(--card-accent-bg, transparent);
+}
+
+/* Card header */
+.y1-card-header {
+  margin-bottom: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.y1-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.y1-card-year {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.25);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.y1-card-status {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.y1-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.y1-card-subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 8px;
+}
+
+.y1-card-category {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Description */
+.y1-card-desc {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 24px;
+}
+
+/* Highlights list */
+.y1-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.y1-highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.55;
+}
+
+.y1-highlight-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+/* Tags */
+.y1-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.y1-tag {
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  border: 1px solid;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* View Detail Button */
+.y1-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 26px;
+  border-radius: 12px;
+  border: none;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.y1-view-btn:hover {
+  filter: brightness(1.15);
+  transform: translateX(3px);
+}
+
+.y1-view-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.y1-view-btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE ═══════════════════════════════ */
+@media (max-width: 768px) {
+  .year-one-section {
+    padding: 70px 18px 90px;
+  }
+
+  .y1-tabs {
+    grid-template-columns: repeat(5, 1fr); /* 平板5列 */
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .y1-tab {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .y1-tab-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+
+  .y1-tab-title {
+    font-size: 0.72rem;
+  }
+
+  .y1-tab-sub {
+    font-size: 0.56rem;
+  }
+
+  .y1-card {
+    padding: 26px 22px;
+    border-radius: 16px;
+  }
+
+  .y1-card-title {
+    font-size: 1.25rem;
+  }
+
+  .y1-card-desc {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .y1-title { font-size: 1.5rem; }
+  .y1-tabs {
+    grid-template-columns: repeat(4, 1fr); /* 手机4列 */
+    gap: 6px;
+    padding: 0 8px;
+  }
+  .y1-tab {
+    padding: 8px 8px;
+    justify-content: flex-start;
+  }
+}
+
+/* ═════════════════════════════════════════════════════
+   COVER FLOW CAROUSEL — Apple Music Style
+   ═════════════════════════════════════════════════════ */
+
+.coverflow-container {
+  position: relative;
+  width: 100%;
+  height: 620px;                /* was 640 — more room for active card content */
+  margin: 0 auto 32px;
+  perspective: 1200px;          /* 3D depth for card rotation effect */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Track — horizontal scrolling area */
+.coverflow-track {
+  position: relative;
+  width: 100%;
+  height: 100px;               
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  touch-action: pan-y;
+  overflow-y: visible;         /* allow cards to show fully */
+}
+
+/* ── Navigation arrows ── */
+.coverflow-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.coverflow-arrow:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  transform: translateY(-50%) scale(1.08);
+}
+.coverflow-arrow--left { left: 8px; }
+.coverflow-arrow--right { right: 8px; }
+
+/* ── Individual card ── */
+.coverflow-card {
+  position: absolute;
+  top: 50%;
+  left: 50%; /* 补充：让起始点在水平中心 */
+  transform: translate(-50%, -50%); /* 修改：将 -20% 改为 -50% */
+  
+  /* 以下保持你原来的属性不变 */
+  border-radius: 20px;
+  background: rgba(6, 4, 14, 0.75);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 0 30px -8px var(--cf-accent-bg, transparent),
+    0 0 60px -16px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  pointer-events: auto;
+  will-change: transform, opacity, filter;
+  transform-style: preserve-3d;     /* enable 3D rotation for bookshelf tilt effect */
+}
+
+/* Active (center) card — fully visible and sharp */
+.coverflow-card--active {
+  border-color: var(--cf-color) + '30';
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 8px 36px -8px var(--cf-accent-bg),
+    0 0 80px -18px rgba(0, 0, 0, 0.3);
+}
+
+/* Card inner content — flex column, fill entire card */
+.coverflow-inner {
+  padding: 18px 20px 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.cf-header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.cf-year {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.22);
+  letter-spacing: 0.06em;
+}
+.cf-status {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cf-title {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+.cf-subtitle {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.38);
+  margin-bottom: 7px;
+}
+.cf-category {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cf-desc {
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 6px;
+  flex: none;
+  display: -webkit-box;
+  display: -webkit-box; /* Fallback for older browsers */
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Image preview — adaptive fill, takes remaining space after text */
+.cf-preview-img {
+  width: 100%;
+  flex: 1;                         /* fill all remaining space */
+  min-height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  flex-shrink: 0;
+}
+.cf-preview-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;               /* cover = fill, contain = fit inside */
+  display: block;
+}
+
+/* Highlights in cover flow cards */
+.cf-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: none;                      /* don't stretch — image fills the gap */
+  overflow-y: visible;
+}
+.cf-highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+}
+.cf-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+/* Tags in cover flow cards — pinned to bottom */
+.cf-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;               /* push to bottom */
+  margin-bottom: 12px;
+}
+.cf-tag {
+  padding: 3px 10px;
+  border-radius: 7px;
+  font-size: 0.64rem;
+  font-weight: 500;
+  border: 1px solid;
+  letter-spacing: 0.01em;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* "View detail" button on active card */
+.cf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 22px;
+  border-radius: 11px;
+  border: none;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  margin-top: auto;
+}
+.cf-btn:hover {
+  filter: brightness(1.15);
+  transform: translateX(4px);
+}
+.cf-btn svg { transition: transform 0.22s ease; }
+.cf-btn:hover svg { transform: translateX(4px); }
+
+/* ── Dot indicators — positioned at absolute bottom of container ── */
+.coverflow-dots {
+  position: absolute;             /* absolute positioning within container */
+  bottom: 8px;                    /* pinned to bottom */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 10;
+}
+.coverflow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.28s cubic-bezier(0.23, 1, 0.32, 1);
+  flex-shrink: 0;
+}
+.coverflow-dot--active {
+  width: 10px;
+  height: 10px;
+  border: none;
+}
+
+/* ═══ Cover Flow Responsive ═══ */
+@media (max-width: 900px) {
+  .coverflow-container { height: 520px; }
+  .coverflow-track { height: 460px; }
+  .coverflow-card--active { width: 380px !important; height: 440px !important; }
+  .coverflow-card:not(.coverflow-card--active) { width: 260px !important; height: 290px !important; }
+  .coverflow-inner { padding: 18px 18px 14px; }
+  .cf-title { font-size: 1.1rem; }
+  .cf-desc { font-size: 0.76rem; line-clamp: 2; -webkit-line-clamp: 2; }
+  .cf-highlights li { font-size: 0.72rem; }
+  .coverflow-arrow { width: 36px; height: 36px; }
+}
+
+@media (max-width: 600px) {
+  .coverflow-container { height: 460px; }
+  .coverflow-track { height: 400px; }
+  .coverflow-card--active { width: 300px !important; height: 360px !important; }
+  .coverflow-card:not(.coverflow-card--active) { width: 200px !important; height: 240px !important; }
+  .coverflow-inner { padding: 14px 14px 10px; }
+  .cf-title { font-size: 1rem; }
+  .cf-desc { font-size: 0.72rem; line-clamp: 2; -webkit-line-clamp: 2; }
+  .cf-highlights li { font-size: 0.68rem; }
+  .coverflow-arrow { width: 32px; height: 32px; }
+}

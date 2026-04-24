@@ -1,0 +1,117 @@
+/* App-level layout styles — Apple Design Language */
+
+/* ═══ Navbar — Apple-style floating glass bar ═══ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 8000;
+  padding: 0 clamp(20px, 3vw, 48px);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.navbar--scrolled {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.navbar--scrolled .navbar-inner {
+  background: rgba(10, 10, 16, 0.72);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.2),
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.04);
+}
+
+.navbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 16px auto 0;
+  padding: 10px 20px;
+  border-radius: 14px;
+  border: 0.5px solid transparent;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.logo-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 4px;
+}
+
+.nav-links a {
+  display: block;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Main */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══ Responsive ═══ */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 14px;
+  }
+
+  .navbar-inner {
+    margin-top: 10px;
+    padding: 8px 14px;
+  }
+
+  .logo-text {
+    display: none;
+  }
+
+  .nav-links a {
+    padding: 6px 10px;
+    font-size: 0.74rem;
+  }
+}

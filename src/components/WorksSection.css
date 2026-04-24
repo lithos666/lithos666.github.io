@@ -1,0 +1,323 @@
+/* ═══════════════════════════════════════════════════════
+   Works Section — Inspired by mattwilldev.com
+   Clean grid, category filters, hover reveals, Apple glass
+   ═══════════════════════════════════════════════════════ */
+
+.works-section {
+  position: relative;
+  padding: clamp(80px, 12vw, 160px) clamp(24px, 6vw, 80px);
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(5, 5, 16, 0.5) 0%, rgba(8, 8, 26, 0.5) 50%, rgba(5, 5, 16, 0.5) 100%);
+}
+
+/* Background ambient glows */
+.works-bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(120px);
+  opacity: 0.7;
+}
+
+.works-glow-1 {
+  width: 700px;
+  height: 700px;
+  top: -250px;
+  right: -150px;
+  background: radial-gradient(circle, rgba(94, 92, 230, 0.07) 0%, transparent 70%);
+}
+
+.works-glow-2 {
+  width: 600px;
+  height: 600px;
+  bottom: -200px;
+  left: -150px;
+  background: radial-gradient(circle, rgba(100, 210, 255, 0.05) 0%, transparent 70%);
+}
+
+.works-glow-3 {
+  width: 400px;
+  height: 400px;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(191, 90, 242, 0.04) 0%, transparent 70%);
+}
+
+.works-container {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.works-header {
+  margin-bottom: clamp(40px, 6vw, 72px);
+  max-width: 600px;
+}
+
+.heading-accent {
+  background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-cyan) 50%, var(--accent-magenta) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Grid ── */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══ Card — Apple glassmorphism + mattwilldev inspired ═══ */
+.work-card {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 0.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.15),
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.03);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.work-card:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.15),
+    0 8px 40px rgba(0, 0, 0, 0.3),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(-4px);
+}
+
+.work-card .tilt-glare {
+  border-radius: 20px;
+}
+
+/* Accent line — top of card */
+.card-accent-line {
+  width: 100%;
+  height: 2px;
+  opacity: 0.5;
+  border-radius: 20px 20px 0 0;
+  transition: opacity 0.4s ease;
+}
+
+.work-card:hover .card-accent-line {
+  opacity: 0.8;
+}
+
+/* ── Card header ── */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 28px 0;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-year {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.card-status {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.card-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.work-card:hover .card-icon-wrapper {
+  transform: scale(1.08);
+}
+
+/* ── Card body ── */
+.card-body {
+  padding: 16px 28px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-category {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.card-title {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: 12px;
+  transition: color 0.3s ease;
+}
+
+.card-description {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  flex: 1;
+}
+
+/* ── Card image area ── */
+.card-image-area {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.02);
+  flex-shrink: 0;
+}
+
+.card-image-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.work-card:hover .card-image-area img {
+  transform: scale(1.05);
+}
+
+/* ── Card footer ── */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 28px 24px;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.04);
+  margin-top: 16px;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.card-tag {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 0.5px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+}
+
+.work-card:hover .card-tag {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Show Project action (mattwilldev style) ── */
+.card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.work-card:hover .card-action {
+  color: var(--text-primary);
+  opacity: 1;
+}
+
+.card-action svg {
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.work-card:hover .card-action svg {
+  transform: translate(2px, -2px);
+}
+
+/* ═══ Responsive ═══ */
+@media (max-width: 768px) {
+  .works-section {
+    padding: 60px 18px;
+  }
+
+  .work-card {
+    min-height: auto;
+  }
+
+  .card-header {
+    padding: 20px 22px 0;
+  }
+
+  .card-body {
+    padding: 14px 22px 0;
+  }
+
+  .card-footer {
+    padding: 16px 22px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .card-tags {
+    gap: 5px;
+  }
+
+  .card-tag {
+    font-size: 0.58rem;
+    padding: 3px 8px;
+  }
+
+  .card-image-area {
+    height: 100px;
+  }
+}

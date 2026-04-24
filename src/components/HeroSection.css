@@ -1,0 +1,273 @@
+/* ═══════════════════════════════════════════════════════
+   Hero Section v2 — Saturn Particle System + Fixed Backdrop
+   
+   Architecture:
+   - .saturn-backdrop: position:fixed, z-index:-1, global 3D canvas
+   - .hero-section: relative content layer, sits on top of canvas
+   - Body classes drive CSS transitions synced with GSAP timeline
+   
+   ═══════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════
+   FIXED CANVAS BACKDROP — The Global 3D Background
+   This element NEVER scrolls. It covers the entire viewport
+   at all times, acting as a persistent cosmic backdrop.
+   ═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════
+   FIXED CANVAS BACKDROP — The Event Horizon (Black Hole)
+   ═══════════════════════════════════════════════════════ */
+.saturn-backdrop,
+.blackhole-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  /* Deepest cosmic void — pure black with subtle red shift at edges */
+  background: radial-gradient(ellipse at center, #000000 0%, #030102 40%, #08040a 100%);
+}
+
+.saturn-backdrop canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════
+   HERO CONTENT LAYER — Sits on top of fixed backdrop
+   This section scrolls normally, revealing content below.
+   ═══════════════════════════════════════════════════════ */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+/* ── Overlay — Apple glassmorphism, ultra-minimal ── */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  padding: clamp(24px, 4vw, 56px) clamp(28px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Glass chip — Event Horizon accent (subtle crimson/orange) */
+.glass-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: rgba(3, 0, 2, 0.75);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 0.5px solid rgba(180, 60, 40, 0.10);     /* Subtle crimson border */
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
+    'Noto Sans SC', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  color: rgba(200, 100, 70, 0.35);                   /* Faded ember glow (inherited by non-label children) */
+  transition: all 0.3s ease;
+}
+
+.glass-chip:hover {
+  background: rgba(180, 50, 30, 0.05);
+  border-color: rgba(200, 80, 50, 0.22);
+  color: rgba(220, 120, 80, 0.55);
+}
+
+.hero-overlay a,
+.hero-overlay button {
+  pointer-events: auto;
+}
+
+/* Top chip */
+.hero-top-chip {
+  align-self: flex-end;
+}
+
+.chip-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.92);          /* Pure white */
+  opacity: 1;
+}
+
+.chip-divider {
+  width: 1px;
+  height: 10px;
+  background: rgba(180, 60, 40, 0.15);   /* Ember divider */
+}
+
+.chip-year {
+  font-weight: 400;
+  font-size: 0.62rem;
+  opacity: 0.35;
+}
+
+/* Bottom row */
+.hero-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+/* Contact */
+.hero-contact-chip {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 16px;
+}
+
+.contact-item {
+  color: rgba(200, 100, 70, 0.25);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.contact-sub {
+  letter-spacing: 0.01em;
+  color: rgba(180, 80, 50, 0.15);
+  font-size: 0.58rem;
+}
+
+/* Scroll CTA */
+.hero-scroll-chip {
+  gap: 6px;
+  padding: 8px 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hero-scroll-chip:hover {
+  color: rgba(220, 120, 80, 0.6);     /* Ember glow hover */
+}
+
+.scroll-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.hero-scroll-chip svg {
+  opacity: 0.4;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hero-scroll-chip:hover svg {
+  transform: translateY(3px);
+  opacity: 0.7;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL PHASE TRANSITIONS — Synced with GSAP ScrollTrigger
+   
+   These classes are toggled on <body> by GSAP's onUpdate callback.
+   They coordinate the visual transition between:
+   (A) Saturn particle field → (B) Works Section HTML cards
+   
+   Timeline:
+   - scroll-phase-approach (0.05–0.42): Camera rushing in
+   - scroll-phase-explosion (0.42–0.72): Particles exploding
+   - scroll-phase-dissipate (0.72+): Particles fading out, HTML fading in
+   - scroll-past-hero (0.92+): Transition complete, full HTML visibility
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Phase: Dissipate → Fade in works section ── */
+/* When particles are dying (scroll 0.72+), bring in HTML content */
+body.scroll-phase-dissipate .works-section,
+body.scroll-phase-dissipate .about-section,
+body.scroll-phase-dissipate .knowledge-section,
+body.scroll-phase-dissipate .contact-section {
+  animation: fadeInUpSmooth 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* ── Phase: Past hero — Full content visibility ── */
+body.scroll-past-hero .works-section,
+body.scroll-past-hero .about-section,
+body.scroll-past-hero .knowledge-section,
+body.scroll-past-hero .contact-section {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Default state ──
+    Since black hole is always animated as backdrop,
+    sections are always visible with subtle entrance animation ── */
+.works-section,
+.about-section,
+.knowledge-section,
+.contact-section {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+@keyframes fadeInUpSmooth {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Overlay fade during transition ──
+    As we move past hero, overlay elements gently fade ── */
+body.scroll-phase-explosion .hero-overlay {
+  opacity: 0.7;
+  transition: opacity 0.5s ease;
+}
+
+body.scroll-phase-dissipate .hero-overlay {
+  opacity: 0.25;
+  transition: opacity 0.7s ease;
+}
+
+body.scroll-past-hero .hero-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-overlay { padding: 18px; }
+  .glass-chip { padding: 7px 13px; border-radius: 10px; }
+  .chip-label { font-size: 0.52rem; }
+  .chip-year { font-size: 0.55rem; }
+  .contact-item { font-size: 0.58rem; }
+  .contact-sub { font-size: 0.52rem; }
+  .scroll-label { font-size: 0.6rem; }
+
+  /* Mobile: less aggressive offset for sections */
+  .works-section,
+  .about-section,
+  .knowledge-section,
+  .contact-section {
+    transform: translateY(30px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-bottom-row {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+}

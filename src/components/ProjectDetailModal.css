@@ -1,0 +1,428 @@
+/* ═══════════════════════════════════════════════════════
+   ProjectDetailModal — 项目详情弹窗样式
+   
+   Full-screen overlay with centered modal card.
+   Glass morphism matching the cosmic theme.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Overlay ── */
+.pdm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: clamp(16px, 3vw, 40px);
+}
+
+/* ── Modal Card ── */
+.pdm-modal {
+  width: 100%;
+  max-width: 760px;
+  max-height: 88vh;
+  border-radius: 22px;
+  background: rgba(10, 6, 20, 0.88);
+  backdrop-filter: blur(36px) saturate(150%);
+  -webkit-backdrop-filter: blur(36px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+    0 32px 96px -24px rgba(0, 0, 0, 0.7),
+    0 0 120px -30px var(--pdm-accent-bg, transparent);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.pdm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 28px 32px 22px;
+  flex-shrink: 0;
+}
+
+.pdm-category {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pdm-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin: 6px 0 2px;
+}
+
+.pdm-subtitle {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.pdm-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.pdm-close:hover {
+  background: rgba(255, 80, 80, 0.1);
+  border-color: rgba(255, 80, 80, 0.25);
+  color: #ff6060;
+}
+
+/* ── Image Gallery ── */
+.pdm-gallery {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.pdm-gallery-viewport {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.pdm-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdm-slide--active {
+  opacity: 1;
+}
+
+.pdm-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.pdm-slide img:hover {
+  transform: scale(1.02);
+}
+
+/* Gallery nav buttons */
+.pdm-gallery-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.25s ease;
+  z-index: 2;
+}
+
+.pdm-gallery:hover .pdm-gallery-btn {
+  opacity: 1;
+}
+
+.pdm-gallery-btn:hover {
+  background: var(--pdm-accent);
+  border-color: var(--pdm-accent);
+}
+
+.pdm-gallery-prev { left: 12px; }
+.pdm-gallery-next { right: 12px; }
+
+/* Gallery dots */
+.pdm-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.pdm-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.pdm-dot--active {
+  transform: scale(1.25);
+}
+
+/* No image placeholder */
+.pdm-no-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 200px;
+  border: 1px dashed;
+  border-radius: 14px;
+  margin: 0 28px 8px;
+  color: rgba(255, 255, 255, 0.18);
+  font-size: 0.82rem;
+}
+
+.pdm-no-image small {
+  color: rgba(255, 255, 255, 0.12);
+  font-size: 0.7rem;
+  max-width: 360px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── Body (scrollable) ── */
+.pdm-body {
+  padding: 0 32px 28px;
+  overflow-y: auto;
+  flex: 1;
+  overscroll-behavior: contain;    /* 阻止滚动穿透到外层 */
+
+  /* Custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+
+.pdm-body::-webkit-scrollbar {
+  width: 5px;
+}
+.pdm-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.pdm-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+.pdm-section {
+  margin-bottom: 22px;
+}
+
+.pdm-section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 10px;
+}
+
+.pdm-desc {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Highlights list */
+.pdm-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.pdm-highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.58);
+  line-height: 1.6;
+}
+
+.pdm-hl-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+/* Tags row in modal */
+.pdm-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.pdm-tag {
+  padding: 4px 11px;
+  border-radius: 7px;
+  font-size: 0.66rem;
+  font-weight: 500;
+  border: 1px solid;
+  letter-spacing: 0.01em;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Documents */
+.pdm-docs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pdm-doc-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.pdm-doc-item:hover {
+  background: var(--pdm-accent-bg, transparent);
+  border-color: var(--pdm-accent) + '33';
+  color: #fff;
+}
+
+.pdm-doc-icon {
+  flex-shrink: 0;
+  color: var(--pdm-accent);
+  display: flex;
+  align-items: center;
+}
+
+.pdm-doc-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.pdm-doc-arrow {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.2s ease;
+  color: var(--pdm-accent);
+  flex-shrink: 0;
+}
+
+.pdm-doc-item:hover .pdm-doc-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Lightbox ── */
+.pdm-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.pdm-lightbox-img {
+  max-width: 92vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.pdm-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.pdm-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .pdm-overlay {
+    padding: 12px;
+  }
+
+  .pdm-modal {
+    max-height: 92vh;
+    border-radius: 18px;
+  }
+
+  .pdm-header {
+    padding: 20px 20px 16px;
+  }
+
+  .pdm-title {
+    font-size: 1.15rem;
+  }
+
+  .pdm-body {
+    padding: 0 20px 20px;
+  }
+
+  .pdm-gallery {
+    aspect-ratio: 4 / 3;
+  }
+
+  .pdm-no-image {
+    margin: 0 16px 4px;
+    min-height: 150px;
+  }
+
+  .pdm-gallery-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
