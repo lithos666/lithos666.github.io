@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import TiltCard from './ui/TiltCard';
+import { asset } from '../utils/path';
 import './WorksSection.css';
 
 const projects = [
@@ -14,7 +15,7 @@ const projects = [
     accentColor: 'rgba(27, 193, 239, 0.15)',
     year: '2024–2025',
     status: '种子轮',
-    image: '/projects/3/Goodent/第三代样机.jpg',
+    image: asset('/projects/3/Goodent/第三代样机.jpg'),
   },
   {
     id: 2,
@@ -26,7 +27,7 @@ const projects = [
     accentColor: 'rgba(230,81,0,0.15)',
     year: '2025 春',
     status: '课程设计',
-    image: '/projects/2/斯特林发动机/渲染模型1.jpg',
+    image: asset('/projects/2/斯特林发动机/渲染模型1.jpg'),
   },
   {
     id: 3,
@@ -38,7 +39,7 @@ const projects = [
     accentColor: 'rgba(121,85,72,0.15)',
     year: '2025 春',
     status: '快速原型',
-    image: '/projects/2/气动小车/气动小车1.png',
+    image: asset('/projects/2/气动小车/气动小车1.png'),
   },
   {
     id: 4,
@@ -50,7 +51,7 @@ const projects = [
     accentColor: 'rgba(102,187,106,0.15)',
     year: '2025 秋',
     status: '已结项',
-    image: '/projects/3/大创/产品.png',
+    image: asset('/projects/3/大创/产品.png'),
   },
 ];
 

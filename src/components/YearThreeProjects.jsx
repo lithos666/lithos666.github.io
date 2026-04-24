@@ -10,6 +10,7 @@
  */
 
 import CoverFlowCarousel from './CoverFlowCarousel';
+import { asset } from '../utils/path';
 import './YearOneProjects.css';
 
 // ═════════════════════════════════════════════════════
@@ -39,14 +40,14 @@ const PROJECTS = [
       'Jack 人因工程软件仿真 — 教室环境人体工程学分析与优化',
     ],
     images: [
-      '/projects/3/工效学/工效学产品.jpg',
-      '/projects/3/工效学/网页UI界面.jpg',
-      '/projects/3/工效学/渲染教室.png',
-      '/projects/3/工效学/jack教室.png',
+      asset('/projects/3/工效学/工效学产品.jpg'),
+      asset('/projects/3/工效学/网页UI界面.jpg'),
+      asset('/projects/3/工效学/渲染教室.png'),
+      asset('/projects/3/工效学/jack教室.png'),
     ],
     documents: [
-      { name: '课程作业.pdf', path: '/projects/3/工效学/工效学课程作业-智慧课堂互动硬件设计与多模态交互研究.pdf' },
-      { name: '场景文件', path: '/projects/3/工效学/Classroom.blend' },
+      { name: '课程作业.pdf', path: asset('/projects/3/工效学/工效学课程作业-智慧课堂互动硬件设计与多模态交互研究.pdf') },
+      { name: '场景文件', path: asset('/projects/3/工效学/Classroom.blend') },
     ],
   },
 
@@ -73,16 +74,16 @@ const PROJECTS = [
       '申报书 — 国家立项资质官方认证文件',
     ],
     images: [
-      '/projects/3/大创/实物照片.jpg',
-      '/projects/3/大创/实物照片1.jpg',
-      '/projects/3/大创/产品.png',
-      '/projects/3/大创/兰科智护.png',
+      asset('/projects/3/大创/实物照片.jpg'),
+      asset('/projects/3/大创/实物照片1.jpg'),
+      asset('/projects/3/大创/产品.png'),
+      asset('/projects/3/大创/兰科智护.png'),
     ],
     documents: [
-      { name: '结项汇报.pptx', path: '/projects/3/大创/大创结项汇报.pptx' },
+      { name: '结项汇报.pptx', path: asset('/projects/3/大创/大创结项汇报.pptx') },
       { name: '兰精灵申报书', path: '/projects/3/大创/兰精灵申报书.docx' },
-      { name: '风扇外壳.step', path: '/projects/3/大创/风扇外壳.step' },
-      { name: '项目PPT.pptx', path: '/projects/3/大创/兰精灵——智能养护花盆.pptx' },
+      { name: '风扇外壳.step', path: asset('/projects/3/大创/风扇外壳.step') },
+      { name: '项目PPT.pptx', path: asset('/projects/3/大创/兰精灵——智能养护花盆.pptx') },
     ],
   },
 
@@ -108,17 +109,17 @@ const PROJECTS = [
       '中期汇报 + 期末汇报 PPT — 12组完整答辩材料',
     ],
     images: [
-      '/projects/3/数学物理方法/急速下落.gif',
-      '/projects/3/数学物理方法/带电下坠.gif',
-      '/projects/3/数学物理方法/不带电下坠.gif',
+      asset('/projects/3/数学物理方法/急速下落.gif'),
+      asset('/projects/3/数学物理方法/带电下坠.gif'),
+      asset('/projects/3/数学物理方法/不带电下坠.gif'),
     ],
     documents: [
-      { name: '中期汇报.pptx', path: '/projects/3/数学物理方法/12组——电荷抑制飞溅——中期汇报.pptx' },
-      { name: '期末汇报.pptx', path: '/projects/3/数学物理方法/电荷抑制飞溅——期末汇报.pptx' },
+      { name: '中期汇报.pptx', path: asset('/projects/3/数学物理方法/12组——电荷抑制飞溅——中期汇报.pptx') },
+      { name: '期末汇报.pptx', path: asset('/projects/3/数学物理方法/电荷抑制飞溅——期末汇报.pptx') },
       { name: '仿真主文件.mph', path: '/projects/3/数学物理方法/water_strike_ground.mph' },
-      { name: '理论分析', path: '/projects/3/数学物理方法/理论分析.pdf' },
+      { name: '理论分析', path: asset('/projects/3/数学物理方法/理论分析.pdf') },
       { name: 'FEM网格划分代码', path: '/projects/3/数学物理方法/run_distmeh1.m' },
-      { name: '网格生成器.pdf', path: '/projects/3/数学物理方法/简单的网格生成器.pdf' },
+      { name: '网格生成器.pdf', path: asset('/projects/3/数学物理方法/简单的网格生成器.pdf') },
       { name: '结项报告', path: '/projects/3/数学物理方法/数学物理方法课程结项报告：带电液滴撞击介电基底的电流体动力学仿真与理论验证' },
     ],
   },
@@ -145,13 +146,13 @@ const PROJECTS = [
       'USB拓展坞 PCB 设计 — 标准版 + 标准增强版 双方案(eprj工程)',
     ],
     images: [
-      '/projects/3/微电路设计/海报.jpg',
-      '/projects/3/微电路设计/视频.gif',
+      asset('/projects/3/微电路设计/海报.jpg'),
+      asset('/projects/3/微电路设计/视频.gif'),
     ],
     documents: [
       { name: '扫地机PCB_Gerber', path: '/projects/3/微电路设计/dianjiqudong.eprj' },
-      { name: '原理图.pdf', path: '/projects/3/微电路设计/原理图.pdf' },
-      { name: '演示代码.zip', path: '/projects/3/微电路设计/robot_11.zip' },
+      { name: '原理图.pdf', path: asset('/projects/3/微电路设计/原理图.pdf') },
+      { name: '演示代码.zip', path: asset('/projects/3/微电路设计/robot_11.zip') },
     ],
   },
 
@@ -177,13 +178,13 @@ const PROJECTS = [
       '死亡搁浅台灯 + 禅教台灯（光随声动）',
     ],
     images: [
-      '/projects/3/自动控制原理/禅教台灯.jpg',
-      '/projects/3/自动控制原理/禅教台灯1.jpg',
-      '/projects/3/自动控制原理/死亡搁浅.jpg',
-      '/projects/3/自动控制原理/台灯渲染图.jpg',
-      '/projects/3/自动控制原理/台灯渲染图1.jpg',
-      '/projects/3/自动控制原理/台灯转动.gif',
-      '/projects/3/自动控制原理/buck电路原理图.jpg',
+      asset('/projects/3/自动控制原理/禅教台灯.jpg'),
+      asset('/projects/3/自动控制原理/禅教台灯1.jpg'),
+      asset('/projects/3/自动控制原理/死亡搁浅.jpg'),
+      asset('/projects/3/自动控制原理/台灯渲染图.jpg'),
+      asset('/projects/3/自动控制原理/台灯渲染图1.jpg'),
+      asset('/projects/3/自动控制原理/台灯转动.gif'),
+      asset('/projects/3/自动控制原理/buck电路原理图.jpg'),
     ],
     documents: [
       { name: '最终报告.docx', path: '/projects/3/自动控制原理/《自动控制原理》报告参考-2025.docx' },
