@@ -7,11 +7,10 @@ export default defineConfig({
   plugins: [react()],
   
   // ══════════════════════════════════════════════════
-  // 修复 #1/#2: CJS/ESM 兼容性 — 强制预打包有问题的包
+  // CJS/ESM 兼容性 — 强制预打包有问题的包
   // 这些纯 CJS 库被 ESM 项目 import 时会因缺少 default export 而崩溃:
-  //   • stats.js      → 被 @react-three/drei 内部 Stats 组件导入
   //   • use-sync-external-store → 被 framer-motion 内部使用
-  //   • @studio-freight/lenis → 旧版 Lenis 的 CJS 构建
+  //   • lenis → 平滑滚动
   // ══════════════════════════════════════════════════
   optimizeDeps: {
     include: [
@@ -23,18 +22,9 @@ export default defineConfig({
       // 动画库
       'framer-motion',
       
-      // 3D 渲染栈 (Three.js 生态)
-      'three',
-      '@react-three/fiber',
-      '@react-three/drei',
-      
       // ⚠️ 关键修复：CJS 库必须显式加入预打包
-      'stats.js',
       'use-sync-external-store',
       'lenis',
-      
-      // GSAP
-      'gsap',
     ],
     // 不排除任何包，让 Vite 全部预打包以避免运行时兼容性问题
     exclude: [],
@@ -47,10 +37,7 @@ export default defineConfig({
         // Vite 8 要求函数格式
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('three') || id.includes('@react-three')) {
-              return 'three-vendor';
-            }
-            if (id.includes('framer-motion') || id.includes('gsap')) {
+            if (id.includes('framer-motion')) {
               return 'animation-vendor';
             }
             if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler') || id.includes('use-sync')) {
