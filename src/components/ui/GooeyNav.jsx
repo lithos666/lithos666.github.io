@@ -130,16 +130,8 @@ const GooeyNav = ({
     if (!navRef.current || !containerRef.current) return;
     const activeLi = navRef.current.querySelectorAll('li')[activeIndex];
     if (activeLi) {
-      // Double rAF to ensure layout is fully stable before measuring
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          updateEffectPosition(activeLi);
-          textRef.current?.classList.add('active');
-          // Reveal effect elements after positioning is correct
-          if (filterRef.current) filterRef.current.style.opacity = '1';
-          if (textRef.current) textRef.current.style.opacity = '1';
-        });
-      });
+      updateEffectPosition(activeLi);
+      textRef.current?.classList.add('active');
     }
 
     const resizeObserver = new ResizeObserver(() => {

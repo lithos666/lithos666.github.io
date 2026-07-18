@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: page_sections
-title: 黑洞主题单页入口（3D 场景 + UI 覆盖层）
+title: 黑洞主题首页（3D 场景 + UI 叠加）
 scope:
     - src/Home.jsx
 source_files: []
