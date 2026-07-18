@@ -13,6 +13,18 @@
   --bg-tertiary: #2C2C2E;
   --bg-card: rgba(28, 28, 30, 0.72);
 
+  /* ── Translucent section backgrounds ──
+     非首页各分区统一使用的半透明背景：85% 不透明，
+     让固定在 z-index:-1 的首页视频背景隐约透出。
+     调整此处 alpha (0.7–0.9) 即可整体控制透出强度。 */
+  --section-bg: linear-gradient(180deg,
+    rgba(5, 5, 16, 0.85) 0%,
+    rgba(8, 8, 26, 0.85) 50%,
+    rgba(5, 5, 16, 0.85) 100%);
+  --section-bg-contact: linear-gradient(180deg,
+    rgba(5, 5, 16, 0.85) 0%,
+    rgba(10, 10, 30, 0.85) 100%);
+
   /* Text — Apple HIG light-on-dark */
   --text-primary: #F5F5F7;
   --text-secondary: rgba(245, 245, 247, 0.55);

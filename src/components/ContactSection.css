@@ -1,7 +1,8 @@
 .contact-section {
   position: relative;
   padding: 100px 40px 0;
-  background: linear-gradient(180deg, #050510 0%, #0a0a1e 100%);
+  /* Translucent — lets the fixed hero video faintly show through */
+  background: var(--section-bg-contact);
   overflow: hidden;
   z-index: 1;
   margin: 0;
@@ -108,14 +109,20 @@
   margin-bottom: 80px;
 }
 
-/* 信息卡片 */
+/* 信息卡片 — BorderGlow 包裹，内容布局放到 inner */
 .contact-info-card {
   display: flex;
   flex-direction: column;
+  text-align: center;
+}
+
+.contact-info-card > .border-glow-inner {
+  flex: 1;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   padding: 32px 24px;
-  text-align: center;
+  border-radius: inherit;
 }
 
 .contact-card-icon {
@@ -250,9 +257,13 @@ a.contact-card-value:hover {
   }
 
   .contact-info-card {
+    text-align: left;
+  }
+
+  .contact-info-card > .border-glow-inner {
     padding: 24px 20px;
     flex-direction: row;
-    text-align: left;
+    align-items: center;
     gap: 16px;
   }
 

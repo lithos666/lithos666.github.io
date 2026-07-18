@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import BorderGlow from './ui/BorderGlow';
 import './KnowledgeBase.css';
 
 /* ═════════════════════════════════════════════════════
@@ -213,27 +214,32 @@ export default function KnowledgeBase() {
           {knowledgeData.map((item, i) => {
             const color = CATEGORY_COLORS[item.category] || FALLBACK_COLOR;
             return (
-              <motion.button
+              <motion.div
                 key={item.id}
-                type="button"
-                className="kb-card"
-                style={{ '--kb-accent': color }}
-                onClick={() => setSelectedItem(item)}
+                className="kb-card-motion"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: Math.min(i * 0.03, 0.4) }}
-                data-hover
               >
-                <span className="kb-card-icon">{item.icon}</span>
-                <span className="kb-card-body">
-                  <span className="kb-card-title">{item.label}</span>
-                  <span className="kb-card-desc">{item.desc}</span>
-                </span>
-                <span className="kb-card-tag">
-                  {CATEGORY_LABELS[item.category] || item.category}
-                </span>
-              </motion.button>
+                <BorderGlow
+                  className="kb-card"
+                  backgroundColor="#0d0b14"
+                  borderRadius={16}
+                  style={{ '--kb-accent': color }}
+                  onClick={() => setSelectedItem(item)}
+                  data-hover
+                >
+                  <span className="kb-card-icon">{item.icon}</span>
+                  <span className="kb-card-body">
+                    <span className="kb-card-title">{item.label}</span>
+                    <span className="kb-card-desc">{item.desc}</span>
+                  </span>
+                  <span className="kb-card-tag">
+                    {CATEGORY_LABELS[item.category] || item.category}
+                  </span>
+                </BorderGlow>
+              </motion.div>
             );
           })}
         </motion.div>

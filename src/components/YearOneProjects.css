@@ -11,8 +11,8 @@
   width: 100%;
   min-height: 100vh;
   padding: clamp(80px, 10vw, 140px) clamp(24px, 6vw, 80px);
-  /* Opaque dark background — seamless between sections */
-  background: linear-gradient(180deg, #050510 0%, #08081a 50%, #050510 100%);
+  /* Translucent — lets the fixed hero video faintly show through */
+  background: var(--section-bg);
   overflow: hidden;
   margin: 0;
 }

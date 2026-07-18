@@ -1,6 +1,6 @@
 import React from 'react';
 import MetallicPaint from './ui/MetallicPaint';
-import HoloCard from './ui/HoloCard';
+import BorderGlow from './ui/BorderGlow';
 import './ContactSection.css';
 
 const ContactSection = () => {
@@ -46,8 +46,8 @@ const ContactSection = () => {
         </svg>
       ),
       label: 'GitHub',
-      value: 'github.com',
-      href: 'https://github.com',
+      value: 'github.com/lithos666',
+      href: 'https://github.com/lithos666',
     },
   ];
 
@@ -71,14 +71,11 @@ const ContactSection = () => {
 
         <div className="contact-info-grid">
           {infoItems.map((item, idx) => (
-            <HoloCard
+            <BorderGlow
               key={idx}
               className="contact-info-card"
-              accentColor="#5E5CE6"
               backgroundColor="#0a0814"
               borderRadius={18}
-              intensity={0.5}
-              sparkleCount={5}
             >
               <div className="contact-card-icon">
                 {item.icon}
@@ -91,7 +88,7 @@ const ContactSection = () => {
               ) : (
                 <span className="contact-card-value">{item.value}</span>
               )}
-            </HoloCard>
+            </BorderGlow>
           ))}
         </div>
       </div>

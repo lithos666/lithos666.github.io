@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import './ProjectDetailModal.css';
 
@@ -85,7 +86,7 @@ export default function ProjectDetailModal({ project, onClose }) {
   const highlights = Array.isArray(safeProject.highlights) ? safeProject.highlights : [];
   const tags = Array.isArray(safeProject.tags) ? safeProject.tags : [];
 
-  return (
+  return createPortal((
     <motion.div
       className="pdm-overlay"
       ref={modalRef}
@@ -345,5 +346,5 @@ export default function ProjectDetailModal({ project, onClose }) {
         </div>
       )}
     </motion.div>
-  );
+  ), document.body);
 }

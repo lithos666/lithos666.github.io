@@ -2,7 +2,8 @@
   position: relative;
   padding: clamp(80px, 10vw, 140px) clamp(24px, 5vw, 70px);
   overflow: hidden;
-  background: linear-gradient(180deg, #050510 0%, #08081a 50%, #050510 100%);
+  /* Translucent — lets the fixed hero video faintly show through */
+  background: var(--section-bg);
   margin: 0;
 }
 
@@ -55,28 +56,37 @@
   gap: 14px;
 }
 
+.kb-card-motion {
+  height: 100%;
+}
+
 .kb-card {
-  position: relative;
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  font-family: var(--font-main);
+  text-align: left;
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.kb-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Content layout lives on BorderGlow's inner node */
+.kb-card > .border-glow-inner {
+  flex: 1;
+  flex-direction: row;
   align-items: flex-start;
   gap: 14px;
   padding: 18px;
-  text-align: left;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.022);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  cursor: pointer;
-  font-family: var(--font-main);
+  border-radius: inherit;
   overflow: hidden;
-  transition:
-    transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-    border-color 0.35s ease,
-    background 0.35s ease,
-    box-shadow 0.35s ease;
 }
 
 /* Left accent bar in category color */
-.kb-card::before {
+.kb-card > .border-glow-inner::before {
   content: '';
   position: absolute;
   left: 0;
@@ -86,18 +96,10 @@
   background: var(--kb-accent, #7C4DFF);
   opacity: 0;
   transition: opacity 0.35s ease;
+  z-index: 1;
 }
 
-.kb-card:hover {
-  transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.04);
-  border-color: color-mix(in srgb, var(--kb-accent, #7C4DFF) 45%, transparent);
-  box-shadow:
-    0 12px 32px -18px rgba(0, 0, 0, 0.7),
-    0 0 0 1px color-mix(in srgb, var(--kb-accent, #7C4DFF) 12%, transparent) inset;
-}
-
-.kb-card:hover::before {
+.kb-card:hover > .border-glow-inner::before {
   opacity: 1;
 }
 
@@ -371,5 +373,5 @@
   .knowledge-section { padding: 60px 16px; }
   .knowledge-modal { padding: 28px 22px; border-radius: 20px; }
   .knowledge-grid { grid-template-columns: 1fr; gap: 12px; }
-  .kb-card { padding: 16px; }
+  .kb-card > .border-glow-inner { padding: 16px; }
 }

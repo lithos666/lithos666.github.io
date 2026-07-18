@@ -7,7 +7,8 @@
   position: relative;
   padding: clamp(80px, 12vw, 160px) clamp(24px, 6vw, 80px);
   overflow: hidden;
-  background: linear-gradient(180deg, #050510 0%, #08081a 50%, #050510 100%);
+  /* Translucent — lets the fixed hero video faintly show through */
+  background: var(--section-bg);
   margin: 0;
 }
 
@@ -77,17 +78,19 @@
   }
 }
 
-/* ═══ Card — HoloCard holographic wrapper ═══ */
+/* ═══ Card — BorderGlow wrapper ═══ */
 .work-card {
-  padding: 0;
   display: flex;
   flex-direction: column;
   min-height: 500px;
   cursor: pointer;
 }
 
-.work-card .tilt-glare {
-  border-radius: 20px;
+/* Content lives in BorderGlow's inner node — fill height & clip corners */
+.work-card > .border-glow-inner {
+  flex: 1;
+  border-radius: inherit;
+  overflow: hidden;
 }
 
 /* Accent line — top of card */

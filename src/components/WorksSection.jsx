@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import HoloCard from './ui/HoloCard';
+import BorderGlow from './ui/BorderGlow';
 import ProjectDetailModal from './ProjectDetailModal';
 import { asset } from '../utils/path';
 import './WorksSection.css';
@@ -108,13 +108,10 @@ function ProjectCard({ project, index, onSelect }) {
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
     >
-      <HoloCard
+      <BorderGlow
         className="work-card"
-        accentColor={project.color || '#7C4DFF'}
         backgroundColor="#0a0814"
         borderRadius={20}
-        intensity={0.6}
-        sparkleCount={8}
         onClick={() => onSelect(project)}
       >
         <div className="card-accent-line" style={{ background: project.color }} />
@@ -159,7 +156,7 @@ function ProjectCard({ project, index, onSelect }) {
             </svg>
           </div>
         </div>
-      </HoloCard>
+      </BorderGlow>
     </motion.div>
   );
 }
