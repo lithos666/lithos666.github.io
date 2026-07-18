@@ -17,6 +17,7 @@ const projects = [
     year: '2026–至今',
     status: '种子轮',
     image: asset('/projects/3/Goodent/第三代样机.jpg'),
+    images: [asset('/projects/3/Goodent/第三代样机.jpg')],
   },
   {
     id: 2,
@@ -29,6 +30,12 @@ const projects = [
     year: '2025 春',
     status: '课程设计',
     image: asset('/projects/2/斯特林发动机/渲染模型1.jpg'),
+    images: [
+      asset('/projects/2/斯特林发动机/渲染模型1.jpg'),
+      asset('/projects/2/斯特林发动机/渲染模型2.png'),
+      asset('/projects/2/斯特林发动机/墙体照片.jpg'),
+      asset('/projects/2/斯特林发动机/拓扑优化模型.png'),
+    ],
   },
   {
     id: 3,
@@ -41,6 +48,7 @@ const projects = [
     year: '2025 春',
     status: '快速原型',
     image: asset('/projects/2/气动小车/气动小车1.png'),
+    images: [asset('/projects/2/气动小车/气动小车1.png')],
   },
   {
     id: 4,
@@ -53,6 +61,11 @@ const projects = [
     year: '2025 秋',
     status: '已结项',
     image: asset('/projects/3/大创/产品.png'),
+    images: [
+      asset('/projects/3/大创/实物照片.jpg'),
+      asset('/projects/3/大创/实物照片1.jpg'),
+      asset('/projects/3/大创/产品.png'),
+    ],
   },
 ];
 

@@ -1,36 +1,17 @@
-import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import HoloCard from './ui/HoloCard';
+import BorderGlow from './ui/BorderGlow';
 import './KnowledgeBase.css';
 
 /* ═════════════════════════════════════════════════════
-   KnowledgeBase — 知识库导航组件 v2
+   KnowledgeBase — 知识库导航组件 v3
    
    Layout:
-   - Featured row: first 4 items as large HoloCard
-   - Grouped compact list below with category headers
-   - Search & filter toolbar
+   - Featured row: first 4 items as large BorderGlow cards
+   - Flat compact list below (no grouping)
+   - No search or filter toolbar
    
    ═════════════════════════════════════════════════════ */
-
-const CATEGORIES = [
-  { key: 'all',       label: '全部',   color: '#7C4DFF' },
-  { key: 'hardware',  label: '硬件',   color: '#448AFF' },
-  { key: 'ai',        label: 'AI',     color: '#FF4081' },
-  { key: 'ml',        label: '机器学习', color: '#7C4DFF' },
-  { key: 'engineering', label: '工程', color: '#448AFF' },
-  { key: 'design',    label: '设计',   color: '#FF6E40' },
-  { key: 'research',  label: '研究',   color: '#69F0AE' },
-  { key: 'business',  label: '商业',   color: '#FFD740' },
-  { key: 'simulation', label: '仿真',   color: '#00BCD4' },
-  { key: 'testing',   label: '测试',   color: '#FF5722' },
-  { key: 'fitness',   label: '运动',   color: '#4CAF50' },
-  { key: 'life',      label: '生活',   color: '#8BC34A' },
-  { key: 'security',  label: '安全',   color: '#9C27B0' },
-  { key: 'dev',       label: '开发',   color: '#607D8B' },
-  { key: 'robotics',  label: '机器人', color: '#009688' },
-  { key: 'philosophy', label: '思考',  color: '#B388FF' },
-];
 
 const FALLBACK_COLOR = '#7C4DFF';
 
@@ -162,53 +143,21 @@ const knowledgeData = [
   },
 ];
 
-const getCategoryColor = (cat) => {
-  if (!cat || typeof cat !== 'string') return FALLBACK_COLOR;
-  const found = CATEGORIES.find((c) => c.key === cat);
-  return found?.color ?? FALLBACK_COLOR;
-};
-
-const getCategoryLabel = (cat) => {
-  if (!cat || typeof cat !== 'string') return '未分类';
-  const found = CATEGORIES.find((c) => c.key === cat);
-  return found?.label ?? cat;
+const CATEGORY_COLORS = {
+  hardware: '#448AFF', ai: '#FF4081', ml: '#7C4DFF',
+  engineering: '#448AFF', design: '#FF6E40', research: '#69F0AE',
+  business: '#FFD740', simulation: '#00BCD4', testing: '#FF5722',
+  fitness: '#4CAF50', life: '#8BC34A', security: '#9C27B0',
+  dev: '#607D8B', robotics: '#009688', philosophy: '#B388FF',
+  history: '#FF9800',
 };
 
 export default function KnowledgeBase() {
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const filteredItems = useMemo(() => {
-    if (!Array.isArray(knowledgeData)) return [];
-    return knowledgeData.filter((item) => {
-      if (!item || typeof item !== 'object' || !item.id) return false;
-      const matchesCategory =
-        activeCategory === 'all' ||
-        (typeof item.category === 'string' && item.category === activeCategory);
-      const query = searchQuery.trim().toLowerCase();
-      const matchesSearch =
-        !query ||
-        (item.label && item.label.toLowerCase().includes(query)) ||
-        (item.desc && item.desc.toLowerCase().includes(query));
-      return matchesCategory && matchesSearch;
-    });
-  }, [activeCategory, searchQuery]);
-
   // Split into featured (first 4) and rest
-  const featuredItems = filteredItems.slice(0, 4);
-  const listItems = filteredItems.slice(4);
-
-  // Group list items by category
-  const groupedItems = useMemo(() => {
-    const groups = {};
-    listItems.forEach((item) => {
-      const cat = item.category || 'other';
-      if (!groups[cat]) groups[cat] = [];
-      groups[cat].push(item);
-    });
-    return groups;
-  }, [listItems]);
+  const featuredItems = knowledgeData.slice(0, 4);
+  const listItems = knowledgeData.slice(4);
 
   const handleCloseModal = useCallback(() => setSelectedItem(null), []);
 
@@ -248,48 +197,6 @@ export default function KnowledgeBase() {
           </p>
         </motion.div>
 
-        {/* Search & Filter */}
-        <motion.div
-          className="knowledge-toolbar"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div className="search-box glass-card">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-tertiary)" strokeWidth="1.5">
-              <circle cx="11" cy="11" r="8"/>
-              <path d="m21 21-4.35-4.35"/>
-            </svg>
-            <input
-              type="text"
-              placeholder="搜索文档..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="search-input"
-            />
-            {searchQuery && (
-              <button onClick={() => setSearchQuery('')} className="search-clear">×</button>
-            )}
-          </div>
-
-          <div className="category-tabs">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat.key}
-                className={`category-tab ${activeCategory === cat.key ? 'active' : ''}`}
-                style={{
-                  '--tab-color': cat.color,
-                  '--tab-bg': `${cat.color}15`,
-                }}
-                onClick={() => setActiveCategory(cat.key)}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-        </motion.div>
-
         {/* ═══ Featured Row ═══ */}
         {featuredItems.length > 0 && (
           <motion.div
@@ -297,108 +204,61 @@ export default function KnowledgeBase() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="featured-label">精选文档</div>
             <div className="knowledge-featured-grid">
-              <AnimatePresence mode="popLayout">
-                {featuredItems.map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.92 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.92 }}
-                    transition={{ duration: 0.35, delay: index * 0.08 }}
-                  >
-                    <HoloCard
-                      className="knowledge-card knowledge-card-featured"
-                      accentColor={getCategoryColor(item.category)}
-                      backgroundColor="#0a0814"
-                      borderRadius={20}
-                      intensity={0.5}
-                      sparkleCount={6}
-                      onClick={() => setSelectedItem(item)}
-                    >
-                      <div className="k-card-top">
-                        <span className="k-card-icon">{item.icon}</span>
-                        <span
-                          className="k-card-badge"
-                          style={{ color: getCategoryColor(item.category), borderColor: `${getCategoryColor(item.category)}30` }}
-                        >
-                          {getCategoryLabel(item.category)}
-                        </span>
-                      </div>
-                      <h3 className="k-card-title">{item.label}</h3>
-                      <p className="k-card-desc">{item.desc}</p>
-                      <div className="k-card-action">
-                        <span>查看详情</span>
-                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                          <path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </div>
-                    </HoloCard>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+              {featuredItems.map((item) => (
+                <BorderGlow
+                  key={item.id}
+                  className="knowledge-card knowledge-card-featured"
+                  glowColor={CATEGORY_COLORS[item.category] || FALLBACK_COLOR}
+                  backgroundColor="#0a0814"
+                  borderRadius={18}
+                  intensity={0.8}
+                  colors={['#c084fc', '#f472b6', '#38bdf8']}
+                  fillOpacity={0.3}
+                  onClick={() => setSelectedItem(item)}
+                >
+                  <span className="k-card-icon">{item.icon}</span>
+                  <h3 className="k-card-title">{item.label}</h3>
+                  <p className="k-card-desc">{item.desc}</p>
+                </BorderGlow>
+              ))}
             </div>
           </motion.div>
         )}
 
-        {/* ═══ Grouped List ═══ */}
-        {Object.keys(groupedItems).length > 0 && (
+        {/* ═══ Flat List ═══ */}
+        {listItems.length > 0 && (
           <motion.div
             className="knowledge-list-section"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {Object.entries(groupedItems).map(([catKey, items]) => (
-              <div key={catKey} className="knowledge-group">
-                <div className="group-header" style={{ '--group-color': getCategoryColor(catKey) }}>
-                  <span className="group-dot" />
-                  <span className="group-label">{getCategoryLabel(catKey)}</span>
-                  <span className="group-count">{items.length}</span>
+            <div className="group-items">
+              {listItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="knowledge-list-item"
+                  onClick={() => setSelectedItem(item)}
+                >
+                  <span className="list-item-icon">{item.icon}</span>
+                  <div className="list-item-content">
+                    <span className="list-item-title">{item.label}</span>
+                    <span className="list-item-desc">{item.desc}</span>
+                  </div>
+                  <svg className="list-item-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                    <path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </div>
-                <div className="group-items">
-                  <AnimatePresence mode="popLayout">
-                    {items.map((item, index) => (
-                      <motion.div
-                        key={item.id}
-                        layout
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 10 }}
-                        transition={{ duration: 0.25, delay: index * 0.04 }}
-                        className="knowledge-list-item"
-                        onClick={() => setSelectedItem(item)}
-                      >
-                        <span className="list-item-icon">{item.icon}</span>
-                        <div className="list-item-content">
-                          <span className="list-item-title">{item.label}</span>
-                          <span className="list-item-desc">{item.desc}</span>
-                        </div>
-                        <svg className="list-item-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none">
-                          <path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </motion.div>
-                    ))}
-                  </AnimatePresence>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </motion.div>
         )}
 
-        {/* Empty state */}
-        {filteredItems.length === 0 && (
-          <motion.div className="knowledge-empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <p>未找到匹配的文档</p>
-          </motion.div>
-        )}
-
-        <p className="result-count">共 {filteredItems.length} 条记录</p>
+        <p className="result-count">共 {knowledgeData.length} 条记录</p>
       </div>
 
       {/* Detail Modal */}
@@ -423,7 +283,6 @@ export default function KnowledgeBase() {
                 <div className="modal-header-left">
                   <span className="modal-icon">{selectedItem.icon}</span>
                   <div>
-                    <span className="modal-category">{getCategoryLabel(selectedItem.category)}</span>
                     <h2 className="modal-title">{selectedItem.label}</h2>
                   </div>
                 </div>
