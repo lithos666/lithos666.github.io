@@ -12,9 +12,10 @@
   width: 100%;
   padding: clamp(80px, 10vw, 120px) clamp(24px, 6vw, 80px);
   
-  /* 与其他标签页一致的半透明背景 */
-  background: linear-gradient(180deg, rgba(5, 5, 16, 0.45) 0%, rgba(8, 8, 26, 0.50) 50%, rgba(5, 5, 16, 0.45) 100%);
+  /* Opaque dark background — seamless between sections */
+  background: linear-gradient(180deg, #050510 0%, #08081a 50%, #050510 100%);
   overflow: hidden;
+  margin: 0;
 }
 
 /* ── Ambient Glows ── */

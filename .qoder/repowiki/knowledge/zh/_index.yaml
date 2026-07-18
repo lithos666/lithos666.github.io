@@ -1,0 +1,44 @@
+# 知识卡导出索引文件
+schema_version: 1
+locale: zh-CN
+branch: main
+nodes_managed: true
+exported_at: "2026-07-18T13:43:32Z"
+modules:
+    "":
+        dir_name: goodent-portfolio 项目根（Vite + React Three Fiber 单页应用）
+        title: goodent-portfolio 项目根（Vite + React Three Fiber 单页应用）
+        scope:
+            - README.md
+            - .gitignore
+            - index.html
+            - package.json
+            - package-lock.json
+            - vite.config.js
+            - cleanup.ps1
+        source_files: []
+        children:
+            - app_shell
+            - page_sections
+        depends_on: []
+        related_to: []
+    app_shell:
+        dir_name: 应用外壳与全局常量
+        title: 应用外壳与全局常量
+        scope:
+            - src/main.jsx
+            - src/App.jsx
+            - src/constants.js
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    page_sections:
+        dir_name: 黑洞主题首页（3D 场景 + UI 叠加）
+        title: 黑洞主题首页（3D 场景 + UI 叠加）
+        scope:
+            - src/Home.jsx
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []

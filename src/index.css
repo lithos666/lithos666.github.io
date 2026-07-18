@@ -8,7 +8,7 @@
 
 :root {
   /* ── Apple-inspired color system ── */
-  --bg-primary: #000000;
+  --bg-primary: #050510;
   --bg-secondary: #1C1C1E;
   --bg-tertiary: #2C2C2E;
   --bg-card: rgba(28, 28, 30, 0.72);
@@ -105,16 +105,17 @@ button {
   background: rgba(255, 255, 255, 0.22);
 }
 
-/* Custom Cursor — High-contrast glow + trailing effect */
+/* Custom Cursor — direct follow, minimal trail lag */
 .custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
   width: 16px;
   height: 16px;
-  margin: -8px 0 0 -8px;
   pointer-events: none;
   z-index: 10000;
+  will-change: transform;
+  transition: opacity 0.15s ease;
 }
 
 .cursor-dot {
@@ -140,25 +141,24 @@ button {
     0 0 48px 12px rgba(124, 77, 255, 0.1);
 }
 
-/* Trailing ring — follows behind with delay */
+/* Trailing ring — subtle 80ms lag for OS-cursor feel */
 .cursor-trail {
   position: fixed;
   top: 0;
   left: 0;
   width: 44px;
   height: 44px;
-  margin: -22px 0 0 -22px;
-  border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
+  will-change: transform;
   /* Visible ring with glow */
   border: 1.5px solid rgba(160, 170, 255, 0.25);
   background: radial-gradient(circle, rgba(140, 150, 255, 0.08) 0%, transparent 70%);
   box-shadow:
     0 0 20px 6px rgba(130, 140, 255, 0.06),
     inset 0 0 12px 3px rgba(180, 190, 255, 0.04);
-  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease,
-    border-color 0.25s ease;
+  border-radius: 50%;
+  transition: transform 0.08s linear, opacity 0.15s ease;
 }
 
 @media (max-width: 768px) {

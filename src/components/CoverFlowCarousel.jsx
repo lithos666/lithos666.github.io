@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue } from 'framer-motion';
 import ProjectDetailModal from './ProjectDetailModal';
+import MetallicPaint from './ui/MetallicPaint';
 import { COVER_FLOW, CARD_STYLE } from '../constants';
 import './YearOneProjects.css';
 
@@ -164,7 +165,7 @@ export default function CoverFlowCarousel({
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          {title}
+          <MetallicPaint>{title}</MetallicPaint>
         </motion.h2>
         <motion.p
           className="y1-subtitle"

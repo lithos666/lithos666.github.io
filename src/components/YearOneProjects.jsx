@@ -145,7 +145,7 @@ const PROJECTS = [
     imageBg: '#ffffff',              /* logo透明底黑字，需要白背景 */
     tags: ['Fusion360', 'keyshot', '工业设计', '专利检索', '每日总结'],
     description:
-      '致行科技实习期间积累的完整工程项目资料。涵盖海格力斯越野车整车三维建模（SolidWorks + Creo 双平台）、零件库管理、logo设计、竞品分析、专利检索等全方位工业设计流程，以及每日工作总结记录。',
+      '致行科技（已获Pre-A轮融资）实习期间积累的完整工程项目资料。涵盖海格力斯越野车整车三维建模（SolidWorks + Creo 双平台）、零件库管理、logo设计、竞品分析、专利检索等全方位工业设计流程，以及每日工作总结记录。',
     highlights: [
       '海格力斯建模 — 613个 SolidWorks 零件库（.SLDPRT/.CREO/.SLDASM）',
       '汽车悬架系统 — 完整底盘与悬架设计',

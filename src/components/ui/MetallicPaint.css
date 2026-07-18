@@ -1,0 +1,78 @@
+/**
+ * MetallicPaint CSS — 金属光泽流动效果
+ *
+ * 原理：大尺寸 linear-gradient 背景 + background-clip: text
+ * 动画缓慢移动 gradient position，形成金属光泽流动感。
+ * hover 时加速，不喧宾夺主。
+ */
+
+.metallic-paint {
+  background: linear-gradient(
+    110deg,
+    #e2e2e2 0%,
+    #e2e2e2 20%,
+    #ffffff 30%,
+    #b0b0b0 42%,
+    #e2e2e2 54%,
+    #ffffff 66%,
+    #e2e2e2 80%,
+    #e2e2e2 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: metallic-shimmer 8s ease-in-out infinite;
+  transition: animation-duration 0.4s ease;
+}
+
+.metallic-paint:hover {
+  animation-duration: 3s;
+}
+
+@keyframes metallic-shimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* 在暗色背景上使用暖色金属光泽 */
+.metallic-paint--warm {
+  background: linear-gradient(
+    110deg,
+    #c9a96e 0%,
+    #c9a96e 20%,
+    #f0d9a0 30%,
+    #8b7340 42%,
+    #c9a96e 54%,
+    #f0d9a0 66%,
+    #c9a96e 80%,
+    #c9a96e 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: metallic-shimmer 8s ease-in-out infinite;
+}
+
+.metallic-paint--warm:hover {
+  animation-duration: 3s;
+}
+
+/* 尊重 prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .metallic-paint,
+  .metallic-paint--warm {
+    animation: none;
+    background-position: 50% 0%;
+  }
+}

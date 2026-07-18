@@ -1,39 +1,54 @@
-import React, { useState } from 'react';
+import React from 'react';
+import MetallicPaint from './ui/MetallicPaint';
+import HoloCard from './ui/HoloCard';
 import './ContactSection.css';
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // 这里可以添加表单提交逻辑
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
-  };
-
-  const socialLinks = [
-    { name: 'GitHub', url: '#', icon: '💻' },
-    { name: 'LinkedIn', url: '#', icon: '💼' },
-    { name: 'Twitter', url: '#', icon: '🐦' },
-    { name: 'Instagram', url: '#', icon: '📸' }
+  const infoItems = [
+    {
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+      ),
+      label: 'Email',
+      value: 'thosli666@gmail.com',
+      href: 'mailto:thosli666@gmail.com',
+    },
+    {
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      ),
+      label: 'Location',
+      value: '中国 · 重庆',
+      href: null,
+    },
+    {
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+      ),
+      label: 'University',
+      value: '重庆大学 · 机器人工程',
+      href: null,
+    },
+    {
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+          <path d="M9 18c-4.51 2-5-2-7-2"/>
+        </svg>
+      ),
+      label: 'GitHub',
+      value: 'github.com',
+      href: 'https://github.com',
+    },
   ];
 
   return (
@@ -44,147 +59,59 @@ const ContactSection = () => {
 
       <div className="contact-container">
         <div className="contact-header">
-          <h2 className="contact-title">Let's Create Something Amazing</h2>
+          <div className="contact-avatar">
+            <img src="/avatar-new.png" alt="肖楚煜" />
+          </div>
+          <span className="contact-badge">CONTACT</span>
+          <h2 className="contact-title"><MetallicPaint>肖楚煜</MetallicPaint></h2>
           <p className="contact-subtitle">
-            Have a project in mind? Let's collaborate and bring your vision to life.
+            重庆大学 · 机器人工程 &nbsp;|&nbsp; thosli666@gmail.com
           </p>
         </div>
 
-        <div className="contact-content">
-          {/* 联系表单 */}
-          <div className="contact-form-wrapper">
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="form-input"
-                />
-                <div className="input-underline"></div>
+        <div className="contact-info-grid">
+          {infoItems.map((item, idx) => (
+            <HoloCard
+              key={idx}
+              className="contact-info-card"
+              accentColor="#5E5CE6"
+              backgroundColor="#0a0814"
+              borderRadius={18}
+              intensity={0.5}
+              sparkleCount={5}
+            >
+              <div className="contact-card-icon">
+                {item.icon}
               </div>
-
-              <div className="form-group">
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="form-input"
-                />
-                <div className="input-underline"></div>
-              </div>
-
-              <div className="form-group">
-                <input
-                  type="text"
-                  name="subject"
-                  placeholder="Project Subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="form-input"
-                />
-                <div className="input-underline"></div>
-              </div>
-
-              <div className="form-group">
-                <textarea
-                  name="message"
-                  placeholder="Tell me about your project..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  className="form-input form-textarea"
-                  rows="6"
-                ></textarea>
-                <div className="input-underline"></div>
-              </div>
-
-              <button type="submit" className="submit-btn">
-                <span>{submitted ? 'Message Sent!' : 'Send Message'}</span>
-                <span className="submit-icon">✈️</span>
-              </button>
-            </form>
-
-            {/* 成功提示 */}
-            {submitted && (
-              <div className="success-message">
-                <div className="success-icon">✓</div>
-                <p>Thank you! I'll get back to you soon.</p>
-              </div>
-            )}
-          </div>
-
-          {/* 联系信息 */}
-          <div className="contact-info">
-            <div className="info-card">
-              <div className="info-icon">📧</div>
-              <h3>Email</h3>
-              <a href="mailto:hello@example.com">hello@example.com</a>
-            </div>
-
-            <div className="info-card">
-              <div className="info-icon">📍</div>
-              <h3>Location</h3>
-              <p>Creative Studio, Your City</p>
-            </div>
-
-            <div className="info-card">
-              <div className="info-icon">⏰</div>
-              <h3>Availability</h3>
-              <p>Mon - Fri, 9AM - 6PM</p>
-            </div>
-
-            {/* 社交链接 */}
-            <div className="social-links">
-              <h4>Connect With Me</h4>
-              <div className="socials">
-                {socialLinks.map((link, idx) => (
-                  <a key={idx} href={link.url} className="social-link" title={link.name}>
-                    <span className="social-icon">{link.icon}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
+              <span className="contact-card-label">{item.label}</span>
+              {item.href ? (
+                <a href={item.href} className="contact-card-value" target="_blank" rel="noopener noreferrer">
+                  {item.value}
+                </a>
+              ) : (
+                <span className="contact-card-value">{item.value}</span>
+              )}
+            </HoloCard>
+          ))}
         </div>
       </div>
 
       {/* 页脚 */}
       <footer className="footer">
         <div className="footer-content">
-          <p>&copy; 2024 Creative Portfolio. All rights reserved.</p>
+          <p>&copy; 2025 肖楚煜 · Goodent. All rights reserved.</p>
           <div className="footer-links">
-            <a href="#hero">Back to top</a>
-            <span className="separator">•</span>
-            <a href="#works">View Works</a>
+            <a href="#hero">返回顶部</a>
+            <span className="separator">·</span>
+            <a href="#works">查看作品</a>
           </div>
         </div>
-
-        {/* 返回顶部按钮 */}
-        <a href="#hero" className="back-to-top">
-          <span>↑</span>
-        </a>
       </footer>
 
-      {/* SVG 装饰 */}
-      <svg className="contact-decoration" viewBox="0 0 1200 600" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="contactGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgba(177, 62, 255, 0.15)" />
-            <stop offset="100%" stopColor="rgba(0, 217, 255, 0.15)" />
-          </linearGradient>
-        </defs>
-        <circle cx="100" cy="100" r="70" fill="none" stroke="url(#contactGradient)" strokeWidth="1" opacity="0.4" />
-        <circle cx="1100" cy="500" r="100" fill="none" stroke="url(#contactGradient)" strokeWidth="1" opacity="0.4" />
-        <path d="M 0 300 L 1200 300" stroke="url(#contactGradient)" strokeWidth="1" opacity="0.2" />
-      </svg>
+      {/* 返回顶部按钮 */}
+      <a href="#hero" className="back-to-top">
+        <span>↑</span>
+      </a>
     </section>
   );
 };

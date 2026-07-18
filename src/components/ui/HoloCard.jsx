@@ -1,33 +1,53 @@
 import { useState, useRef, useMemo } from 'react';
-import { motion } from 'framer-motion';
 import './HoloCard.css';
 
 /* ═══════════════════════════════════════════════════════════
-   HoloCard — Pokemon 全息卡片效果
+   HoloCard — 全息卡片效果 (通用包装器)
    
    视觉特效：
    1. 彩虹全息渐变 (iridescent holographic gradient)
    2. 鼠标跟踪闪光 (cursor-tracking shine sweep)
-   3. 稀有度发光边框 (rarity glow border)
+   3. 全息扫描线 (holographic scan lines)
    4. 悬浮 3D 倾斜 (3D tilt on hover)
    5. 闪烁粒子动画 (sparkle particle animation)
-   6. 底部稀有度徽章 (rarity badge)
    
    Props:
-   - card: { title, type, description, skills[], metrics{} }
-   - rarityStyles: { border, glow, bg, shimmer, label, labelColor }
-   - phaseColor: 当前阶段主题色
+   - children: 卡片内容
+   - className: 额外 CSS 类名
+   - accentColor: 主题色 (影响全息渐变和边框)
+   - backgroundColor: 卡片背景色
+   - borderRadius: 圆角半径 (px)
+   - intensity: 全息效果强度 (0~1)
+   - sparkleCount: 闪烁粒子数量
+   - onClick: 点击回调
    ═══════════════════════════════════════════════════════════ */
 
-export default function HoloCard({ card, rarityStyles, phaseColor }) {
+function hexToRgba(hex, alpha) {
+  hex = hex.replace(/^#/, '');
+  if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+  const r = parseInt(hex.substring(0, 2), 16) || 128;
+  const g = parseInt(hex.substring(2, 4), 16) || 128;
+  const b = parseInt(hex.substring(4, 6), 16) || 255;
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+export default function HoloCard({
+  children,
+  className = '',
+  accentColor = '#7C4DFF',
+  backgroundColor = '#0a0814',
+  borderRadius = 18,
+  intensity = 0.6,
+  sparkleCount = 8,
+  onClick,
+}) {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef(null);
 
   // ── 使用 useMemo 生成稳定的随机卡片编号 ──
-  // 修复 React StrictMode 下 Math.random() 在 render 中导致闪烁的问题
   const cardNumber = useMemo(
     () => Math.floor(Math.random() * 900 + 100),
-    [] // 仅在挂载时生成一次
+    []
   );
   const [tiltStyle, setTiltStyle] = useState({ rotateX: 0, rotateY: 0 });
   const [shinePos, setShinePos] = useState({ x: -100, y: -100 });
@@ -36,18 +56,11 @@ export default function HoloCard({ card, rarityStyles, phaseColor }) {
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    
-    // Calculate relative position (0 to 1)
-    const x = (e.clientX - rect.left) / rect.width;  
+    const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
-
-    // Tilt: max ±12deg rotation
-    const rotateX = (y - 0.5) * -16;
-    const rotateY = (x - 0.5) * 16;
-    
+    const rotateX = (y - 0.5) * -14;
+    const rotateY = (x - 0.5) * 14;
     setTiltStyle({ rotateX, rotateY });
-    
-    // Shine position (percentage-based for CSS gradient)
     setShinePos({ x: x * 100, y: y * 100 });
   };
 
@@ -57,70 +70,86 @@ export default function HoloCard({ card, rarityStyles, phaseColor }) {
     setShinePos({ x: -100, y: -100 });
   };
 
-  const isLegendary = card.rarity === 'legendary';
+  // 根据主题色生成彩虹渐变色环
+  const irisGradient = useMemo(() => {
+    const base = accentColor;
+    return `conic-gradient(
+      from var(--iris-angle, 0deg) at 50% 50%,
+      transparent 0deg,
+      ${hexToRgba(base, 0.10)} 30deg,
+      ${hexToRgba('#00c8ff', 0.08)} 60deg,
+      ${hexToRgba(base, 0.07)} 90deg,
+      ${hexToRgba('#ffc800', 0.09)} 120deg,
+      ${hexToRgba('#00ffb4', 0.06)} 150deg,
+      ${hexToRgba('#ff4080', 0.08)} 180deg,
+      ${hexToRgba(base, 0.09)} 210deg,
+      ${hexToRgba('#ff8000', 0.06)} 240deg,
+      ${hexToRgba('#c000ff', 0.08)} 270deg,
+      ${hexToRgba('#00ff80', 0.06)} 300deg,
+      ${hexToRgba('#ff00c0', 0.07)} 330deg,
+      transparent 360deg
+    )`;
+  }, [accentColor]);
 
   return (
-    <motion.div
+    <div
       ref={cardRef}
-      className={`holo-card holo-card--${card.rarity} ${isHovered ? 'holo-card--active' : ''}`}
+      className={`holo-card ${isHovered ? 'holo-card--active' : ''} ${className}`}
       style={{
-        '--holo-border': rarityStyles.border,
-        '--holo-glow': rarityStyles.glow,
-        '--holo-bg': rarityStyles.bg,
-        '--holo-shimmer': rarityStyles.shimmer,
-        '--holo-label-color': rarityStyles.labelColor,
+        '--holo-border': accentColor,
+        '--holo-glow': hexToRgba(accentColor, 0.25),
+        '--holo-bg': backgroundColor,
+        '--holo-shimmer': hexToRgba(accentColor, 0.15),
         '--shine-x': `${shinePos.x}%`,
         '--shine-y': `${shinePos.y}%`,
+        '--holo-radius': `${borderRadius}px`,
         perspective: '1000px',
         transform: `rotateX(${tiltStyle.rotateX}deg) rotateY(${tiltStyle.rotateY}deg)`,
-        transition: 'transform 0.15s ease-out, box-shadow 0.4s ease',
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      onClick={onClick}
     >
-      
       {/* ── Layer 1: Holographic iridescent overlay ── */}
-      <div className="holo-iris" />
-      
+      <div className="holo-iris" style={{ background: irisGradient }} />
+
       {/* ── Layer 2: Cursor-tracking shine sweep ── */}
-      <div 
+      <div
         className="holo-shine"
         style={{
           background: `radial-gradient(circle 120px at var(--shine-x) var(--shine-y), 
-            rgba(255,255,255,${isHovered ? 0.35 : 0.15}) 0%, 
+            rgba(255,255,255,${isHovered ? 0.3 * intensity : 0.12 * intensity}) 0%, 
             transparent 70%)`,
           opacity: isHovered ? 1 : 0.5,
           transition: 'opacity 0.3s ease',
         }}
       />
-      
-      {/* ── Layer 3: Animated holographic lines (like Pokemon card pattern) ── */}
+
+      {/* ── Layer 3: Animated holographic lines ── */}
       <div className="holo-lines">
         {[...Array(8)].map((_, i) => (
-          <div key={i} className="holo-line" 
-            style={{ 
+          <div
+            key={i}
+            className="holo-line"
+            style={{
               top: `${(i / 7) * 100}%`,
               animationDelay: `${i * 0.2}s`,
               background: `linear-gradient(90deg, 
                 transparent 0%, 
-                ${rarityStyles.border}${isHovered ? '40' : '15'} 20%,
-                ${rarityStyles.border}${isHovered ? '60' : '25'} 50%, 
-                ${rarityStyles.border}${isHovered ? '40' : '15'} 80%,
+                ${hexToRgba(accentColor, isHovered ? 0.25 : 0.1)} 20%,
+                ${hexToRgba(accentColor, isHovered ? 0.4 : 0.15)} 50%, 
+                ${hexToRgba(accentColor, isHovered ? 0.25 : 0.1)} 80%,
                 transparent 100%)`,
-            }} 
+            }}
           />
         ))}
       </div>
 
-      {/* ── Layer 4: Sparkle particles (more for legendary/shiny) ── */}
+      {/* ── Layer 4: Sparkle particles ── */}
       {isHovered && (
         <div className="holo-sparkles">
-          {[...Array(isLegendary ? 14 : isHovered && card.rarity === 'shiny' ? 10 : 6)].map((_, i) => (
+          {[...Array(sparkleCount)].map((_, i) => (
             <span
               key={i}
               className="sparkle"
@@ -139,69 +168,18 @@ export default function HoloCard({ card, rarityStyles, phaseColor }) {
 
       {/* ═══ CARD CONTENT ═══ */}
       <div className="holo-content">
-        
-        {/* Rarity badge + Title */}
-        <div className="holo-top">
-          <span className="holo-rarity-badge" style={{
-            color: rarityStyles.labelColor,
-            borderColor: rarityStyles.labelColor + '44',
-            background: `${rarityStyles.labelColor}10`,
-          }}>
-            {card.type}
-          </span>
-          
-          {/* Pokemon-style card number — 使用稳定的随机值 */}
-          <span className="holo-card-num" style={{ color: `${phaseColor}50` }}>
-            #{cardNumber}
-          </span>
-        </div>
-
-        <h4 className="holo-title">{card.title}</h4>
-        <p className="holo-desc">{card.description}</p>
-
-        {/* Skills list */}
-        <ul className="holo-skills">
-          {card.skills.map((skill, i) => (
-            <li key={i} className="holo-skill-item">
-              <span className="skill-bullet" style={{ background: rarityStyles.border + '88' }}>▸</span>
-              {skill}
-            </li>
-          ))}
-        </ul>
-
-        {/* Metrics footer */}
-        <div className="holo-metrics">
-          {Object.entries(card.metrics).map(([key, val]) => (
-            <div key={key} className="metric">
-              <span className="metric-val">{val}</span>
-              <span className="metric-key">{key}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom rarity bar */}
-        <div className="holo-bottom-bar" style={{
-          background: `linear-gradient(90deg, 
-            ${rarityStyles.border}00, 
-            ${rarityStyles.border}, 
-            ${rarityStyles.border}66, 
-            ${rarityStyles.border},
-            ${rarityStyles.border}00)`,
-        }}/>
+        {children}
       </div>
 
-      {/* ── Legendary extra glow ring ── */}
-      {isLegendary && (
-        <>
-          <div className="legendary-ring legendary-ring--outer" style={{
-            borderColor: rarityStyles.border + '40',
-            boxShadow: `0 0 20px ${rarityStyles.glow}, inset 0 0 20px ${rarityStyles.glow}`,
-          }}/>
-          <div className="legendary-ring legendary-ring--inner" style={{
-            borderColor: rarityStyles.border + '25',
-          }}/>
-        </>
-      )}
-    </motion.div>
+      {/* ── Bottom decorative bar ── */}
+      <div className="holo-bottom-bar" style={{
+        background: `linear-gradient(90deg, 
+          ${accentColor}00, 
+          ${accentColor}, 
+          ${accentColor}66, 
+          ${accentColor},
+          ${accentColor}00)`,
+      }}/>
+    </div>
   );
 }

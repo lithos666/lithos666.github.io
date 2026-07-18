@@ -67,26 +67,20 @@
   letter-spacing: -0.01em;
 }
 
-.nav-links {
+/* GooeyNav wrapper inside navbar */
+.nav-gooey-wrapper {
   display: flex;
-  list-style: none;
-  gap: 4px;
+  align-items: center;
 }
 
-.nav-links a {
-  display: block;
-  padding: 7px 14px;
-  border-radius: 8px;
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  letter-spacing: 0.01em;
-  transition: all 0.3s ease;
+.nav-gooey-wrapper .gooey-nav-container nav ul {
+  gap: 0.6em;
+  padding: 0 0.5em;
 }
 
-.nav-links a:hover {
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.06);
+.nav-gooey-wrapper .gooey-nav-container nav ul li a {
+  font-size: 0.72rem;
+  padding: 0.5em 0.8em;
 }
 
 /* Main */
@@ -96,6 +90,16 @@ main {
 }
 
 /* ═══ Responsive ═══ */
+@media (max-width: 1024px) {
+  .nav-gooey-wrapper .gooey-nav-container nav ul {
+    gap: 0.4em;
+  }
+  .nav-gooey-wrapper .gooey-nav-container nav ul li a {
+    font-size: 0.65rem;
+    padding: 0.4em 0.6em;
+  }
+}
+
 @media (max-width: 768px) {
   .navbar {
     padding: 0 14px;
@@ -110,8 +114,11 @@ main {
     display: none;
   }
 
-  .nav-links a {
-    padding: 6px 10px;
-    font-size: 0.74rem;
+  .nav-gooey-wrapper .gooey-nav-container nav ul {
+    gap: 0.3em;
+  }
+  .nav-gooey-wrapper .gooey-nav-container nav ul li a {
+    font-size: 0.58rem;
+    padding: 0.35em 0.5em;
   }
 }

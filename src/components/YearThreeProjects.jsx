@@ -65,7 +65,7 @@ const PROJECTS = [
     accentColor: 'rgba(102,187,106,0.10)',
     tags: ['SolidWorks', 'Arduino', 'IoT', '创新创业', '答辩汇报'],
     description:
-      '国家级大学生创新创业训练计划项目——「兰精灵」智能养护花盆。面向家庭园艺爱好者的智能化植物养护设备，集成自动浇灌、光照监测、温湿度调控等多传感器融合系统。',
+      '国家级大学生创新创业训练计划优秀结项项目——「兰精灵」智能养护花盆。专为家庭园艺爱好者打造的智能化植物养护花盆，集成自动浇灌、光照监测、温湿度调控等多传感器融合系统。',
     highlights: [
       '兰精灵 v1.2 三维模型 (.step) — 含风扇外壳等核心部件的参数化建模',
       '两版实物原型 (flower1 / flower2) — 从概念验证到功能完善的迭代过程',
@@ -190,6 +190,68 @@ const PROJECTS = [
       { name: '最终报告.docx', path: '/projects/3/自动控制原理/《自动控制原理》报告参考-2025.docx' },
     ],
   },
+
+  // ══════════════════════════════════════════════════════
+  // ⑥ 数值分析 — 工程数值分析
+  // 资源位置: /projects/3/数值分析/
+  // ══════════════════════════════════════════════════════
+  {
+    id: 'numerical-analysis',
+    title: '数值分析 · 工程数值计算',
+    subtitle: '数值方法 · MATLAB编程 · 误差分析',
+    category: '计算数学 · 数值方法',
+    year: '2026 春',
+    color: '#42A5F5',
+    accentColor: 'rgba(66,165,245,0.10)',
+    tags: ['MATLAB', '数值积分', '插值逼近', 'ODE求解', '误差分析'],
+    description:
+      '数值分析课程的综合实践。涵盖数值插值与逼近、数值积分与微分、常微分方程数值解法、线性方程组迭代解法等核心内容，通过 MATLAB 编程实现各类数值算法并进行工程问题分析。',
+    highlights: [
+      '数值插值与逼近 — Lagrange / Newton / 样条插值算法实现',
+      '数值积分方法 — 梯形法则、Simpson 法则、Gauss 求积',
+      'ODE 数值解法 — Euler、Runge-Kutta 方法及稳定性分析',
+      '课程汇报 — 完整中期与期末汇报材料',
+    ],
+    images: [
+      asset('/projects/3/数值分析/poster-3.jpg'),
+      asset('/projects/3/数值分析/.png'),
+    ],
+    documents: [
+      { name: '第三次汇报.pdf', path: asset('/projects/3/数值分析/工程数值分析第三次汇报.pdf') },
+      { name: '报告.pdf', path: '/projects/3/数值分析/.pdf' },
+    ],
+  },
+
+  // ══════════════════════════════════════════════════════
+  // ⑦ 产品制造 — 产品制造工艺
+  // 资源位置: /projects/3/产品制造/
+  // ══════════════════════════════════════════════════════
+  {
+    id: 'product-manufacturing',
+    title: '产品制造 · 工艺与制造',
+    subtitle: '制造工艺 · 产品设计 · 工程制图',
+    category: '制造工艺 · 产品设计',
+    year: '2026 春',
+    color: '#26A69A',
+    accentColor: 'rgba(38,166,154,0.10)',
+    tags: ['SolidWorks', '制造工艺', 'CAD/CAM', '产品设计', '工程制图'],
+    description:
+      '产品制造课程的综合实践。涵盖产品结构设计、制造工艺规划、CAD/CAM 建模与加工仿真等内容，通过实际产品项目完成从概念设计到制造验证的完整流程。',
+    highlights: [
+      '产品结构设计 — 三维建模与装配设计',
+      '制造工艺规划 — 工艺路线设计与优化',
+      'CAD/CAM 应用 — 数控加工编程与仿真',
+      '结项报告 — 完整设计制造文档链',
+    ],
+    images: [
+      asset('/projects/3/产品制造/product-image.png'),
+      asset('/projects/3/产品制造/product-image-1.png'),
+      asset('/projects/3/产品制造/product-image-2.png'),
+    ],
+    documents: [
+      { name: '结项报告.docx', path: '/projects/3/产品制造/final-report.docx' },
+    ],
+  },
 ];
 
 /** 大三实践项目 ID 集合 */
@@ -208,8 +270,8 @@ export default function YearThreeProjects() {
       projects={PROJECTS}
       sectionId="year-three"
       badgeText="YEAR THREE"
-      title="大三上学期 · 实践作品集"
-      subtitle="2025 秋季 &nbsp;|&nbsp; 5个项目 · 工效学 / 大创 / 数理方法 / 微电路 / 自动控制"
+      title="大三学年 · 实践作品集"
+      subtitle="2025 冬 – 2026 夏 &nbsp;|&nbsp; 7个项目 · 工效学 / 大创 / 数理方法 / 微电路 / 自动控制 / 数值分析 / 产品制造"
       layoutIdPrefix="year-three"
       statusDetector={detectYearThreeStatus}
     />

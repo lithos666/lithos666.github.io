@@ -1,0 +1,14 @@
+schema_version: 1
+module_path: ""
+title: goodent-portfolio 项目根（Vite + React Three Fiber 单页应用）
+scope:
+    - README.md
+    - .gitignore
+    - index.html
+    - package.json
+    - package-lock.json
+    - vite.config.js
+    - cleanup.ps1
+source_files: []
+depends_on: []
+related_to: []

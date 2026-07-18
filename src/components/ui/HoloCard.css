@@ -1,76 +1,53 @@
 /* ═══════════════════════════════════════════════════════════
-   HoloCard — Pokemon 全息卡片效果
+   HoloCard — 全息卡片效果 (通用包装器)
    
-   Visual Effects Breakdown:
-   
+   Visual Effects:
    1. IRIDESCENT HOLOGRAPHIC OVERLAY (holo-iris)
-      - Conic-gradient rainbow sweep animation
-      - Mix-blend-mode: color-dodge for that "holographic" look
-      - Subtle rotation creates the shimmering effect
-   
    2. CURSOR-TRACKING SHINE SWEEP (holo-shine)
-      - Radial gradient follows mouse position (--shine-x, --shine-y)
-      - Brightens on hover, fades when not hovering
-   
-   3. HOLOGRAPHIC LINES PATTERN (holo-lines)
-      - Horizontal scan lines like classic Pokemon cards
-      - Animated opacity pulse for "living hologram" feel
-      - Color matches rarity tier
-   
-   4. SPARKLE PARTICLES (holo-sparkles > .sparkle)
-      - Random-positioned ✦ symbols
-      - Scale + fade in/out animation
-      - More particles for higher rarity tiers
-   
-   5. 3D TILT EFFECT (on .holo-card itself)
-      - Transform: rotateX/Y based on mouse position
-      - Smooth transition for natural feel
-      - Perspective set on parent for correct depth
-   
-   6. RARITY-SPECIFIC STYLES
-      - Common (gray) < Rare (cyan) < Shiny (gold) < Legendary (magenta/purple)
-      - Each rarity has unique border, glow, background, and shimmer intensity
+   3. HOLOGRAPHIC SCAN LINES (holo-lines)
+   4. SPARKLE PARTICLES (holo-sparkles)
+   5. 3D TILT EFFECT
    ═══════════════════════════════════════════════════════════ */
+
+@property --iris-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
 
 .holo-card {
   position: relative;
-  border-radius: 16px;
+  border-radius: var(--holo-radius, 18px);
   overflow: hidden;
   cursor: pointer;
   
-  /* Base card style */
-  background: var(--holo-bg);
-  border: 2px solid var(--holo-border);
+  background: var(--holo-bg, #0a0814);
+  border: 1.5px solid color-mix(in srgb, var(--holo-border, #7C4DFF) 30%, transparent);
   
-  /* Smooth transitions */
   transition: 
-    transform 0.2s ease-out,
     box-shadow 0.4s ease,
     border-color 0.4s ease;
-
+  
   transform-style: preserve-3d;
+  isolation: isolate;
 }
 
-/* Hover state — enhance glow and lift */
 .holo-card:hover {
   box-shadow: 
     0 8px 32px var(--holo-glow),
-    0 0 60px var(--holo-glow),
-    inset 0 1px 0 rgba(255,255,255,0.1);
-  border-color: var(--holo-border);
+    0 0 60px var(--holo-glow);
+  border-color: color-mix(in srgb, var(--holo-border, #7C4DFF) 50%, transparent);
   z-index: 10;
 }
+
 .holo-card--active {
   box-shadow: 
     0 12px 48px var(--holo-glow),
-    0 0 80px var(--holo-glow),
-    inset 0 1px 0 rgba(255,255,255,0.15);
+    0 0 80px var(--holo-glow);
 }
 
 /* ══════════════════════════════════════════
    Layer 1: IRIDESCENT HOLOGRAPHIC OVERLAY
-   The signature Pokemon holographic shimmer effect
-   Uses conic-gradient for rainbow spectrum sweep
    ══════════════════════════════════════════ */
 .holo-iris {
   position: absolute;
@@ -79,24 +56,6 @@
   z-index: 2;
   opacity: 0;
   transition: opacity 0.4s ease;
-  
-  background: conic-gradient(
-    from var(--iris-angle, 0deg) at 50% 50%,
-    transparent 0deg,
-    rgba(255,0,128,0.08) 30deg,
-    rgba(0,200,255,0.10) 60deg,
-    rgba(128,0,255,0.08) 90deg,
-    rgba(255,200,0,0.09) 120deg,
-    rgba(0,255,180,0.07) 150deg,
-    rgba(255,64,128,0.08) 180deg,
-    rgba(64,128,255,0.09) 210deg,
-    rgba(255,128,0,0.06) 240deg,
-    rgba(192,0,255,0.08) 270deg,
-    rgba(0,255,128,0.07) 300deg,
-    rgba(255,0,192,0.08) 330deg,
-    transparent 360deg
-  );
-  
   mix-blend-mode: color-dodge;
   animation: iris-sweep 6s linear infinite;
 }
@@ -106,10 +65,9 @@
   to { --iris-angle: 360deg; }
 }
 
-.holo-card:hover .holo-iris { opacity: 1; }
-.holo-card--active .holo-iris { opacity: 0.85; }
+.holo-card:hover .holo-iris { opacity: 0.8; }
+.holo-card--active .holo-iris { opacity: 0.65; }
 
-/* Fallback for browsers without @property support */
 @supports not (--css: variables) {
   .holo-iris {
     animation: iris-fallback 6s linear infinite;
@@ -125,8 +83,6 @@
 
 /* ══════════════════════════════════════════
    Layer 2: CURSOR-TRACKING SHINE SWEEP
-   Radial highlight follows mouse position
-   Creates "light reflecting off glossy surface"
    ══════════════════════════════════════════ */
 .holo-shine {
   position: absolute;
@@ -141,8 +97,6 @@
 
 /* ══════════════════════════════════════════
    Layer 3: HOLOGRAPHIC SCAN LINES
-   Classic Pokemon/Trading Card horizontal lines
-   Subtle pulsing animation for "alive" feel
    ══════════════════════════════════════════ */
 .holo-lines {
   position: absolute;
@@ -150,10 +104,10 @@
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
-  opacity: 0.35;
+  opacity: 0.3;
   transition: opacity 0.4s ease;
 }
-.holo-card:hover .holo-lines { opacity: 0.65; }
+.holo-card:hover .holo-lines { opacity: 0.55; }
 
 .holo-line {
   position: absolute;
@@ -169,9 +123,6 @@
 
 /* ══════════════════════════════════════════
    Layer 4: SPARKLE PARTICLES
-   ✦ symbols that appear on hover
-   More sparkles for legendary/shiny cards
-   Each sparkle has random delay & position
    ══════════════════════════════════════════ */
 .holo-sparkles {
   position: absolute;
@@ -190,26 +141,11 @@
 }
 
 @keyframes sparkle-pop {
-  0% { 
-    transform: scale(0) rotate(0deg); 
-    opacity: 0; 
-  }
-  25% { 
-    transform: scale(1.2) rotate(45deg); 
-    opacity: 1; 
-  }
-  50% { 
-    transform: scale(0.9) rotate(90deg); 
-    opacity: 0.8; 
-  }
-  75% { 
-    transform: scale(0.5) rotate(135deg); 
-    opacity: 0.4; 
-  }
-  100% { 
-    transform: scale(0) rotate(180deg); 
-    opacity: 0; 
-  }
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  25% { transform: scale(1.2) rotate(45deg); opacity: 1; }
+  50% { transform: scale(0.9) rotate(90deg); opacity: 0.8; }
+  75% { transform: scale(0.5) rotate(135deg); opacity: 0.4; }
+  100% { transform: scale(0) rotate(180deg); opacity: 0; }
 }
 
 /* ══════════════════════════════════════════
@@ -218,262 +154,29 @@
 .holo-content {
   position: relative;
   z-index: 5;
-  padding: 18px 16px 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  min-height: 280px;
 }
 
-/* Top bar: rarity badge + card number */
-.holo-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4px;
-}
-.holo-rarity-badge {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 1.5px;
-  padding: 3px 9px;
-  border-radius: 100px;
-  border: 1px solid;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.holo-card-num {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-}
-
-/* Title */
-.holo-title {
-  font-size: 1rem;
-  font-weight: 750;
-  color: #fff;
-  line-height: 1.3;
-  margin-bottom: 2px;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
-}
-.holo-desc {
-  font-size: 0.76rem;
-  line-height: 1.55;
-  color: rgba(255,255,255,0.55);
-}
-
-/* Skills list */
-.holo-skills {
-  list-style: none;
-  padding: 0;
-  margin: 6px 0 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.holo-skill-item {
-  font-size: 0.71rem;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.45;
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-}
-.skill-bullet {
-  flex-shrink: 0;
-  font-size: 0.55rem;
-  margin-top: 3px;
-}
-
-/* Metrics footer */
-.holo-metrics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(56px, 1fr));
-  gap: 8px;
-  margin-top: auto;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.metric {
-  text-align: center;
-}
-.metric-val {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: rgba(255,255,255,0.9);
-}
-.metric-key {
-  display: block;
-  font-size: 0.62rem;
-  color: rgba(255,255,255,0.35);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 1px;
-}
-
-/* Bottom decorative bar (like Pokemon card bottom stripe) */
+/* Bottom decorative bar */
 .holo-bottom-bar {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  opacity: 0.6;
+  height: 2px;
+  opacity: 0.4;
   transition: opacity 0.4s ease;
+  z-index: 6;
 }
-.holo-card:hover .holo-bottom-bar { opacity: 1; }
+.holo-card:hover .holo-bottom-bar { opacity: 0.8; }
 
 /* ══════════════════════════════════════════
-   LEGENDARY EXTRA EFFECTS
-   Double glow ring + stronger shimmer
-   Only applies to legendary rarity cards
+   RESPONSIVE + ACCESSIBILITY
    ══════════════════════════════════════════ */
-.legendary-ring {
-  position: absolute;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 0;
-}
-.legendary-ring--outer {
-  inset: -4px;
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 19px;
-  animation: legendary-pulse 3s ease-in-out infinite;
-}
-.legendary-ring--inner {
-  inset: -8px;
-  border-width: 1px;
-  border-style: dashed;
-  border-radius: 23px;
-  opacity: 0.3;
-  animation: legendary-rotate 12s linear infinite;
-}
-
-@keyframes legendary-pulse {
-  0%, 100% { 
-    opacity: 0.5; 
-    box-shadow: 
-      0 0 20px var(--holo-glow), 
-      inset 0 0 20px var(--holo-glow);
-  }
-  50% { 
-    opacity: 1; 
-    box-shadow: 
-      0 0 40px var(--holo-glow), 
-      0 0 80px var(--holo-glow),
-      inset 0 0 30px var(--holo-glow);
-  }
-}
-
-@keyframes legendary-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* ══════════════════════════════════════════
-   RARITY-SPECIFIC ENHANCEMENTS
-   
-   COMMON: Subtle gray tones
-   RARE: Cyan-blue glow, moderate shine
-   SHINY: Golden sparkle, intense shimmer
-   LEGENDARY: Purple/magenta aura + all extras
-   ══════════════════════════════════════════ */
-
-/* Common — subtle, grounded */
-.holo-card--common .holo-content {
-  min-height: 250px;
-}
-.holo-card--common .holo-metric-val {
-  font-size: 0.76rem;
-}
-
-/* Rare — enhanced shine */
-.holo-card--rare .holo-iris {
-  animation-duration: 4.5s;
-}
-.holo-card--rare:hover {
-  transform: translateZ(8px);
-}
-
-/* Shiny — golden magic */
-.holo-card--shiny .holo-iris {
-  animation-duration: 3s;
-}
-.holo-card--shiny .sparkle {
-  color: #FFD700 !important;
-  text-shadow: 0 0 8px rgba(255,215,0,0.8), 0 0 16px rgba(255,215,0,0.4) !important;
-}
-.holo-card--shiny:hover {
-  box-shadow:
-    0 8px 40px rgba(255,215,0,0.25),
-    0 0 80px rgba(255,215,0,0.15),
-    inset 0 1px 0 rgba(255,215,0,0.1);
-}
-
-/* Legendary — maximum spectacle */
-.holo-card--legendary .holo-iris {
-  animation-duration: 2.5s;
-  opacity: 0.6; /* always slightly visible */
-}
-.holo-card--legendary .sparkle {
-  color: #E040FB !important;
-  text-shadow: 0 0 10px rgba(224,64,251,0.9), 0 0 20px rgba(224,64,251,0.5) !important;
-  font-size: 14px !important;
-}
-.holo-card--legendary:hover {
-  box-shadow:
-    0 12px 56px var(--holo-glow),
-    0 0 100px var(--holo-glow),
-    0 0 140px rgba(224,64,251,0.15),
-    inset 0 1px 0 rgba(224,64,251,0.15);
-  border-color: var(--holo-border);
-  transform: translateZ(12px) !important;
-}
-.holo-card--legendary .holo-content {
-  min-height: 300px;
-}
-.holo-card--legendary .holo-title {
-  background: linear-gradient(135deg, #fff 0%, #E040FB 50%, #00B8D4 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* ══════════════════════════════════════════
-   RESPONSIVE ADJUSTMENTS
-   ══════════════════════════════════════════ */
-
-@media (max-width: 480px) {
-  .holo-content {
-    padding: 14px 13px 12px;
-    min-height: 260px;
-  }
-  .holo-title { font-size: 0.92rem; }
-  .holo-desc { font-size: 0.72rem; }
-  .holo-skill-item { font-size: 0.68rem; }
-  .holo-metrics { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .metric-val { font-size: 0.75rem; }
-  .metric-key { font-size: 0.58rem; }
-  
-  .legendary-ring--outer { inset: -3px; }
-  .legendary-ring--inner { inset: -6px; }
-}
-
-/* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .holo-iris { animation: none; opacity: 0.3; }
   .holo-line { animation: none; opacity: 0.25; }
   .sparkle { animation: none; display: none; }
-  .legendary-ring--outer { animation: none; opacity: 0.5; }
-  .legendary-ring--inner { animation: none; }
   .holo-card { transition: none; }
-}
-
-/* ── Fix for onMouseMouseMove (Framer Motion compatibility) ── */
-.holo-card[data-mousemove] {
-  /* Ensure mouse events propagate correctly through motion.div */
 }

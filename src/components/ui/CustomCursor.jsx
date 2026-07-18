@@ -1,31 +1,14 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import React, { useEffect, useState, useCallback } from 'react';
 
 export default function CustomCursor() {
-  const cursorRef = useRef(null);
-  const trailRef = useRef(null);
+  const [pos, setPos] = useState({ x: -100, y: -100 });
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const lastMoveTime = useRef(0);
-
-  const springConfig = { damping: 26, stiffness: 280, mass: 0.45 };
-  const cursorX = useSpring(0, springConfig);
-  const cursorY = useSpring(0, springConfig);
-  const trailX = useSpring(0, { damping: 38, stiffness: 160, mass: 0.72 });
-  const trailY = useSpring(0, { damping: 38, stiffness: 160, mass: 0.72 });
 
   const handleMouseMove = useCallback((e) => {
-    // Throttle: update at most ~60fps equivalent
-    const now = performance.now();
-    if (now - lastMoveTime.current < 16) return;
-    lastMoveTime.current = now;
-
-    cursorX.set(e.clientX);
-    cursorY.set(e.clientY);
-    trailX.set(e.clientX);
-    trailY.set(e.clientY);
+    setPos({ x: e.clientX, y: e.clientY });
     if (!isVisible) setIsVisible(true);
-  }, [isVisible, cursorX, cursorY, trailX, trailY]);
+  }, [isVisible]);
 
   useEffect(() => {
     const handleMouseEnter = () => setIsVisible(true);
@@ -51,29 +34,28 @@ export default function CustomCursor() {
 
   return (
     <>
-      <motion.div
-        ref={cursorRef}
+      {/* Main cursor dot — direct follow, zero delay */}
+      <div
         className="custom-cursor"
         style={{
-          left: cursorX,
-          top: cursorY,
+          transform: `translate(${pos.x}px, ${pos.y}px) translate(-50%, -50%) scale(${isHovering ? 0.5 : 1})`,
           opacity: isVisible ? 1 : 0,
-          scale: isHovering ? 0.5 : 1,
         }}
       >
-        <div className={`cursor-dot ${isHovering ? 'hovering' : ''}`} style={{
-        background: isHovering ? 'rgba(124,77,255,0.95)' : '#ffffff',
-      }} />
-      </motion.div>
+        <div
+          className={`cursor-dot ${isHovering ? 'hovering' : ''}`}
+          style={{
+            background: isHovering ? 'rgba(124,77,255,0.95)' : '#ffffff',
+          }}
+        />
+      </div>
 
-      <motion.div
-        ref={trailRef}
-        className="cursor-trail"
+      {/* Trail ring — very subtle lag (80ms CSS transition) */}
+      <div
+        className={`cursor-trail ${isHovering ? 'hovering' : ''}`}
         style={{
-          left: trailX,
-          top: trailY,
+          transform: `translate(${pos.x}px, ${pos.y}px) translate(-50%, -50%) scale(${isHovering ? 2.2 : 1})`,
           opacity: isVisible ? 1 : 0,
-          scale: isHovering ? 2.5 : 1,
         }}
       />
     </>

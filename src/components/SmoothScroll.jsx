@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import Lenis from 'lenis';
 
 export default function SmoothScroll({ children }) {
@@ -15,6 +15,9 @@ export default function SmoothScroll({ children }) {
 
     lenisRef.current = lenis;
 
+    // Expose lenis instance globally for modals to control
+    window.__lenis = lenis;
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -22,7 +25,24 @@ export default function SmoothScroll({ children }) {
 
     requestAnimationFrame(raf);
 
+    // Watch for body overflow changes (modal open/close)
+    const observer = new MutationObserver(() => {
+      const overflow = document.body.style.overflow;
+      if (overflow === 'hidden') {
+        lenis.stop();
+      } else {
+        lenis.start();
+      }
+    });
+
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['style'],
+    });
+
     return () => {
+      observer.disconnect();
+      window.__lenis = null;
       lenis.destroy();
     };
   }, []);

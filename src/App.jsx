@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import SmoothScroll from './components/SmoothScroll';
 import CustomCursor from './components/ui/CustomCursor';
+import GooeyNav from './components/ui/GooeyNav';
 import HeroSection from './components/HeroSection';
 import WorksSection from './components/WorksSection';
 
@@ -26,6 +27,17 @@ const SectionSkeleton = () => (
 
 import './App.css';
 
+// Navigation items for GooeyNav
+const NAV_ITEMS = [
+  { href: '#works', label: '项目' },
+  { href: '#year-one', label: '大一' },
+  { href: '#year-two', label: '大二' },
+  { href: '#year-three', label: '大三' },
+  { href: '#about', label: '关于' },
+  { href: '#knowledge', label: '知识库' },
+  { href: '#contact', label: '联系' },
+];
+
 function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
 
@@ -34,6 +46,19 @@ function Navbar() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavClick = (e) => {
+    const anchor = e.target.closest('a');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <motion.nav
@@ -47,15 +72,9 @@ function Navbar() {
           <span className="logo-mark">G</span>
           <span className="logo-text">Goodent</span>
         </a>
-        <ul className="nav-links">
-          <li><a href="#works" data-hover>项目</a></li>
-          <li><a href="#year-one" data-hover>大一作品集</a></li>
-          <li><a href="#year-two" data-hover>大二作品集</a></li>
-          <li><a href="#year-three" data-hover>大三作品集</a></li>
-          <li><a href="#about" data-hover>关于</a></li>
-          <li><a href="#knowledge" data-hover>知识库</a></li>
-          <li><a href="#contact" data-hover>联系</a></li>
-        </ul>
+        <div className="nav-gooey-wrapper" onClick={handleNavClick}>
+          <GooeyNav items={NAV_ITEMS} initialActiveIndex={0} />
+        </div>
       </div>
     </motion.nav>
   );

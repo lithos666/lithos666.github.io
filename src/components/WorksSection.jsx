@@ -1,19 +1,20 @@
-import React, { useRef, useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
-import TiltCard from './ui/TiltCard';
+import React, { useRef, useEffect, useState } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import HoloCard from './ui/HoloCard';
+import ProjectDetailModal from './ProjectDetailModal';
 import { asset } from '../utils/path';
 import './WorksSection.css';
 
 const projects = [
   {
     id: 1,
-    title: 'Goodent 电动牙科手机',
+    title: 'Goodent 牙科微动力系统',
     category: '嵌入式系统 · 医疗器械 · 种子轮',
-    description: '面向临床诊疗的纯电控制智能牙科手机系统。基于STM32与无刷直流电机实现高精度扭矩控制，集成多传感器融合反馈回路，完成从概念验证到种子轮融资的全链路产品化落地。',
+    description: '面向临床诊疗的纯电控制智能牙科微动力系统。基于STM32与无刷直流电机实现高精度扭矩控制，集成多传感器融合反馈回路，完成从概念验证到种子轮融资的全链路产品化落地。',
     tags: ['STM32', 'BLDC控制', '传感器融合', '医疗器械', '种子轮'],
     color: 'rgba(0, 200, 255, 0.75)',
     accentColor: 'rgba(27, 193, 239, 0.15)',
-    year: '2024–2025',
+    year: '2026–至今',
     status: '种子轮',
     image: asset('/projects/3/Goodent/第三代样机.jpg'),
   },
@@ -45,7 +46,7 @@ const projects = [
     id: 4,
     title: '兰精灵 · 智能养护花盆',
     category: '创新创业 · IoT · 嵌入式',
-    description: '国家级大学生创新创业训练计划项目。面向家庭园艺的智能化植物养护设备，集成自动浇灌、光照监测、温湿度调控等多传感器融合系统，从概念验证到实物原型迭代再到结项答辩。',
+    description: '国家级大学生创新创业训练计划优秀结项项目。面向家庭园艺的智能化植物养护花盆，集成自动浇灌、光照监测、温湿度调控等多传感器融合系统，从概念验证到实物原型迭代再到结项答辩。',
     tags: ['SolidWorks', 'Arduino', 'IoT', '创新创业', '大创'],
     color: '#66BB6A',
     accentColor: 'rgba(102,187,106,0.15)',
@@ -85,7 +86,7 @@ const headerVariants = {
   },
 };
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, index, onSelect }) {
   return (
     <motion.div
       custom={index}
@@ -94,7 +95,15 @@ function ProjectCard({ project, index }) {
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
     >
-      <TiltCard className="work-card glass-card" style={{ '--card-accent': project.color }}>
+      <HoloCard
+        className="work-card"
+        accentColor={project.color || '#7C4DFF'}
+        backgroundColor="#0a0814"
+        borderRadius={20}
+        intensity={0.6}
+        sparkleCount={8}
+        onClick={() => onSelect(project)}
+      >
         <div className="card-accent-line" style={{ background: project.color }} />
 
         <div className="card-header">
@@ -137,7 +146,7 @@ function ProjectCard({ project, index }) {
             </svg>
           </div>
         </div>
-      </TiltCard>
+      </HoloCard>
     </motion.div>
   );
 }
@@ -145,16 +154,15 @@ function ProjectCard({ project, index }) {
 export default function WorksSection() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+  const [selectedProject, setSelectedProject] = useState(null);
 
   // Toggle in-view class on section element for CSS coordination
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
-
     if (isInView) {
       el.classList.add('in-view');
     }
-
     return () => {
       if (el) el.classList.remove('in-view');
     };
@@ -187,10 +195,20 @@ export default function WorksSection() {
 
         <div className="works-grid">
           {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+            <ProjectCard key={project.id} project={project} index={index} onSelect={setSelectedProject} />
           ))}
         </div>
       </div>
+
+      {/* Project Detail Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectDetailModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }

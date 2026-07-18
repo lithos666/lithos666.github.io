@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import MetallicPaint from './ui/MetallicPaint';
 import './AboutSection.css';
 
 /* ═══════════════════════════════════════════════════════════
@@ -11,12 +12,12 @@ import './AboutSection.css';
 const SKILLS = [
   { name: 'SolidWorks', level: 90 },
   { name: 'MATLAB', level: 82 },
-  { name: 'C / C++', level: 80 },
-  { name: 'COMSOL', level: 75 },
-  { name: 'Arduino / Embedded', level: 78 },
-  { name: 'PCB Design', level: 72 },
-  { name: 'Unity / C#', level: 68 },
   { name: 'Python', level: 70 },
+  { name: 'COMSOL', level: 75 },
+  { name: 'STM32 / ESP32', level: 78 },
+  { name: 'COMSOL Multiphysics', level: 72 },
+  { name: 'Unity / C#', level: 68 },
+  { name: 'C / C++', level: 80 },
 ];
 
 const TOOLS = [
@@ -39,7 +40,7 @@ export default function AboutSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}>
         <span className="about-tag">ABOUT ME</span>
-        <h2 className="about-title">Hi, I'm Xiaochuyu</h2>
+        <h2 className="about-title"><MetallicPaint>Hi, I'm Xiaochuyu</MetallicPaint></h2>
       </motion.div>
 
       {/* ── Two-column layout: text left + skills right ── */}
