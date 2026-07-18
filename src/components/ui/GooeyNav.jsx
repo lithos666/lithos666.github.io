@@ -128,10 +128,22 @@ const GooeyNav = ({
 
   useEffect(() => {
     if (!navRef.current || !containerRef.current) return;
-    const activeLi = navRef.current.querySelectorAll('li')[activeIndex];
-    if (activeLi) {
-      updateEffectPosition(activeLi);
-      textRef.current?.classList.add('active');
+
+    const positionActive = () => {
+      const activeLi = navRef.current?.querySelectorAll('li')[activeIndex];
+      if (activeLi) {
+        updateEffectPosition(activeLi);
+        textRef.current?.classList.add('active');
+        // Reveal effect layers only after correct positioning
+        if (filterRef.current) filterRef.current.style.opacity = '1';
+        if (textRef.current) textRef.current.style.opacity = '1';
+      }
+    };
+
+    positionActive();
+    // Re-position after web fonts load (widths shift once fonts are ready)
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(positionActive);
     }
 
     const resizeObserver = new ResizeObserver(() => {

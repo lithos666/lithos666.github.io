@@ -1,19 +1,28 @@
 import { useState, useCallback, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import BorderGlow from './ui/BorderGlow';
 import './KnowledgeBase.css';
 
 /* ═════════════════════════════════════════════════════
-   KnowledgeBase — 知识库导航组件 v3
+   KnowledgeBase — 知识库导航组件 v4
    
    Layout:
-   - Featured row: first 4 items as large BorderGlow cards
-   - Flat compact list below (no grouping)
-   - No search or filter toolbar
+   - Uniform responsive card grid (no featured/list split)
+   - Each card: color-tinted icon, title, description, category tag
+   - Modal rendered via portal to guarantee viewport centering
    
    ═════════════════════════════════════════════════════ */
 
 const FALLBACK_COLOR = '#7C4DFF';
+
+const CATEGORY_LABELS = {
+  hardware: '硬件', ai: '人工智能', ml: '机器学习',
+  engineering: '工程', design: '设计', research: '调研',
+  business: '创业', simulation: '仿真', testing: '测试',
+  fitness: '运动', life: '生活', security: '安全',
+  dev: '开发', robotics: '机器人', philosophy: '哲学',
+  history: '人物', ai: '人工智能',
+};
 
 const knowledgeData = [
   {
@@ -155,10 +164,6 @@ const CATEGORY_COLORS = {
 export default function KnowledgeBase() {
   const [selectedItem, setSelectedItem] = useState(null);
 
-  // Split into featured (first 4) and rest
-  const featuredItems = knowledgeData.slice(0, 4);
-  const listItems = knowledgeData.slice(4);
-
   const handleCloseModal = useCallback(() => setSelectedItem(null), []);
 
   // Lock body scroll when modal is open
@@ -197,124 +202,102 @@ export default function KnowledgeBase() {
           </p>
         </motion.div>
 
-        {/* ═══ Featured Row ═══ */}
-        {featuredItems.length > 0 && (
-          <motion.div
-            className="knowledge-featured"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="knowledge-featured-grid">
-              {featuredItems.map((item) => (
-                <BorderGlow
-                  key={item.id}
-                  className="knowledge-card knowledge-card-featured"
-                  glowColor={CATEGORY_COLORS[item.category] || FALLBACK_COLOR}
-                  backgroundColor="#0a0814"
-                  borderRadius={18}
-                  intensity={0.8}
-                  colors={['#c084fc', '#f472b6', '#38bdf8']}
-                  fillOpacity={0.3}
-                  onClick={() => setSelectedItem(item)}
-                >
-                  <span className="k-card-icon">{item.icon}</span>
-                  <h3 className="k-card-title">{item.label}</h3>
-                  <p className="k-card-desc">{item.desc}</p>
-                </BorderGlow>
-              ))}
-            </div>
-          </motion.div>
-        )}
-
-        {/* ═══ Flat List ═══ */}
-        {listItems.length > 0 && (
-          <motion.div
-            className="knowledge-list-section"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <div className="group-items">
-              {listItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="knowledge-list-item"
-                  onClick={() => setSelectedItem(item)}
-                >
-                  <span className="list-item-icon">{item.icon}</span>
-                  <div className="list-item-content">
-                    <span className="list-item-title">{item.label}</span>
-                    <span className="list-item-desc">{item.desc}</span>
-                  </div>
-                  <svg className="list-item-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none">
-                    <path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
+        {/* ═══ Uniform Card Grid ═══ */}
+        <motion.div
+          className="knowledge-grid"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
+          {knowledgeData.map((item, i) => {
+            const color = CATEGORY_COLORS[item.category] || FALLBACK_COLOR;
+            return (
+              <motion.button
+                key={item.id}
+                type="button"
+                className="kb-card"
+                style={{ '--kb-accent': color }}
+                onClick={() => setSelectedItem(item)}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: Math.min(i * 0.03, 0.4) }}
+                data-hover
+              >
+                <span className="kb-card-icon">{item.icon}</span>
+                <span className="kb-card-body">
+                  <span className="kb-card-title">{item.label}</span>
+                  <span className="kb-card-desc">{item.desc}</span>
+                </span>
+                <span className="kb-card-tag">
+                  {CATEGORY_LABELS[item.category] || item.category}
+                </span>
+              </motion.button>
+            );
+          })}
+        </motion.div>
 
         <p className="result-count">共 {knowledgeData.length} 条记录</p>
       </div>
 
-      {/* Detail Modal */}
-      <AnimatePresence>
-        {selectedItem && (
-          <motion.div
-            className="knowledge-modal-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={handleCloseModal}
-          >
+      {/* Detail Modal — portaled to body to guarantee viewport centering */}
+      {createPortal(
+        <AnimatePresence>
+          {selectedItem && (
             <motion.div
-              className="knowledge-modal glass-card modal-with-content"
-              initial={{ opacity: 0, y: 40, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.96 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              onClick={(e) => e.stopPropagation()}
+              className="knowledge-modal-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={handleCloseModal}
             >
-              <div className="modal-header-row">
-                <div className="modal-header-left">
-                  <span className="modal-icon">{selectedItem.icon}</span>
-                  <div>
-                    <h2 className="modal-title">{selectedItem.label}</h2>
+              <motion.div
+                className="knowledge-modal glass-card modal-with-content"
+                initial={{ opacity: 0, y: 40, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.96 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="modal-header-row">
+                  <div className="modal-header-left">
+                    <span className="modal-icon">{selectedItem.icon}</span>
+                    <div>
+                      <h2 className="modal-title">{selectedItem.label}</h2>
+                    </div>
                   </div>
+                  <button className="modal-close" onClick={handleCloseModal} data-hover>&times;</button>
                 </div>
-                <button className="modal-close" onClick={handleCloseModal} data-hover>&times;</button>
-              </div>
 
-              <p className="modal-desc">{selectedItem.desc}</p>
+                <p className="modal-desc">{selectedItem.desc}</p>
 
-              <div className="modal-document-content">
-                <pre>{selectedItem.content ?? '暂无内容'}</pre>
-              </div>
+                <div className="modal-document-content">
+                  <pre>{selectedItem.content ?? '暂无内容'}</pre>
+                </div>
 
-              <div className="modal-meta">
-                <span>ID: {selectedItem.id}</span>
-                <span>分类: {selectedItem.category}</span>
-                <span>字符数: {(selectedItem.content ?? '').length.toLocaleString()}</span>
-              </div>
-              <div className="modal-actions">
-                <button className="modal-btn modal-btn-primary" data-hover>
-                  打开完整文档
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                    <path d="M6 12l6-4-6-4v8z" fill="currentColor"/>
-                  </svg>
-                </button>
-                <button className="modal-btn modal-btn-secondary" onClick={handleCloseModal} data-hover>
-                  关闭
-                </button>
-              </div>
+                <div className="modal-meta">
+                  <span>ID: {selectedItem.id}</span>
+                  <span>分类: {CATEGORY_LABELS[selectedItem.category] || selectedItem.category}</span>
+                  <span>字符数: {(selectedItem.content ?? '').length.toLocaleString()}</span>
+                </div>
+                <div className="modal-actions">
+                  <button className="modal-btn modal-btn-primary" data-hover>
+                    打开完整文档
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                      <path d="M6 12l6-4-6-4v8z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  <button className="modal-btn modal-btn-secondary" onClick={handleCloseModal} data-hover>
+                    关闭
+                  </button>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 }
