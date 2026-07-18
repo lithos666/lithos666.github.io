@@ -104,9 +104,10 @@
 .gooey-nav-container .effect.filter::before {
   content: '';
   position: absolute;
-  inset: -75px;
+  inset: -20px;
   z-index: -2;
-  background: black;
+  background: #080810;
+  border-radius: 12px;
 }
 
 .gooey-nav-container .effect.filter::after {

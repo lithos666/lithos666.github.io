@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, useRef, useEffect } from 'react';
 import './HeroSection.css';
 
 /* ═══════════════════════════════════════════════════════
@@ -47,13 +47,44 @@ class ErrorBoundary extends Component {
    and gradient fade. Content layer sits on top.
    ═══════════════════════════════════════════════════════ */
 export default function HeroSection() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      // When video is 1.2s from end, start fade-out transition
+      if (video.duration - video.currentTime < 1.2) {
+        video.classList.add('video-fading');
+      }
+    };
+
+    const handleEnded = () => {
+      // Reset to beginning and play again
+      video.currentTime = 0;
+      video.play().catch(() => {});
+      // Brief delay then fade back in
+      requestAnimationFrame(() => {
+        video.classList.remove('video-fading');
+      });
+    };
+
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    video.addEventListener('ended', handleEnded);
+    return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+      video.removeEventListener('ended', handleEnded);
+    };
+  }, []);
+
   return (
     <ErrorBoundary>
       {/* ═══ FIXED VIDEO BACKDROP ═══ */}
       <div className="blackhole-backdrop">
         <video
+          ref={videoRef}
           autoPlay
-          loop
           muted
           playsInline
           className="hero-video-bg"
