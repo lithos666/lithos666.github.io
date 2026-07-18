@@ -99,7 +99,7 @@ const ContactSection = () => {
       {/* 页脚 */}
       <footer className="footer">
         <div className="footer-content">
-          <p>&copy; 2025 肖楚煜 · Goodent. All rights reserved.</p>
+          <p>&copy; 2026 肖楚煜 · Goodent. All rights reserved.</p>
           <div className="footer-links">
             <a href="#hero">返回顶部</a>
             <span className="separator">·</span>

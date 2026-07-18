@@ -13,9 +13,8 @@ const SKILLS = [
   { name: 'SolidWorks', level: 90 },
   { name: 'MATLAB', level: 82 },
   { name: 'Python', level: 70 },
-  { name: 'COMSOL', level: 75 },
+  { name: 'COMSOL Multiphysics', level: 75 },
   { name: 'STM32 / ESP32', level: 78 },
-  { name: 'COMSOL Multiphysics', level: 72 },
   { name: 'Unity / C#', level: 68 },
   { name: 'C / C++', level: 80 },
 ];

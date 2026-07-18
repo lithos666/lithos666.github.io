@@ -214,11 +214,9 @@ const PROJECTS = [
     ],
     images: [
       asset('/projects/3/数值分析/poster-3.jpg'),
-      asset('/projects/3/数值分析/.png'),
     ],
     documents: [
       { name: '第三次汇报.pdf', path: asset('/projects/3/数值分析/工程数值分析第三次汇报.pdf') },
-      { name: '报告.pdf', path: '/projects/3/数值分析/.pdf' },
     ],
   },
 

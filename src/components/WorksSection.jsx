@@ -22,7 +22,7 @@ const projects = [
     id: 2,
     title: '斯特林发动机',
     category: '机械设计 · 热力学 · 多物理场仿真',
-    description: '完整的Beta型斯特林发动机设计与分析项目。从参数化三维建模（41个SLDPRT零件）到COMSOL流固耦合仿真、ADAMS多体动力学验证，覆盖热机设计全流程。',
+    description: '完整的Gamma型斯特林发动机设计与分析项目。从参数化三维建模（41个SLDPRT零件）到COMSOL流固耦合仿真、ADAMS多体动力学验证，覆盖热机设计全流程。',
     tags: ['SolidWorks', 'COMSOL', 'ADAMS', '3D打印', '热力学循环'],
     color: '#E65100',
     accentColor: 'rgba(230,81,0,0.15)',
