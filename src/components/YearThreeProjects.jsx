@@ -6,7 +6,7 @@
  * 样式复用 YearOneProjects.css (三个学年共享同一套 Cover Flow CSS)
  *
  * 数据来源: /public/projects/3/
- * 当前文件夹: 工效学 / 大创 / 数学物理方法 / 微电路设计 / 自动控制原理
+ * 当前文件夹: 工效学 / 大创 / 数学物理方法 / 微电路设计 / 自动控制原理 / lerobot / 3D人体网格应变分析
  */
 
 import CoverFlowCarousel from './CoverFlowCarousel';
@@ -250,10 +250,69 @@ const PROJECTS = [
       { name: '结项报告.docx', path: '/projects/3/产品制造/final-report.docx' },
     ],
   },
+  // ══════════════════════════════════════════════════
+  // ⑧ LeRobot — 牙科种植机器人操作演示（大三下 · 精选）
+  // 资源位置: /projects/3/dental-lerobot/
+  // ══════════════════════════════════════════════════
+  {
+    id: 'lerobot',
+    title: 'LeRobot · 牙科种植机器人',
+    subtitle: 'ARUCO视觉定位 · ACT模仿学习 · 强化学习泛化',
+    category: '具身智能 · 医疗机器人',
+    year: '2026 春',
+    color: '#FF7043',
+    accentColor: 'rgba(255,112,67,0.10)',
+    tags: ['ARUCO定位', 'ACT控制', '强化学习', '牙科机器人', '种植手术'],
+    description:
+      '基于 HuggingFace LeRobot 框架的牙科种植机器人操作演示系统。机械臂为 6 自由度构型：底座旋转、肩部俯仰、肘部俯仰、腕部俯仰、腕部旋转 5 个关节 + 1 个平行夹爪，总线舵机驱动。通过 ARUCO 码视觉定位确定最下方舵机（底座关节）的空间位姿，结合 ACT（Action Chunking Transformer）模仿学习与强化学习（RL）实现泛化的种植操作动作。',
+    highlights: [
+      '6-DOF 机械臂 — 底座旋转/肩俯仰/肘俯仰/腕俯仰/腕旋转 5 关节 + 平行夹爪，主从臂遥操作采集示教数据',
+      '系统构成 — 主从双臂 + RGB 相机（顶视/腕部）+ ARUCO 标定码 + 种植操作台，LeRobot 数据管线统一采集回放',
+      'ARUCO 定位 — 相机检测 ARUCO 码解算最下方舵机（底座）位姿，完成相机-机械臂坐标系标定与目标对齐',
+      'ACT + RL 控制流程 — ACT 从示教数据学习动作分块策略，RL 微调提升鲁棒性，实现不同位姿下泛化的种植动作',
+    ],
+    images: [
+      asset('/projects/3/dental-lerobot/lerobot.png'),
+      asset('/projects/3/dental-lerobot/遥操.gif'),
+    ],
+    // 图片过于竖长（W/H≈0.75）：模糊衬底方案下旋转 90° 更好地填充横向卡片
+    imageRotate: 90,
+    documents: [],
+  },
+
+  // ══════════════════════════════════════════════════
+  // ⑨ 3D 人体网格应变分析（大三 · 生物力学/工效学）
+  // 资源位置: /projects/3/3D人体网格应变分析/
+  // ══════════════════════════════════════════════════
+  {
+    id: 'body-mesh-strain',
+    title: '3D 人体网格应变分析',
+    subtitle: 'Trimesh 应变计算 · Blender 热力图可视化 · 生物力学',
+    category: '计算几何 · 生物力学仿真',
+    year: '2026 春',
+    color: '#26C6DA',
+    accentColor: 'rgba(38,198,218,0.10)',
+    tags: ['Blender', 'Trimesh', 'Python', '应变分析', '热力图可视化'],
+    description:
+      '基于 Python (Trimesh / NumPy) 与 Blender 的三维人体网格形变分析工具链。对比基础姿态（A-Pose 下垂）与目标姿态（抬手形变）两个人体网格，逐三角面计算面积应变、形状畸变（剪切）与边长应变三类力学指标，并在 Blender 中生成红-绿-蓝顶点色热力图，直观呈现皮肤在运动中被拉伸、挤压与扭曲的区域，可服务于服装剪裁与人因工程设计。',
+    highlights: [
+      'ROI 区域提取 — Blender 编辑模式框选研究区域（如手臂 + 肩部），脚本导出面 ID 列表',
+      '三大力学指标 — 面积应变 / 形状畸变（剪切应变）/ 边长应变，逐三角面计算并导出 CSV',
+      '热力图可视化 — Blender 顶点色渲染，红=拉伸膨胀、蓝=挤压收缩、绿=无变化，一键切换三种指标',
+      '工程应用 — 定位腋窝、肩峰等高应变区域，指导服装剪裁与人体工程设计',
+    ],
+    images: [
+      asset('/projects/3/3D人体网格应变分析/应力分析结果.png'),
+      asset('/projects/3/3D人体网格应变分析/model.png'),
+      asset('/projects/3/3D人体网格应变分析/选取对比区域.png'),
+      asset('/projects/3/3D人体网格应变分析/应力分析.png'),
+    ],
+    documents: [],
+  },
 ];
 
 /** 大三实践项目 ID 集合 */
-const YEAR_THREE_PRACTICE_IDS = new Set(['ergonomics', 'startup-flowerpot']);
+const YEAR_THREE_PRACTICE_IDS = new Set(['ergonomics', 'startup-flowerpot', 'lerobot']);
 
 /** 大三项目状态检测: 区分实践项目 / 课程项目 */
 const detectYearThreeStatus = (project) => {
@@ -269,7 +328,7 @@ export default function YearThreeProjects() {
       sectionId="year-three"
       badgeText="YEAR THREE"
       title="大三学年 · 实践作品集"
-      subtitle="2025 冬 – 2026 夏 &nbsp;|&nbsp; 7个项目 · 工效学 / 大创 / 数理方法 / 微电路 / 自动控制 / 数值分析 / 产品制造"
+      subtitle="2025 冬 – 2026 夏 &nbsp;|&nbsp; 9个项目 · 工效学 / 大创 / 数理方法 / 微电路 / 自动控制 / 数值分析 / 产品制造 / LeRobot / 人体网格应变"
       layoutIdPrefix="year-three"
       statusDetector={detectYearThreeStatus}
     />

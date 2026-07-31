@@ -190,7 +190,7 @@ const PROJECTS = [
       '滑轨组件 — 线性滑轨机构设计',
       '机器人整体方案设计文档',
     ],
-    images: [],
+    images: [asset('/projects/1/Robocon/底盘和夹爪.png')],
     documents: [
       { name: '汽车悬架系统/', path: '/projects/1/Robocon战队/汽车悬架系统/' },
       { name: '底盘.step', path: asset('/projects/1/Robocon战队/底盘/底盘 v30.step') },

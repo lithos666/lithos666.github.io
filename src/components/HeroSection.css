@@ -1,18 +1,16 @@
 /* ═══════════════════════════════════════════════════════
-   Hero Section v2 — Saturn Particle System + Fixed Backdrop
+   Hero Section — Cinematic Video Backdrop
    
    Architecture:
-   - .saturn-backdrop: position:fixed, z-index:-1, global 3D canvas
-   - .hero-section: relative content layer, sits on top of canvas
-   - Body classes drive CSS transitions synced with GSAP timeline
+   - .hero-backdrop: position:fixed, z-index:-1, full-screen video background
+   - .hero-section: relative content layer, sits on top of the backdrop
    
    ═══════════════════════════════════════════════════════ */
 
 /* ═══════════════════════════════════════════════════════
    FIXED VIDEO BACKDROP — Cinematic Video Background
    ═══════════════════════════════════════════════════════ */
-.saturn-backdrop,
-.blackhole-backdrop {
+.hero-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -200,41 +198,9 @@
 }
 
 /* ═══════════════════════════════════════════════════════
-   SCROLL PHASE TRANSITIONS — Synced with GSAP ScrollTrigger
-   
-   These classes are toggled on <body> by GSAP's onUpdate callback.
-   They coordinate the visual transition between:
-   (A) Saturn particle field → (B) Works Section HTML cards
-   
-   Timeline:
-   - scroll-phase-approach (0.05–0.42): Camera rushing in
-   - scroll-phase-explosion (0.42–0.72): Particles exploding
-   - scroll-phase-dissipate (0.72+): Particles fading out, HTML fading in
-   - scroll-past-hero (0.92+): Transition complete, full HTML visibility
+   CONTENT SECTIONS — always visible
    ═══════════════════════════════════════════════════════ */
 
-/* ── Phase: Dissipate → Fade in works section ── */
-/* When particles are dying (scroll 0.72+), bring in HTML content */
-body.scroll-phase-dissipate .works-section,
-body.scroll-phase-dissipate .about-section,
-body.scroll-phase-dissipate .knowledge-section,
-body.scroll-phase-dissipate .contact-section {
-  animation: fadeInUpSmooth 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-
-/* ── Phase: Past hero — Full content visibility ── */
-body.scroll-past-hero .works-section,
-body.scroll-past-hero .about-section,
-body.scroll-past-hero .knowledge-section,
-body.scroll-past-hero .contact-section {
-  animation: none;
-  opacity: 1;
-  transform: none;
-}
-
-/* ── Default state ──
-    Since black hole is always animated as backdrop,
-    sections are always visible with subtle entrance animation ── */
 .works-section,
 .about-section,
 .knowledge-section,
@@ -242,35 +208,6 @@ body.scroll-past-hero .contact-section {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-@keyframes fadeInUpSmooth {
-  from {
-    opacity: 0;
-    transform: translateY(60px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ── Overlay fade during transition ──
-    As we move past hero, overlay elements gently fade ── */
-body.scroll-phase-explosion .hero-overlay {
-  opacity: 0.7;
-  transition: opacity 0.5s ease;
-}
-
-body.scroll-phase-dissipate .hero-overlay {
-  opacity: 0.25;
-  transition: opacity 0.7s ease;
-}
-
-body.scroll-past-hero .hero-overlay {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
 }
 
 /* Responsive */
@@ -282,14 +219,6 @@ body.scroll-past-hero .hero-overlay {
   .contact-item { font-size: 0.58rem; }
   .contact-sub { font-size: 0.52rem; }
   .scroll-label { font-size: 0.6rem; }
-
-  /* Mobile: less aggressive offset for sections */
-  .works-section,
-  .about-section,
-  .knowledge-section,
-  .contact-section {
-    transform: translateY(30px);
-  }
 }
 
 @media (max-width: 480px) {

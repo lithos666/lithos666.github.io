@@ -35,7 +35,7 @@ const ContactSection = () => {
         </svg>
       ),
       label: 'University',
-      value: '重庆大学 · 机器人工程',
+      value: '重庆大学·明月科创实验班·机器人工程',
       href: null,
     },
     {
@@ -65,7 +65,7 @@ const ContactSection = () => {
           <span className="contact-badge">CONTACT</span>
           <h2 className="contact-title"><MetallicPaint>肖楚煜</MetallicPaint></h2>
           <p className="contact-subtitle">
-            重庆大学 · 机器人工程 &nbsp;|&nbsp; thosli666@gmail.com
+            重庆大学·明月科创实验班·机器人工程 &nbsp;|&nbsp; thosli666@gmail.com
           </p>
         </div>
 

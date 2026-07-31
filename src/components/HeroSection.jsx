@@ -81,7 +81,7 @@ export default function HeroSection() {
   return (
     <ErrorBoundary>
       {/* ═══ FIXED VIDEO BACKDROP ═══ */}
-      <div className="blackhole-backdrop">
+      <div className="hero-backdrop">
         <video
           ref={videoRef}
           autoPlay

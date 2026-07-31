@@ -10,7 +10,7 @@ import './AboutSection.css';
    ═══════════════════════════════════════════════════════════ */
 
 const SKILLS = [
-  { name: 'SolidWorks', level: 90 },
+  { name: 'Solidworks / Fusion360', level: 90 },
   { name: 'MATLAB', level: 82 },
   { name: 'Python', level: 70 },
   { name: 'COMSOL Multiphysics', level: 75 },
@@ -20,7 +20,7 @@ const SKILLS = [
 ];
 
 const TOOLS = [
-  'SolidWorks', 'COMSOL', 'MATLAB', 'Altium/Eagle',
+  'Solidworks / Fusion360', 'COMSOL', 'MATLAB', 'Altium/Eagle',
   'Arduino', 'STM32', 'KeyShot', 'Unity',
   'MediaPipe', 'ADAMS', 'PSIM', 'Blender',
 ];

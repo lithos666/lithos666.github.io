@@ -297,9 +297,15 @@ export default function CoverFlowCarousel({
                   </span>
                   <p className="cf-desc">{project.description}</p>
 
-                  {/* 图片预览 - 仅在活跃卡片且有有效图片时显示 */}
+                  {/* 图片预览 - 仅在活跃卡片且有有效图片时显示；毛玻璃衬底完整展示 */}
                   {isActive && Array.isArray(project.images) && project.images.length > 0 && project.images[0] && (
-                    <div className="cf-preview-img" style={{ background: project.imageBg || 'rgba(255, 255, 255, 0.03)' }}>
+                    <div
+                      className={`cf-preview-img${project.imageRotate ? ' cf-img-rotate' : ''}`}
+                      style={{
+                        background: project.imageBg || 'rgba(255, 255, 255, 0.03)',
+                        '--cf-img': `url("${project.images[0]}")`,
+                      }}
+                    >
                       <img
                         src={project.images[0]}
                         alt={project.title || '项目图片'}

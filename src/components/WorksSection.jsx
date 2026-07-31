@@ -67,15 +67,30 @@ const projects = [
       asset('/projects/3/大创/产品.png'),
     ],
   },
+  {
+    id: 5,
+    title: 'LeRobot 牙科种植机器人',
+    category: '具身智能 · 医疗机器人 · 模仿学习',
+    description: '基于 LeRobot 框架的牙科种植机器人操作演示系统。6自由度机械臂（5关节+平行夹爪），通过 ARUCO 码视觉定位确定底座舵机位姿，结合 ACT 模仿学习与强化学习实现泛化的种植操作动作。',
+    tags: ['ARUCO定位', 'ACT控制', '强化学习', '牙科机器人', '种植手术'],
+    color: '#FF7043',
+    accentColor: 'rgba(255,112,67,0.15)',
+    year: '2026 春',
+    status: '实践项目',
+    image: asset('/projects/3/dental-lerobot/lerobot.png'),
+    imageRotate: 90,
+    images: [
+      asset('/projects/3/dental-lerobot/lerobot.png'),
+      asset('/projects/3/dental-lerobot/遥操.gif'),
+    ],
+  },
 ];
 
 /* ═══════════════════════════════════════════════════════
-   Card Variants v2 — Staggered fade-in-up with glass reveal
+   Card Variants — Staggered fade-in-up with glass reveal
    
-   Cards animate in sequence as the section enters view.
-   The timing is designed to sync with Saturn's phase-3
-   dissipation (scroll 0.7–1.0), creating a seamless
-   handoff from 3D particles → HTML cards.
+   Cards animate in sequence as the section enters view
+   (driven by the IntersectionObserver 'in-view' toggle below).
    ═══════════════════════════════════════════════════════ */
 const cardVariants = {
   hidden: { opacity: 0, y: 55 },
@@ -136,9 +151,12 @@ function ProjectCard({ project, index, onSelect }) {
           <p className="card-description">{project.description}</p>
         </div>
 
-        {/* 图片预览区域 */}
+        {/* 图片预览区域 — 毛玻璃衬底 + contain 完整显示 */}
         {project.image && (
-          <div className="card-image-area">
+          <div
+            className={`card-image-area${project.imageRotate ? ' card-img-rotate' : ''}`}
+            style={{ '--card-img': `url("${project.image}")` }}
+          >
             <img src={project.image} alt={project.title} loading="lazy" />
           </div>
         )}
@@ -199,7 +217,7 @@ export default function WorksSection() {
             <span className="heading-accent">交汇于此</span>
           </h2>
           <p className="section-subheading">
-            涵盖医疗器械创业、机械设计热机仿真、快速原型制造与创新创业实践的项目精选集。
+            涵盖医疗器械创业、具身智能机器人、机械设计热机仿真、快速原型制造与创新创业实践的项目精选集。
           </p>
         </motion.div>
 
