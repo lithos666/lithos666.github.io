@@ -82,6 +82,11 @@ const projects = [
     images: [
       asset('/projects/3/dental-lerobot/lerobot.png'),
       asset('/projects/3/dental-lerobot/遥操.gif'),
+      asset('/projects/3/dental-lerobot/dataset_overview.png'),
+      asset('/projects/3/dental-lerobot/joint_trajectories.png'),
+      asset('/projects/3/dental-lerobot/smoothing_comparison_episode5.png'),
+      asset('/projects/3/dental-lerobot/smoothing_summary.png'),
+      asset('/projects/3/dental-lerobot/task_keyframes.png'),
     ],
   },
 ];

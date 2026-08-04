@@ -3,11 +3,11 @@ schema_version: 1
 locale: zh-CN
 branch: main
 nodes_managed: true
-exported_at: "2026-07-18T13:43:32Z"
+exported_at: "2026-08-03T13:18:25Z"
 modules:
     "":
-        dir_name: goodent-portfolio 项目根（Vite + React Three Fiber 单页应用）
-        title: goodent-portfolio 项目根（Vite + React Three Fiber 单页应用）
+        dir_name: Vite + React 静态站点根工程
+        title: Vite + React 静态站点根工程
         scope:
             - README.md
             - .gitignore
@@ -19,25 +19,15 @@ modules:
         source_files: []
         children:
             - app_shell
-            - page_sections
         depends_on: []
         related_to: []
     app_shell:
-        dir_name: 应用外壳与全局常量
-        title: 应用外壳与全局常量
+        dir_name: 应用入口与顶层编排（App Shell）
+        title: 应用入口与顶层编排（App Shell）
         scope:
             - src/main.jsx
             - src/App.jsx
             - src/constants.js
-        source_files: []
-        children: []
-        depends_on: []
-        related_to: []
-    page_sections:
-        dir_name: 黑洞主题首页（3D 场景 + UI 叠加）
-        title: 黑洞主题首页（3D 场景 + UI 叠加）
-        scope:
-            - src/Home.jsx
         source_files: []
         children: []
         depends_on: []

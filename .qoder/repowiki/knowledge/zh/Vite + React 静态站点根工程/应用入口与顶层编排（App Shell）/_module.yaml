@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: app_shell
-title: 应用外壳与全局常量
+title: 应用入口与顶层编排（App Shell）
 scope:
     - src/main.jsx
     - src/App.jsx

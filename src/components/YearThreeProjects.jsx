@@ -274,6 +274,11 @@ const PROJECTS = [
     images: [
       asset('/projects/3/dental-lerobot/lerobot.png'),
       asset('/projects/3/dental-lerobot/遥操.gif'),
+      asset('/projects/3/dental-lerobot/dataset_overview.png'),
+      asset('/projects/3/dental-lerobot/joint_trajectories.png'),
+      asset('/projects/3/dental-lerobot/smoothing_comparison_episode5.png'),
+      asset('/projects/3/dental-lerobot/smoothing_summary.png'),
+      asset('/projects/3/dental-lerobot/task_keyframes.png'),
     ],
     // 图片过于竖长（W/H≈0.75）：模糊衬底方案下旋转 90° 更好地填充横向卡片
     imageRotate: 90,
