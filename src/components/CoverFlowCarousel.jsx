@@ -304,6 +304,7 @@ export default function CoverFlowCarousel({
                       style={{
                         background: project.imageBg || 'rgba(255, 255, 255, 0.03)',
                         '--cf-img': `url("${project.images[0]}")`,
+                        '--img-rotate-deg': project.imageRotate ? `${project.imageRotate}deg` : undefined,
                       }}
                     >
                       <img

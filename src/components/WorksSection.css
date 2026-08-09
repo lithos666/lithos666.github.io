@@ -232,10 +232,10 @@
   left: 50%;
   width: 100cqh;
   height: 100cqw;
-  transform: translate(-50%, -50%) rotate(90deg);
+  transform: translate(-50%, -50%) rotate(var(--img-rotate-deg, 90deg));
 }
 .work-card:hover .card-image-area.card-img-rotate img {
-  transform: translate(-50%, -50%) rotate(90deg) scale(1.05);
+  transform: translate(-50%, -50%) rotate(var(--img-rotate-deg, 90deg)) scale(1.05);
 }
 
 /* ── Card footer ── */
