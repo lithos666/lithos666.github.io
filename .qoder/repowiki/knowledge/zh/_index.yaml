@@ -3,11 +3,11 @@ schema_version: 1
 locale: zh-CN
 branch: main
 nodes_managed: true
-exported_at: "2026-08-03T13:18:25Z"
+exported_at: "2026-08-04T13:08:25Z"
 modules:
     "":
-        dir_name: Vite + React 静态站点根工程
-        title: Vite + React 静态站点根工程
+        dir_name: Vite + React 单页应用根工程
+        title: Vite + React 单页应用根工程
         scope:
             - README.md
             - .gitignore
