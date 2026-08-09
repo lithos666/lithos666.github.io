@@ -89,6 +89,24 @@ const projects = [
       asset('/projects/3/dental-lerobot/task_keyframes.png'),
     ],
   },
+  {
+    id: 6,
+    title: 'DIY 无刷直流电机（BLDC）',
+    category: '电机设计 · 3D打印 · 嵌入式控制',
+    description: '基于 3D 打印结构的自制三相无刷直流电机：12 槽 16 极（q=0.5 分数槽）、空芯定子、星形接法，由无感航模电调 + ESP32-S3 驱动。完成从建模、打印、绕线到电控联调的全过程，实测 KV 约 1000–1200。目前正在进行下一轮高速电机迭代。',
+    tags: ['BLDC', '3D打印', 'ESP32-S3', '电调驱动', '无感换向'],
+    color: '#FFC107',
+    accentColor: 'rgba(255,193,7,0.15)',
+    year: '2026 夏',
+    status: '实践项目',
+    image: asset('/projects/3/bldc-motor/videos/运行视频.gif'),
+    images: [
+      asset('/projects/3/bldc-motor/videos/运行视频.gif'),
+      asset('/projects/3/bldc-motor/images/绕线方式.PNG'),
+      asset('/projects/3/bldc-motor/images/磁铁物料-1.JPEG'),
+      asset('/projects/3/bldc-motor/images/磁铁物料-2.JPEG'),
+    ],
+  },
 ];
 
 /* ═══════════════════════════════════════════════════════
@@ -222,7 +240,7 @@ export default function WorksSection() {
             <span className="heading-accent">交汇于此</span>
           </h2>
           <p className="section-subheading">
-            涵盖医疗器械创业、具身智能机器人、机械设计热机仿真、快速原型制造与创新创业实践的项目精选集。
+            涵盖医疗器械创业、具身智能机器人、电机设计、机械设计热机仿真、快速原型制造与创新创业实践的项目精选集。
           </p>
         </motion.div>
 

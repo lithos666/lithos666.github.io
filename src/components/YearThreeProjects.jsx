@@ -314,10 +314,48 @@ const PROJECTS = [
     ],
     documents: [],
   },
+
+  // ══════════════════════════════════════════════════
+  // ⑩ DIY 无刷直流电机（BLDC）— 大三夏 · 精选
+  // 资源位置: /projects/3/bldc-motor/
+  // GitHub: https://github.com/lithos666/diy_Brushless-DC-Motor
+  // ══════════════════════════════════════════════════
+  {
+    id: 'bldc-motor',
+    title: 'DIY 无刷直流电机（BLDC）',
+    subtitle: '12槽16极 · 3D打印空芯定子 · 星形接法 · ESP32驱动',
+    category: '电机设计 · 3D打印 · 嵌入式控制',
+    year: '2026 夏',
+    color: '#FFC107',
+    accentColor: 'rgba(255,193,7,0.10)',
+    tags: ['BLDC', '3D打印', 'ESP32-S3', '电调驱动', '无感换向'],
+    description:
+      '基于 3D 打印结构的自制三相无刷直流电机：12 槽 16 极（q=0.5 分数槽）、空芯定子、星形接法，由无感航模电调 + ESP32-S3 驱动。完整复刻自开源方案，完成从建模、打印、绕线到电控联调的全过程，实测 KV 约 1000–1200。目前正在进行下一轮高速电机迭代。',
+    highlights: [
+      '12 槽 16 极构型 — 分数槽 q=0.5，空芯线圈无铁芯，无齿槽转矩',
+      '3D 打印定子骨架 — Stator / Stator Base / Rotor / Base Ring 四件套（STL）',
+      '全齿集中绕星形接法 — 每齿 17 匝，三相星形 Y 连接，A-B-C 顺序分配',
+      'ESP32-S3 + 电调驱动 — 50Hz PWM 油门信号，好盈 Skywalker 40A 电调，2S 锂电供电',
+    ],
+    images: [
+      asset('/projects/3/bldc-motor/videos/运行视频.gif'),
+      asset('/projects/3/bldc-motor/images/绕线方式.PNG'),
+      asset('/projects/3/bldc-motor/images/磁铁物料-1.JPEG'),
+      asset('/projects/3/bldc-motor/images/磁铁物料-2.JPEG'),
+    ],
+    documents: [
+      { name: '运行视频.mp4', path: asset('/projects/3/bldc-motor/videos/运行视频.mp4') },
+      { name: '电机设计-工程应用指南.md', path: asset('/projects/3/bldc-motor/docs/电机设计-工程应用指南.md') },
+      { name: 'Stator-Body.stl', path: asset('/projects/3/bldc-motor/models/Stator-Body.stl') },
+      { name: 'Rotor-Body.stl', path: asset('/projects/3/bldc-motor/models/Rotor-Body.stl') },
+      { name: 'Stator Base-Body.stl', path: asset('/projects/3/bldc-motor/models/Stator Base-Body.stl') },
+      { name: 'Base Ring-Body.stl', path: asset('/projects/3/bldc-motor/models/Base Ring-Body.stl') },
+    ],
+  },
 ];
 
 /** 大三实践项目 ID 集合 */
-const YEAR_THREE_PRACTICE_IDS = new Set(['ergonomics', 'startup-flowerpot', 'lerobot']);
+const YEAR_THREE_PRACTICE_IDS = new Set(['ergonomics', 'startup-flowerpot', 'lerobot', 'bldc-motor']);
 
 /** 大三项目状态检测: 区分实践项目 / 课程项目 */
 const detectYearThreeStatus = (project) => {
@@ -333,7 +371,7 @@ export default function YearThreeProjects() {
       sectionId="year-three"
       badgeText="YEAR THREE"
       title="大三学年 · 实践作品集"
-      subtitle="2025 冬 – 2026 夏 &nbsp;|&nbsp; 9个项目 · 工效学 / 大创 / 数理方法 / 微电路 / 自动控制 / 数值分析 / 产品制造 / LeRobot / 人体网格应变"
+      subtitle="2025 冬 – 2026 夏 &nbsp;|&nbsp; 10个项目 · 工效学 / 大创 / 数理方法 / 微电路 / 自动控制 / 数值分析 / 产品制造 / LeRobot / 人体网格应变 / BLDC电机"
       layoutIdPrefix="year-three"
       statusDetector={detectYearThreeStatus}
     />
