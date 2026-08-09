@@ -100,6 +100,7 @@ const projects = [
     year: '2026 夏',
     status: '实践项目',
     image: asset('/projects/3/bldc-motor/videos/运行视频.gif'),
+    imageRotate: 90,
     images: [
       asset('/projects/3/bldc-motor/videos/运行视频.gif'),
       asset('/projects/3/bldc-motor/images/绕线方式.PNG'),

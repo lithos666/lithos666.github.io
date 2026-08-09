@@ -343,6 +343,7 @@ const PROJECTS = [
       asset('/projects/3/bldc-motor/images/磁铁物料-1.JPEG'),
       asset('/projects/3/bldc-motor/images/磁铁物料-2.JPEG'),
     ],
+    imageRotate: 90,
     documents: [
       { name: '运行视频.mp4', path: 'https://github.com/lithos666/diy_Brushless-DC-Motor' },
       { name: '电机设计-工程应用指南.md', path: asset('/projects/3/bldc-motor/docs/电机设计-工程应用指南.md') },
