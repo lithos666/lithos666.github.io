@@ -1,0 +1,1 @@
+import{a}from"./rolldown-runtime-C_ttsnZz.js";import{c as s,s as r}from"./animation-vendor-BSLCjDJG.js";s();var n=r();function i({children:a,className:s="",as:r="span"}){return(0,n.jsx)(r,{className:`metallic-paint ${s}`,children:a})}export{i as t};
