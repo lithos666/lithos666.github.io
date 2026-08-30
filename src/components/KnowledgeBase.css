@@ -1,6 +1,6 @@
 .knowledge-section {
   position: relative;
-  padding: clamp(80px, 10vw, 140px) clamp(24px, 5vw, 70px);
+  padding: clamp(112px, 14vw, 190px) clamp(20px, 6vw, 80px);
   overflow: hidden;
   /* Translucent — lets the fixed hero video faintly show through */
   background: var(--section-bg);
@@ -12,6 +12,7 @@
   border-radius: 50%;
   pointer-events: none;
   filter: blur(120px);
+  opacity: 0.35;
 }
 
 .knowledge-glow-1 {
@@ -38,8 +39,39 @@
 
 /* Header */
 .knowledge-header {
-  margin-bottom: clamp(36px, 5vw, 56px);
-  max-width: 600px;
+  margin-bottom: clamp(48px, 7vw, 84px);
+  max-width: 980px;
+}
+
+.knowledge-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 34px;
+}
+
+.knowledge-filter {
+  min-height: 38px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(245, 245, 247, 0.58);
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.knowledge-filter:hover {
+  color: #f5f5f7;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.knowledge-filter--active {
+  background: #f5f5f7;
+  border-color: #f5f5f7;
+  color: #111113;
 }
 
 .heading-accent {
@@ -52,8 +84,8 @@
 /* ═══ Uniform Card Grid ═══ */
 .knowledge-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .kb-card-motion {
@@ -71,7 +103,7 @@
 }
 
 .kb-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 /* Content layout lives on BorderGlow's inner node */
@@ -80,7 +112,8 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 14px;
-  padding: 18px;
+  min-height: 174px;
+  padding: 26px;
   border-radius: inherit;
   overflow: hidden;
 }
@@ -117,6 +150,15 @@
   border: 1px solid color-mix(in srgb, var(--kb-accent, #7C4DFF) 22%, transparent);
 }
 
+.kb-card-icon--code,
+.modal-icon--code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--kb-accent, var(--accent-cyan));
+}
+
 .kb-card-body {
   flex: 1;
   min-width: 0;
@@ -126,7 +168,8 @@
 }
 
 .kb-card-title {
-  font-size: 0.88rem;
+  padding-right: 58px;
+  font-size: 1rem;
   font-weight: 650;
   color: var(--text-primary);
   line-height: 1.35;
@@ -134,8 +177,9 @@
 }
 
 .kb-card-desc {
-  font-size: 0.75rem;
-  font-weight: 300;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  font-weight: 400;
   color: var(--text-tertiary);
   line-height: 1.5;
   display: -webkit-box;
@@ -332,6 +376,63 @@
 
 .modal-actions { display: flex; gap: 12px; }
 
+.note-detail {
+  flex: 1;
+  overflow-y: auto;
+  margin: 8px 0 22px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.note-summary {
+  margin: 0 0 22px;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.note-detail h3 {
+  margin: 0 0 12px;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+}
+
+.note-takeaways {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.note-takeaways li {
+  position: relative;
+  padding-left: 16px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.note-takeaways li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+}
+
+.note-related-link {
+  text-decoration: none;
+}
+
 .modal-btn {
   display: inline-flex;
   align-items: center;
@@ -374,4 +475,14 @@
   .knowledge-modal { padding: 28px 22px; border-radius: 20px; }
   .knowledge-grid { grid-template-columns: 1fr; gap: 12px; }
   .kb-card > .border-glow-inner { padding: 16px; }
+}
+
+@media (max-width: 1024px) {
+  .knowledge-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .knowledge-grid { grid-template-columns: 1fr; }
+  .knowledge-filter { flex: 1 1 auto; }
+  .kb-card > .border-glow-inner { min-height: 0; }
 }

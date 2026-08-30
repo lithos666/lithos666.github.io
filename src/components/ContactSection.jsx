@@ -1,9 +1,33 @@
-import React from 'react';
-import MetallicPaint from './ui/MetallicPaint';
 import BorderGlow from './ui/BorderGlow';
+import { useI18n } from '../i18n-context';
 import './ContactSection.css';
 
 const ContactSection = () => {
+  const { lang } = useI18n();
+  const copy = lang === 'en'
+    ? {
+        eyebrow: 'Let’s talk',
+        title: 'Let’s talk about robotics,\nmedical devices and intelligent hardware.',
+        location: 'Chongqing, China',
+        university: 'Chongqing University · Robotics Engineering',
+        subtitle: 'Robotics · Medical Devices · Intelligent Hardware',
+        resume: 'Download Resume PDF',
+        top: 'Back to top',
+        work: 'View projects',
+        copyright: '© 2026 Xiao Chuyu · Portfolio',
+      }
+    : {
+        eyebrow: '保持联系',
+        title: '欢迎交流机器人、\n医疗器械与智能硬件。',
+        location: '中国 · 重庆',
+        university: '重庆大学 · 机器人工程',
+        subtitle: '机器人 · 医疗器械 · 智能硬件',
+        resume: '下载简历 PDF',
+        top: '返回顶部',
+        work: '查看项目',
+        copyright: '© 2026 肖楚煜 · Portfolio',
+      };
+
   const infoItems = [
     {
       icon: (
@@ -24,7 +48,7 @@ const ContactSection = () => {
         </svg>
       ),
       label: 'Location',
-      value: '中国 · 重庆',
+      value: copy.location,
       href: null,
     },
     {
@@ -35,7 +59,7 @@ const ContactSection = () => {
         </svg>
       ),
       label: 'University',
-      value: '重庆大学·明月科创实验班·机器人工程',
+      value: copy.university,
       href: null,
     },
     {
@@ -48,6 +72,18 @@ const ContactSection = () => {
       label: 'GitHub',
       value: 'github.com/lithos666',
       href: 'https://github.com/lithos666',
+    },
+    {
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <path d="M14 2v6h6M12 12v6m0 0-3-3m3 3 3-3" />
+        </svg>
+      ),
+      label: 'Resume',
+      value: copy.resume,
+      href: '/resume/Xiao-Chuyu-Resume.pdf',
+      download: true,
     },
   ];
 
@@ -62,10 +98,10 @@ const ContactSection = () => {
           <div className="contact-avatar">
             <img src="/avatar-new.png" alt="肖楚煜" />
           </div>
-          <span className="contact-badge">CONTACT</span>
-          <h2 className="contact-title"><MetallicPaint>肖楚煜</MetallicPaint></h2>
+          <span className="contact-badge">{copy.eyebrow}</span>
+          <h2 className="contact-title">{copy.title}</h2>
           <p className="contact-subtitle">
-            重庆大学·明月科创实验班·机器人工程 &nbsp;|&nbsp; thosli666@gmail.com
+            {copy.subtitle} &nbsp;|&nbsp; thosli666@gmail.com
           </p>
         </div>
 
@@ -74,15 +110,15 @@ const ContactSection = () => {
             <BorderGlow
               key={idx}
               className="contact-info-card"
-              backgroundColor="#0a0814"
-              borderRadius={18}
+              backgroundColor="#111113"
+              borderRadius={24}
             >
               <div className="contact-card-icon">
                 {item.icon}
               </div>
               <span className="contact-card-label">{item.label}</span>
               {item.href ? (
-                <a href={item.href} className="contact-card-value" target="_blank" rel="noopener noreferrer">
+                <a href={item.href} className="contact-card-value" target="_blank" rel="noopener noreferrer" download={item.download || undefined}>
                   {item.value}
                 </a>
               ) : (
@@ -96,11 +132,11 @@ const ContactSection = () => {
       {/* 页脚 */}
       <footer className="footer">
         <div className="footer-content">
-          <p>&copy; 2026 肖楚煜 · Goodent. All rights reserved.</p>
+          <p>{copy.copyright}</p>
           <div className="footer-links">
-            <a href="#hero">返回顶部</a>
+            <a href="#hero">{copy.top}</a>
             <span className="separator">·</span>
-            <a href="#works">查看作品</a>
+            <a href="#works">{copy.work}</a>
           </div>
         </div>
       </footer>

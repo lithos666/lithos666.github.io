@@ -1,4 +1,5 @@
 import { Component, useRef, useEffect } from 'react';
+import { useI18n } from '../i18n-context';
 import './HeroSection.css';
 
 /* ═══════════════════════════════════════════════════════
@@ -42,12 +43,13 @@ class ErrorBoundary extends Component {
 
 /* ═══════════════════════════════════════════════════════
    Hero Section — Cinematic Video Backdrop
-   
+
    Full-screen video background with noise texture overlay
    and gradient fade. Content layer sits on top.
    ═══════════════════════════════════════════════════════ */
 export default function HeroSection() {
   const videoRef = useRef(null);
+  const { t } = useI18n();
 
   useEffect(() => {
     const video = videoRef.current;
@@ -99,19 +101,40 @@ export default function HeroSection() {
       <section id="hero" className="hero-section">
         <div className="hero-overlay">
           <div className="glass-chip hero-top-chip">
-            <span className="chip-label">Portfolio 肖楚煜</span>
+            <span className="chip-label">{t('hero.chip-portfolio')}</span>
             <span className="chip-divider" />
-            <span className="chip-year">2023 – 2026</span>
+            <span className="chip-year">{t('hero.chip-years')}</span>
+          </div>
+
+          <div className="hero-positioning">
+            <span className="hero-positioning-eyebrow">{t('hero.positioning-eyebrow')}</span>
+            <h1>{t('hero.positioning-title')}</h1>
+            <p>{t('hero.positioning-summary')}</p>
+
+            <div className="hero-proof-row" aria-label={t('hero.proof-label')}>
+              <span>{t('hero.proof-education')}</span>
+              <span>{t('hero.proof-projects')}</span>
+              <span>{t('hero.proof-funding')}</span>
+            </div>
+
+            <div className="hero-primary-actions">
+              <a href="#works" className="hero-primary-cta">
+                {t('hero.cta-projects')}
+              </a>
+              <a href="/resume/Xiao-Chuyu-Resume.pdf" download className="hero-secondary-cta">
+                {t('global.resume-short')}
+              </a>
+            </div>
           </div>
 
           <div className="hero-bottom-row">
             <div className="glass-chip hero-contact-chip">
-              <span className="contact-item">肖楚煜</span>
-              <span className="contact-item contact-sub">thosli666@gmail.com</span>
+              <span className="contact-item">{t('hero.contact-name')}</span>
+              <span className="contact-item contact-sub">{t('hero.contact-email')}</span>
             </div>
 
             <a href="#works" className="glass-chip hero-scroll-chip">
-              <span className="scroll-label">Scroll</span>
+              <span className="scroll-label">{t('hero.scroll-label')}</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M7 10l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

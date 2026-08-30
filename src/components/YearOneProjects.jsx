@@ -11,6 +11,7 @@
 
 import CoverFlowCarousel from './CoverFlowCarousel';
 import { asset } from '../utils/path';
+import { useI18n } from '../i18n-context';
 import './YearOneProjects.css';
 
 // ═════════════════════════════════════════════════════
@@ -25,19 +26,32 @@ const PROJECTS = [
   {
     id: 'product-design',
     title: '产品设计 · 泳伴科技',
+    titleEn: 'Product Design · SwimMate Tech',
     subtitle: 'SolidWorks三维建模 · 商业计划书 · 团队协作',
+    subtitleEn: 'SolidWorks 3D Modeling · Business Plan · Teamwork',
     category: '产品设计 · 创新创业 · AR眼镜',
+    categoryEn: 'Product Design · Innovation · AR Glasses',
     year: '2024 秋',
+    yearEn: 'Fall 2024',
     color: '#FF6B35',
     accentColor: 'rgba(255,107,53,0.10)',
     tags: ['AR眼镜', '产品设计', '3D建模', '商业计划书', '团队协作'],
+    tagsEn: ['AR Glasses', 'Product Design', '3D Modeling', 'Business Plan', 'Teamwork'],
     description:
       '面向游泳爱好者的智能辅助穿戴设备。完成从用户调研、需求定义、概念设计到三维建模的全流程产品开发。核心零部件包括鼻托支架、VR眼镜造型等，并撰写完整商业计划书参加创新创业比赛。',
+    descriptionEn:
+      'Smart wearable assistive device for swimming enthusiasts. Completed full-cycle product development from user research, requirement definition, concept design to 3D modeling. Core parts include nose-bridge brackets and VR-glasses styling, with a complete business plan written for innovation competitions.',
     highlights: [
       'SolidWorks 参数化建模：鼻托 / 眼镜 v3  / 整体装配',
       '智能穿戴AR眼镜模型 — 独立设计模块',
       '商业计划书撰写 + 多轮迭代 PPT 汇报',
       '团队协作：项目团队leader',
+    ],
+    highlightsEn: [
+      'SolidWorks parametric modeling: nose bridge / glasses v3 / full assembly',
+      'Smart wearable AR glasses model — independent design module',
+      'Business plan writing + multi-round iterative PPT presentations',
+      'Team collaboration: project team leader',
     ],
     images: [
       asset('/projects/1/产品设计/图片/产品.png'),
@@ -62,19 +76,32 @@ const PROJECTS = [
   {
     id: 'personal-practice-report',
     title: '个性化实践报告',
+    titleEn: 'Personal Practice Report',
     subtitle: '明月班科创训练营 · 课程答辩与项目报告',
+    subtitleEn: 'Mingyue Class Innovation Camp · Course Defense & Project Report',
     category: '综合实践',
+    categoryEn: 'Comprehensive Practice',
     year: '2024 秋',
+    yearEn: 'Fall 2024',
     color: '#00BFA5',
     accentColor: 'rgba(0,191,165,0.10)',
     tags: ['个人实践', '答辩汇报', '课程报告'],
+    tagsEn: ['Personal Practice', 'Defense Presentation', 'Course Report'],
     description:
       '明月班个性化实践课程的大一学年完整报告集合。包括实物作品的设计过程与成果展示。',
+    descriptionEn:
+      'Complete freshman-year report collection for Mingyue Class personal practice course. Includes physical work design process and achievement showcase.',
     highlights: [
-      '2023级个性化实践报告 — 明月班科创训练营完整文档',
-      '2024年答辩汇报 — PPT + 逐字稿 + 整机装配模型',
+      '2023 级个性化实践报告 — 明月班科创训练营完整文档',
+      '2024 年答辩汇报 — PPT + 逐字稿 + 整机装配模型',
       '多学科作品展示',
       '完整项目时间线与团队贡献记录',
+    ],
+    highlightsEn: [
+      '2023 class personal practice report — complete Mingyue Innovation Camp documents',
+      '2024 defense presentation — PPT + verbatim transcript + full assembly model',
+      'Multi-disciplinary work showcase',
+      'Complete project timeline and team contribution records',
     ],
     images: [
       asset('/projects/1/2024年个性化实践答辩/A海格力斯越野型小车 v1.png'),
@@ -106,7 +133,7 @@ const PROJECTS = [
     year: '2024 夏',
     color: '#4CAF50',
     accentColor: 'rgba(76,175,80,0.10)',
-    tags: ['暑期实践', '智能养护', '产品设计', 'PPT汇报'],
+    tags: ['暑期实践', '智能养护', '产品设计', 'PPT 汇报'],
     description:
       '重庆明月湖基地科创训练营暑期实践活动。围绕「兰科智护」智能兰花养护产品进行市场调研、产品设计与商业模式探索。完成竞品分析报告、Demo Day 演示文稿、个人心得体会等。',
     highlights: [
@@ -114,6 +141,12 @@ const PROJECTS = [
       '竞品分析报告 — 市场调研与差异化定位',
       'Demo Day 演示 — 思维导图 + 路演 PPT',
       '个人心得体会 — 科创训练营学习总结',
+    ],
+    highlightsEn: [
+      'Lanke Zhihu — Complete smart orchid care product design proposals (multiple PPT versions)',
+      'Competitor analysis report — Market research and differentiated positioning',
+      'Demo Day presentation — Mind map + pitch deck PPT',
+      'Personal reflection — Innovation camp learning summary',
     ],
     images: [
       asset('/projects/1/重庆夏令营——明月湖/产品图.jpg'),
@@ -315,9 +348,8 @@ const PROJECTS = [
              asset('/projects/1/线性代数/code.png'),
     ],
     documents: [
-      {name: '总项目压缩包',   path: asset('/projects/1/线性代数/人脸识别进阶版.zip'),
-       name: '照片库',   path: asset('/projects/1/线性代数/照片库.zip')
-       },
+      {name: '总项目压缩包',   path: asset('/projects/1/线性代数/人脸识别进阶版.zip')},
+      {name: '照片库',   path: asset('/projects/1/线性代数/照片库.zip')},
     ],
   },
 
@@ -355,13 +387,14 @@ const detectYearOneStatus = (project) => {
 };
 
 export default function YearOneProjects() {
+  const { t } = useI18n();
   return (
     <CoverFlowCarousel
       projects={PROJECTS}
       sectionId="year-one"
-      badgeText="YEAR ONE"
-      title="大一学年 · 实践作品集"
-      subtitle="2024 – 2025 &nbsp;|&nbsp; 10个项目 · 产品设计 / 实习 / 竞赛 / 物理仿真 / CAE分析 / 数学应用 / 仿生学"
+      badgeText={t('yearone.badge-text')}
+      title={t('yearone.title')}
+      subtitle={t('yearone.subtitle')}
       layoutIdPrefix="year-one"
       statusDetector={detectYearOneStatus}
     />

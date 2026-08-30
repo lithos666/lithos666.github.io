@@ -1,0 +1,188 @@
+.journey-section {
+  position: relative;
+  padding: clamp(112px, 14vw, 190px) clamp(20px, 6vw, 80px);
+  background: var(--section-bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.journey-container {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+}
+
+.journey-header {
+  max-width: 920px;
+  margin-bottom: clamp(88px, 10vw, 150px);
+}
+
+.journey-index {
+  margin: 0 0 24px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(245, 245, 247, 0.42);
+}
+
+.journey-header .section-heading {
+  max-width: 980px;
+  font-size: clamp(3rem, 7vw, 6.3rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.journey-header .section-subheading {
+  max-width: 700px;
+  margin-top: 30px;
+  font-size: clamp(1.02rem, 1.7vw, 1.28rem);
+}
+
+.journey-list {
+  display: grid;
+}
+
+.journey-stage {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.75fr) minmax(0, 1.5fr);
+  gap: clamp(54px, 8vw, 120px);
+  padding: clamp(70px, 9vw, 118px) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.journey-year-column {
+  align-self: start;
+  position: sticky;
+  top: 118px;
+}
+
+.journey-year {
+  display: block;
+  font-size: clamp(4.8rem, 10vw, 8.8rem);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.075em;
+  color: #f5f5f7;
+  font-variant-numeric: tabular-nums;
+}
+
+.journey-year-column p {
+  max-width: 320px;
+  margin: 28px 0 0;
+  color: rgba(245, 245, 247, 0.46);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.journey-milestones {
+  position: relative;
+  display: grid;
+}
+
+.journey-milestones::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 4px;
+  width: 1px;
+  background: linear-gradient(180deg, #0a84ff, rgba(255, 255, 255, 0.08));
+}
+
+.journey-milestone {
+  position: relative;
+  padding: 0 0 clamp(62px, 7vw, 88px) 44px;
+}
+
+.journey-milestone:last-child {
+  padding-bottom: 0;
+}
+
+.journey-marker {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #0a84ff;
+  box-shadow: 0 0 0 8px rgba(10, 132, 255, 0.12);
+}
+
+.journey-type {
+  display: block;
+  margin-bottom: 16px;
+  color: #2997ff;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.journey-milestone h3 {
+  margin: 0;
+  max-width: 720px;
+  color: #f5f5f7;
+  font-size: clamp(1.65rem, 3.2vw, 2.65rem);
+  font-weight: 650;
+  line-height: 1.14;
+  letter-spacing: -0.04em;
+}
+
+.journey-organization {
+  margin: 12px 0 0;
+  color: rgba(245, 245, 247, 0.52);
+  font-size: 0.92rem;
+  font-weight: 550;
+}
+
+.journey-description {
+  max-width: 680px;
+  margin: 22px 0 0;
+  color: rgba(245, 245, 247, 0.66);
+  font-size: clamp(0.96rem, 1.35vw, 1.08rem);
+  line-height: 1.82;
+}
+
+.journey-outcome {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 24px 0 0;
+  color: #f5f5f7;
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.journey-outcome::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: #2997ff;
+}
+
+@media (max-width: 760px) {
+  .journey-section {
+    padding: 96px 20px;
+  }
+
+  .journey-header {
+    margin-bottom: 68px;
+  }
+
+  .journey-stage {
+    grid-template-columns: 1fr;
+    gap: 46px;
+    padding: 70px 0;
+  }
+
+  .journey-year-column {
+    position: static;
+  }
+
+  .journey-year-column p {
+    margin-top: 20px;
+  }
+
+  .journey-milestone {
+    padding-left: 34px;
+  }
+}

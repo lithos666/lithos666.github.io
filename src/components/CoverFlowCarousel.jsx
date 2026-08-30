@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue } from 'framer-motion';
+import { useI18n } from '../i18n-context';
 import ProjectDetailModal from './ProjectDetailModal';
 import MetallicPaint from './ui/MetallicPaint';
 import { COVER_FLOW, CARD_STYLE } from '../constants';
@@ -7,7 +8,7 @@ import './YearOneProjects.css';
 
 /**
  * CoverFlowCarousel — 共享的 Cover Flow 轮播组件
- * 
+ *
  * 解决问题: YearOneProjects / YearTwoProjects / YearThreeProjects 三个组件
  * 包含 ~800 行完全重复的 Cover Flow 逻辑。此组件将公共逻辑抽取为一处，
  * 通过 props 传入数据和配置，实现 DRY 原则。
@@ -30,18 +31,36 @@ export default function CoverFlowCarousel({
   layoutIdPrefix = 'coverflow',
   statusDetector = null,
 }) {
-  // ── 输入验证 ──
-  if (!Array.isArray(projects) || projects.length === 0) {
-    console.warn('[CoverFlowCarousel] projects 必须为非空数组');
-    return null;
-  }
-
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
   const containerRef = useRef(null);
   const dragX = useMotionValue(0);
   const [isDragging, setIsDragging] = useState(false);
   const dragStartX = useRef(0);
+  const { lang, t } = useI18n();
+
+  // ── 双语项目数据处理 ──
+  // 如果项目有 _zh/_en 字段，使用对应语言的文本；否则回退到原字段
+  const getLocalizedField = (project, enField, zhField) => {
+    if (lang === 'en' && project[`${zhField}En`]) {
+      return project[`${zhField}En`];
+    }
+    return project[zhField] || project[enField] || '';
+  };
+
+  const getLocalizedHighlights = (project) => {
+    if (lang === 'en' && project.highlightsEn) {
+      return project.highlightsEn;
+    }
+    return project.highlights || [];
+  };
+
+  const getLocalizedTags = (project) => {
+    if (lang === 'en' && project.tagsEn) {
+      return project.tagsEn;
+    }
+    return project.tags || [];
+  };
 
   // ── 安全导航函数 ──
   const goTo = useCallback((idx) => {
@@ -56,7 +75,7 @@ export default function CoverFlowCarousel({
   // ── 卡片样式计算 (纯函数, 无副作用) ──
   const getCardStyle = useCallback((index) => {
     const total = projects.length;
-    
+
     // 计算相对当前选中项的偏移量，支持环形排列
     let offset = index - activeIndex;
     if (offset > total / 2) offset -= total;
@@ -103,6 +122,12 @@ export default function CoverFlowCarousel({
     return () => window.removeEventListener('keydown', handleKey);
   }, [activeIndex, goTo, selectedProject]);
 
+  // ── 输入验证（所有 hooks 之后） ──
+  if (!Array.isArray(projects) || projects.length === 0) {
+    console.warn('[CoverFlowCarousel] projects 必须为非空数组');
+    return null;
+  }
+
   // ── 拖拽结束处理 ──
   const onDragEnd = (_, info) => {
     setIsDragging(false);
@@ -120,16 +145,16 @@ export default function CoverFlowCarousel({
   // ── 安全获取项目状态文本 ──
   const getStatusText = (project) => {
     if (typeof statusDetector === 'function') {
-      return statusDetector(project);
+      return t(statusDetector(project));
     }
-    // 默认逻辑: 通过 id 列表判断
+    // 默认逻辑：通过 id 列表判断
     if (project.id?.includes('practice') || project.id?.includes('stirling')) {
-      return '实践项目';
+      return t('status.practice');
     }
     if (project.id?.includes('sutd')) {
-      return '访学申请';
+      return t('status.exchange');
     }
-    return '课程项目';
+    return t('status.coursework');
   };
 
   // ── 安全图片加载处理 ──
@@ -197,9 +222,9 @@ export default function CoverFlowCarousel({
               {(project.title || '').charAt(0)}
             </span>
             <span className="y1-tab-text">
-              <span className="y1-tab-title">{project.title}</span>
+              <span className="y1-tab-title">{getLocalizedField(project, 'titleEn', 'title')}</span>
               <span className="y1-tab-sub">
-                {(project.category || '').split(' ')[0]}
+                {(getLocalizedField(project, 'categoryEn', 'category') || '').split(' ')[0]}
               </span>
             </span>
             {/* 使用唯一的 layoutId 避免冲突 */}
@@ -285,17 +310,19 @@ export default function CoverFlowCarousel({
               >
                 <div className="coverflow-inner">
                   <div className="cf-header">
-                    <span className="cf-year">{project.year}</span>
+                    <span className="cf-year">{getLocalizedField(project, 'yearEn', 'year')}</span>
                     <span className="cf-status" style={{ color: project.color }}>
                       {getStatusText(project)}
                     </span>
                   </div>
-                  <h3 className="cf-title">{project.title}</h3>
-                  <p className="cf-subtitle">{project.subtitle}</p>
+                  <h3 className="cf-title">{getLocalizedField(project, 'titleEn', 'title')}</h3>
+                  <p className="cf-subtitle">{getLocalizedField(project, 'subtitleEn', 'subtitle')}</p>
                   <span className="cf-category" style={{ color: project.color }}>
-                    {project.category}
+                    {getLocalizedField(project, 'categoryEn', 'category')}
                   </span>
-                  <p className="cf-desc">{project.description}</p>
+                  <p className="cf-desc">
+                    {getLocalizedField(project, 'descriptionEn', 'description')}
+                  </p>
 
                   {/* 图片预览 - 仅在活跃卡片且有有效图片时显示；毛玻璃衬底完整展示 */}
                   {isActive && Array.isArray(project.images) && project.images.length > 0 && project.images[0] && (
@@ -309,7 +336,7 @@ export default function CoverFlowCarousel({
                     >
                       <img
                         src={project.images[0]}
-                        alt={project.title || '项目图片'}
+                        alt={getLocalizedField(project, 'titleEn', 'title') || 'Project'}
                         loading="lazy"
                         onError={handleImageError}
                       />
@@ -318,7 +345,7 @@ export default function CoverFlowCarousel({
 
                   {/* 亮点列表 */}
                   <ul className="cf-highlights">
-                    {(project.highlights || []).map((item, i) => (
+                    {getLocalizedHighlights(project).map((item, i) => (
                       <li key={i}>
                         <span
                           className="cf-dot"
@@ -331,7 +358,7 @@ export default function CoverFlowCarousel({
 
                   {/* 标签 */}
                   <div className="cf-tags">
-                    {(project.tags || []).map((tag) => (
+                    {getLocalizedTags(project).map((tag) => (
                       <span
                         key={tag}
                         className="cf-tag"
@@ -355,7 +382,7 @@ export default function CoverFlowCarousel({
                         setSelectedProject(project);
                       }}
                     >
-                      查看详情
+                      {t('view-details')}
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                         <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>

@@ -1,0 +1,431 @@
+/* ═══════════════════════════════════════════════════════════
+   PersonalStatement CSS — Modern About Section
+   Apple-style dark theme with clean cards and focused content
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Container & Ambient Glows ── */
+.ps-section {
+  position: relative;
+  padding: clamp(112px, 14vw, 190px) 24px;
+  background: var(--section-bg);
+  overflow: hidden;
+}
+
+.ps-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+
+.ps-glow--1 {
+  width: 480px;
+  height: 480px;
+  top: -120px;
+  left: -140px;
+  background: var(--glow-purple);
+}
+
+.ps-glow--2 {
+  width: 420px;
+  height: 420px;
+  bottom: -100px;
+  right: -120px;
+  background: var(--glow-cyan);
+}
+
+.ps-container {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+/* ── Header Section ── */
+.ps-header {
+  text-align: left;
+  max-width: 980px;
+  margin-bottom: clamp(80px, 9vw, 126px);
+}
+
+.ps-header .section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-purple);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.ps-header .section-heading {
+  margin-bottom: 24px;
+  white-space: pre-line;
+}
+
+.ps-name {
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.ps-intro {
+  font-size: clamp(1rem, 1.7vw, 1.28rem);
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+  margin-bottom: 32px;
+}
+
+/* Quick Stats Row */
+.ps-stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  padding-top: 24px;
+}
+
+.ps-stat-fragment {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.ps-stat-item {
+  text-align: center;
+}
+
+.ps-stat-value {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(180deg, #fff, rgba(255, 255, 255, 0.6));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: block;
+}
+
+.ps-stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 4px;
+  display: block;
+}
+
+.ps-stat-divider {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.3),
+    rgba(255,255,255,0.05));
+}
+
+/* ── Engineering Focus Cards ── */
+/* Engineering Focus Cards */
+.ps-focus-cards {
+  margin-bottom: 80px;
+}
+
+.ps-group-label {
+  margin: 0 0 18px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.ps-card-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.ps-focus-card {
+  min-height: 206px;
+  transition: border-color 0.3s ease;
+}
+
+.ps-focus-card > .border-glow-inner {
+  height: 100%;
+  padding: clamp(28px, 3vw, 40px);
+  overflow: hidden;
+}
+
+.ps-focus-index {
+  display: block;
+  margin-bottom: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--accent-cyan);
+}
+
+.ps-card-copy {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+
+.ps-focus-card:hover {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.ps-card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.ps-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.ps-card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ps-card-list li {
+  padding: 12px 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  padding-left: 24px;
+  line-height: 1.5;
+}
+
+.ps-card-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent-cyan);
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+.ps-card-list li:last-child {
+  border-bottom: none;
+}
+
+.section-block {
+  padding: clamp(38px, 5vw, 68px);
+  background: rgba(17, 17, 19, 0.82);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(26px) saturate(130%);
+  -webkit-backdrop-filter: blur(26px) saturate(130%);
+}
+
+.ps-overview-panel {
+  display: grid;
+  gap: clamp(42px, 5vw, 64px);
+}
+
+.ps-overview-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(42px, 6vw, 80px);
+}
+
+.ps-overview-segment {
+  min-width: 0;
+}
+
+.ps-overview-top .ps-bio-section {
+  padding-left: clamp(42px, 6vw, 80px);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ps-overview-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ps-block-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.ps-block-desc {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.ps-block-desc strong {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+.ps-build-path {
+  margin: 28px 0 0;
+  font-family: var(--font-mono);
+  font-size: clamp(0.78rem, 1.6vw, 0.95rem);
+  letter-spacing: 0.06em;
+  color: var(--accent-cyan);
+}
+
+.ps-current-work {
+  margin: 0;
+}
+
+.ps-project-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-top: 32px;
+}
+
+.ps-highlight-card {
+  background: #151517;
+  border-radius: 0;
+  padding: 28px;
+  border: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.ps-highlight-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--accent-cyan);
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ps-highlight-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.ps-highlight-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.ps-highlight-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ps-highlight-tech span {
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ps-bio-section {
+  margin: 0;
+}
+
+.ps-bio-text {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--text-secondary);
+  margin: 0;
+  text-align: left;
+}
+
+.ps-bio-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ── Responsive Design ── */
+@media (max-width: 860px) {
+  .ps-section {
+    padding: 80px 18px 70px;
+  }
+
+  .ps-header .section-heading {
+    font-size: 2.2rem;
+  }
+
+  .ps-stats-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .ps-stat-fragment {
+    justify-content: center;
+  }
+
+  .ps-stat-fragment .ps-stat-divider {
+    display: none;
+  }
+
+  .ps-card-group,
+  .ps-project-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .ps-overview-top {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .ps-overview-top .ps-bio-section {
+    padding: 38px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 0;
+  }
+
+  .section-block {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .ps-header .section-heading {
+    font-size: 1.8rem;
+  }
+
+  .ps-intro {
+    font-size: 1rem;
+  }
+
+  .ps-card-title {
+    font-size: 1.3rem;
+  }
+
+  .ps-block-title {
+    font-size: 1.5rem;
+  }
+}

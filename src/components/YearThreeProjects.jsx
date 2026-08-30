@@ -11,6 +11,7 @@
 
 import CoverFlowCarousel from './CoverFlowCarousel';
 import { asset } from '../utils/path';
+import { useI18n } from '../i18n-context';
 import './YearOneProjects.css';
 
 // ═════════════════════════════════════════════════════
@@ -24,20 +25,33 @@ const PROJECTS = [
   // ══════════════════════════════════════════════════════
   {
     id: 'ergonomics',
-    title: '智慧课堂·课堂AI录音盒',
-    subtitle: '工效学 · jack人因设计 · AI语音',
+    title: '智慧课堂·课堂 AI 录音盒',
+    titleEn: 'Smart Classroom AI Voice Recorder',
+    subtitle: '工效学 · jack 人因设计 · AI 语音',
+    subtitleEn: 'Ergonomics · Jack Human Factors Design · AI Voice',
     category: '人机交互 · 工效学设计',
+    categoryEn: 'HCI · Ergonomics Design',
     year: '2025 秋',
+    yearEn: 'Fall 2025',
     color: '#00B8D4',
     accentColor: 'rgba(0,184,212,0.10)',
-    tags: ['jack', 'C#', 'ClearerVoice', 'EyeGestures', '3D建模', 'STEP'],
+    tags: ['jack', 'C#', 'ClearerVoice', 'EyeGestures', '3D 建模', 'STEP'],
+    tagsEn: ['Jack', 'C#', 'ClearerVoice', 'EyeGestures', '3D Modeling', 'STEP'],
     description:
-      '面向智慧课堂场景的多模态交互硬件与软件综合系统。基于工效学理论进行用户研究、产品迭代设计与交互验证。包含两代完整产品外观设计（STL/STEP/KSP）、基于jack开发的人因分析、AI语音处理模块（ClearerVoice去噪/变声）。',
+      '面向智慧课堂场景的多模态交互硬件与软件综合系统。基于工效学理论进行用户研究、产品迭代设计与交互验证。包含两代完整产品外观设计（STL/STEP/KSP）、基于 jack 开发的人因分析、AI 语音处理模块（ClearerVoice 去噪/变声）。',
+    descriptionEn:
+      'Multi-modal interaction hardware and software system for smart classroom scenarios. Based on ergonomics theory for user research, product iteration design and interaction verification.',
     highlights: [
       '第一代 + 第二代产品外观设计',
-      'jack 智慧课堂交互界面 — 完整Web端UI项目',
-      'AI语音处理 — ClearerVoice Studio：实时去噪、变声、语音增强',
+      'jack 智慧课堂交互界面 — 完整 Web 端 UI 项目',
+      'AI 语音处理 — ClearerVoice Studio：实时去噪、变声、语音增强',
       'Jack 人因工程软件仿真 — 教室环境人体工程学分析与优化',
+    ],
+    highlightsEn: [
+      'Gen1 + Gen2 product appearance design',
+      'Jack smart classroom interaction interface — Complete web UI project',
+      'AI voice processing — ClearerVoice Studio: Real-time denoising, voice changing, speech enhancement',
+      'Jack human factors software simulation — Classroom environment ergonomic analysis and optimization',
     ],
     images: [
       asset('/projects/3/工效学/工效学产品.jpg'),
@@ -343,7 +357,6 @@ const PROJECTS = [
       asset('/projects/3/bldc-motor/images/磁铁物料-1.JPEG'),
       asset('/projects/3/bldc-motor/images/磁铁物料-2.JPEG'),
     ],
-    imageRotate: 270,
     documents: [
       { name: '运行视频.mp4', path: 'https://github.com/lithos666/diy_Brushless-DC-Motor' },
       { name: '电机设计-工程应用指南.md', path: asset('/projects/3/bldc-motor/docs/电机设计-工程应用指南.md') },
@@ -366,13 +379,14 @@ const detectYearThreeStatus = (project) => {
 };
 
 export default function YearThreeProjects() {
+  const { t } = useI18n();
   return (
     <CoverFlowCarousel
       projects={PROJECTS}
       sectionId="year-three"
-      badgeText="YEAR THREE"
-      title="大三学年 · 实践作品集"
-      subtitle="2025 冬 – 2026 夏 &nbsp;|&nbsp; 10个项目 · 工效学 / 大创 / 数理方法 / 微电路 / 自动控制 / 数值分析 / 产品制造 / LeRobot / 人体网格应变 / BLDC电机"
+      badgeText={t('yearthree.badge-text')}
+      title={t('yearthree.title')}
+      subtitle={t('yearthree.subtitle')}
       layoutIdPrefix="year-three"
       statusDetector={detectYearThreeStatus}
     />

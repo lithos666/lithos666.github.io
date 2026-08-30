@@ -1,16 +1,19 @@
 import React, { lazy, Suspense } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import SmoothScroll from './components/SmoothScroll';
-import CustomCursor from './components/ui/CustomCursor';
+import LanguageToggle from './components/ui/LanguageToggle';
 import GooeyNav from './components/ui/GooeyNav';
 import HeroSection from './components/HeroSection';
+import PersonalStatement from './components/PersonalStatement';
 import WorksSection from './components/WorksSection';
+import { I18nProvider, useI18n } from './i18n-context.jsx';
+import './App.css';
 
 // ── Lazy load below-fold sections for faster initial paint ──
 const YearOneProjects = lazy(() => import('./components/YearOneProjects'));
 const YearTwoProjects = lazy(() => import('./components/YearTwoProjects'));
 const YearThreeProjects = lazy(() => import('./components/YearThreeProjects'));
-const AboutSection = lazy(() => import('./components/AboutSection'));
+const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
 const KnowledgeBase = lazy(() => import('./components/KnowledgeBase'));
 const ContactSection = lazy(() => import('./components/ContactSection'));
 
@@ -25,21 +28,19 @@ const SectionSkeleton = () => (
   </div>
 );
 
-import './App.css';
-
-// Navigation items for GooeyNav
-const NAV_ITEMS = [
-  { href: '#works', label: '项目' },
-  { href: '#year-one', label: '大一' },
-  { href: '#year-two', label: '大二' },
-  { href: '#year-three', label: '大三' },
-  { href: '#about', label: '关于' },
-  { href: '#knowledge', label: '知识库' },
-  { href: '#contact', label: '联系' },
-];
-
-function Navbar() {
+// Navbar component
+const Navbar = () => {
   const [scrolled, setScrolled] = React.useState(false);
+  const { t } = useI18n();
+
+  const navItems = [
+    { href: '#about', label: t('global.nav.about') },
+    { href: '#works', label: t('global.nav.projects') },
+    { href: '#year-one', label: t('global.nav.archive') },
+    { href: '#experience', label: t('global.nav.experience') },
+    { href: '#notes', label: t('global.nav.knowledge') },
+    { href: '#contact', label: t('global.nav.contact') },
+  ];
 
   React.useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -69,58 +70,61 @@ function Navbar() {
     >
       <div className="navbar-inner">
         <a href="#hero" className="nav-logo" data-hover>
-          <span className="logo-mark">G</span>
-          <span className="logo-text">Goodent</span>
+          <span className="logo-mark">X</span>
+          <span className="logo-text">Xiao Chuyu</span>
         </a>
         <div className="nav-gooey-wrapper" onClick={handleNavClick}>
-          <GooeyNav items={NAV_ITEMS} initialActiveIndex={0} />
+          <GooeyNav items={navItems} initialActiveIndex={0} />
+        </div>
+        <div className="nav-actions">
+          <LanguageToggle />
+          <a
+            className="nav-resume-link"
+            href="/resume/Xiao-Chuyu-Resume.pdf"
+            download
+          >
+            {t('global.resume-short')}
+          </a>
         </div>
       </div>
     </motion.nav>
   );
-}
+};
 
 export default function App() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
   return (
-    <SmoothScroll>
-      <CustomCursor />
+    <I18nProvider>
+      <SmoothScroll>
+        <motion.div
+          className="scroll-progress"
+        />
 
-      <motion.div
-        className="scroll-progress"
-        style={{ scaleX }}
-      />
+        <Navbar />
 
-      <Navbar />
-
-      <main>
-        <HeroSection />
-        <WorksSection />
-        <Suspense fallback={<SectionSkeleton />}>
-          <YearOneProjects />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <YearTwoProjects />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <YearThreeProjects />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <AboutSection />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <KnowledgeBase />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <ContactSection />
-        </Suspense>
-      </main>
-    </SmoothScroll>
+        <main>
+          <HeroSection />
+          <PersonalStatement />
+          <WorksSection />
+          <Suspense fallback={<SectionSkeleton />}>
+            <YearOneProjects />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton />}>
+            <YearTwoProjects />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton />}>
+            <YearThreeProjects />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton />}>
+            <ExperienceJourney />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton />}>
+            <KnowledgeBase />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton />}>
+            <ContactSection />
+          </Suspense>
+        </main>
+      </SmoothScroll>
+    </I18nProvider>
   );
 }

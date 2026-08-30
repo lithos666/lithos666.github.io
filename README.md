@@ -1,62 +1,44 @@
-# Goodent Portfolio
+# Xiao Chuyu — Robotics Engineering Portfolio
 
-一个基于 **React + Vite + Three.js** 构建的现代化个人作品集网站，融合 3D 视觉效果与流畅的交互动画。
+一个以工程 Case Study 为核心的中英双语个人作品集，展示机械设计、仿真、嵌入式控制、机器人与医疗器械方向的项目成长链。
 
-## 技术栈
+## Features
 
-- **[Vite](https://vitejs.dev/)** - 前端构建工具
-- **[React](https://react.dev/)** (v19) - UI 框架
-- **[Three.js](https://threejs.org/) / [React Three Fiber](https://docs.pmnd.rs/react-three/fiber)** - 3D 渲染
-- **[@react-three/drei](https://github.com/pmndrs/drei)** - Three.js 实用工具库
-- **[Framer Motion](https://www.framer.com/motion/)** - 动画库
-- **[GSAP](https://gsap.com/)** - 高性能动画
-- **[Lenis](https://lenis.studiofreight.com/)** - 平滑滚动
+- 中文 / English 全站切换
+- 6 个代表项目 Case Study
+- 三年项目归档与 Apple Minimal 风格 Journey
+- 12 篇工程、机器人、产品、市场与创业方法笔记
+- 在线浏览及下载 Resume PDF
+- 图片、视频与工程文件证据展示
 
-## 快速开始
+## Stack
 
-### 安装依赖
+- React 19
+- Vite 8
+- Framer Motion
+- Lenis
+
+## Local development
 
 ```bash
 npm install
-```
-
-### 开发模式
-
-```bash
 npm run dev
 ```
 
-### 生产构建
+生产构建与本地预览：
 
 ```bash
 npm run build
-```
-
-### 预览构建结果
-
-```bash
 npm run preview
 ```
 
-### 代码检查
+## Main structure
 
-```bash
-npm run lint
+```text
+public/                  # 现用项目媒体与 Resume
+src/components/          # 页面区块和交互组件
+src/i18n-translations.js # 双语文案
+src/utils/path.js        # 部署路径处理
 ```
 
-## 项目结构
-
-```
-goodent-deploy/
-├── public/          # 静态资源（图片等）
-├── src/
-│   ├── *.jsx        # React 组件
-│   └── *.css        # 样式文件
-├── index.html       # 入口 HTML
-├── vite.config.js   # Vite 配置
-└── package.json     # 项目依赖
-```
-
-## 许可证
-
-Private
+Private portfolio project.

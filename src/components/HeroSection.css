@@ -1,10 +1,10 @@
 /* ═══════════════════════════════════════════════════════
    Hero Section — Cinematic Video Backdrop
-   
+
    Architecture:
    - .hero-backdrop: position:fixed, z-index:-1, full-screen video background
    - .hero-section: relative content layer, sits on top of the backdrop
-   
+
    ═══════════════════════════════════════════════════════ */
 
 /* ═══════════════════════════════════════════════════════
@@ -40,7 +40,7 @@
 .noise-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.7;
+  opacity: 0.18;
   mix-blend-mode: overlay;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
@@ -52,7 +52,9 @@
 .hero-video-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.6) 100%);
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.76) 0%, rgba(0, 0, 0, 0.24) 54%, rgba(0, 0, 0, 0.08) 100%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.22) 0%, transparent 46%, rgba(0, 0, 0, 0.64) 100%);
   pointer-events: none;
 }
 
@@ -115,6 +117,103 @@
 /* Top chip */
 .hero-top-chip {
   align-self: flex-end;
+}
+
+.hero-positioning {
+  position: absolute;
+  left: clamp(28px, 6vw, 88px);
+  top: 50%;
+  transform: translateY(-42%);
+  width: min(760px, 72vw);
+  pointer-events: auto;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
+}
+
+.hero-positioning-eyebrow {
+  display: block;
+  margin-bottom: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hero-positioning h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(2.35rem, 5.1vw, 5.25rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+  white-space: pre-line;
+}
+
+.hero-positioning p {
+  max-width: 660px;
+  margin: 22px 0 0;
+  font-size: clamp(0.92rem, 1.35vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.hero-proof-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.hero-proof-row span {
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(5, 8, 14, 0.36);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.hero-primary-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.hero-primary-cta,
+.hero-secondary-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-primary-cta {
+  background: #fff;
+  color: #080910;
+}
+
+.hero-secondary-cta {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(5, 8, 14, 0.42);
+  color: #fff;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.hero-primary-cta:hover,
+.hero-secondary-cta:hover {
+  transform: none;
 }
 
 .chip-label {
@@ -219,6 +318,26 @@
   .contact-item { font-size: 0.58rem; }
   .contact-sub { font-size: 0.52rem; }
   .scroll-label { font-size: 0.6rem; }
+
+  .hero-positioning {
+    left: 18px;
+    top: 47%;
+    width: calc(100% - 36px);
+  }
+
+  .hero-positioning h1 {
+    font-size: clamp(2rem, 10vw, 3.25rem);
+  }
+
+  .hero-positioning p {
+    max-width: 92%;
+  }
+}
+
+@media (max-width: 1120px) {
+  .hero-top-chip {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -226,5 +345,15 @@
     flex-direction: column;
     gap: 10px;
     align-items: stretch;
+  }
+
+  .hero-top-chip,
+  .hero-contact-chip,
+  .hero-scroll-chip {
+    display: none;
+  }
+
+  .hero-primary-actions {
+    flex-wrap: wrap;
   }
 }

@@ -11,6 +11,7 @@
 
 import CoverFlowCarousel from './CoverFlowCarousel';
 import { asset } from '../utils/path';
+import { useI18n } from '../i18n-context';
 import './YearOneProjects.css';
 
 // ═════════════════════════════════════════════════════
@@ -200,11 +201,11 @@ const PROJECTS = [
       'BOM 物料清单 — 2401-小车BOM.xlsx（零件编号/数量/材料）',
     ],
     images: [asset('/projects/2/气动小车/气动小车.png'),
-             asset('/projects/2/气动小车/气动小车1.png'), 
-             asset('/projects/2/气动小车/气动小车2.png'), 
-             asset('/projects/2/气动小车/气动小车3.png'), 
-             asset('/projects/2/气动小车/变速箱.gif'), 
-             asset('/projects/2/气动小车/bom.jpg'), 
+             asset('/projects/2/气动小车/气动小车1.png'),
+             asset('/projects/2/气动小车/气动小车2.png'),
+             asset('/projects/2/气动小车/气动小车3.png'),
+             asset('/projects/2/气动小车/变速箱.gif'),
+             asset('/projects/2/气动小车/bom.jpg'),
              asset('/projects/2/气动小车/变速箱1.gif'),
     ],
     documents: [
@@ -395,13 +396,14 @@ const detectYearTwoStatus = (project) => {
 };
 
 export default function YearTwoProjects() {
+  const { t } = useI18n();
   return (
     <CoverFlowCarousel
       projects={PROJECTS}
       sectionId="year-two"
-      badgeText="YEAR TWO"
-      title="大二上学期 · 实践作品集"
-      subtitle="2025 春季 &nbsp;|&nbsp; 10个项目 · 热机 / 机器人 / DSP / 3D打印 / 渲染 / 医疗电子 / 访学"
+      badgeText={t('yeartwo.badge-text')}
+      title={t('yeartwo.title')}
+      subtitle={t('yeartwo.subtitle')}
       layoutIdPrefix="year-two"
       statusDetector={detectYearTwoStatus}
     />

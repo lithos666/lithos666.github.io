@@ -1,6 +1,25 @@
 import { useRef, useEffect, useState } from 'react';
 import './GooeyNav.css';
 
+const noise = (n = 1) => n / 2 - Math.random() * n;
+
+const getXY = (distance, pointIndex, totalPoints) => {
+  const angle = ((360 + noise(8)) / totalPoints) * pointIndex * (Math.PI / 180);
+  return [distance * Math.cos(angle), distance * Math.sin(angle)];
+};
+
+const createParticle = (i, t, d, r, particleCount, colors) => {
+  let rotate = noise(r / 10);
+  return {
+    start: getXY(d[0], particleCount - i, particleCount),
+    end: getXY(d[1] + noise(7), particleCount - i, particleCount),
+    time: t,
+    scale: 1 + noise(0.2),
+    color: colors[Math.floor(Math.random() * colors.length)],
+    rotate: rotate > 0 ? (rotate + r / 20) * 10 : (rotate - r / 20) * 10
+  };
+};
+
 const GooeyNav = ({
   items,
   animationTime = 600,
@@ -14,27 +33,7 @@ const GooeyNav = ({
   const containerRef = useRef(null);
   const navRef = useRef(null);
   const filterRef = useRef(null);
-  const textRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
-
-  const noise = (n = 1) => n / 2 - Math.random() * n;
-
-  const getXY = (distance, pointIndex, totalPoints) => {
-    const angle = ((360 + noise(8)) / totalPoints) * pointIndex * (Math.PI / 180);
-    return [distance * Math.cos(angle), distance * Math.sin(angle)];
-  };
-
-  const createParticle = (i, t, d, r) => {
-    let rotate = noise(r / 10);
-    return {
-      start: getXY(d[0], particleCount - i, particleCount),
-      end: getXY(d[1] + noise(7), particleCount - i, particleCount),
-      time: t,
-      scale: 1 + noise(0.2),
-      color: colors[Math.floor(Math.random() * colors.length)],
-      rotate: rotate > 0 ? (rotate + r / 20) * 10 : (rotate - r / 20) * 10
-    };
-  };
 
   const makeParticles = element => {
     const d = particleDistances;
@@ -44,7 +43,7 @@ const GooeyNav = ({
 
     for (let i = 0; i < particleCount; i++) {
       const t = animationTime * 2 + noise(timeVariance * 2);
-      const p = createParticle(i, t, d, r);
+      const p = createParticle(i, t, d, r, particleCount, colors);
       element.classList.remove('active');
 
       setTimeout(() => {
@@ -78,7 +77,7 @@ const GooeyNav = ({
   };
 
   const updateEffectPosition = element => {
-    if (!containerRef.current || !filterRef.current || !textRef.current) return;
+    if (!containerRef.current || !filterRef.current) return;
     const containerRect = containerRef.current.getBoundingClientRect();
     const pos = element.getBoundingClientRect();
 
@@ -89,8 +88,6 @@ const GooeyNav = ({
       height: `${pos.height}px`
     };
     Object.assign(filterRef.current.style, styles);
-    Object.assign(textRef.current.style, styles);
-    textRef.current.innerText = element.innerText;
   };
 
   const handleClick = (e, index) => {
@@ -103,12 +100,6 @@ const GooeyNav = ({
     if (filterRef.current) {
       const particles = filterRef.current.querySelectorAll('.particle');
       particles.forEach(p => filterRef.current.removeChild(p));
-    }
-
-    if (textRef.current) {
-      textRef.current.classList.remove('active');
-      void textRef.current.offsetWidth;
-      textRef.current.classList.add('active');
     }
 
     if (filterRef.current) {
@@ -133,10 +124,8 @@ const GooeyNav = ({
       const activeLi = navRef.current?.querySelectorAll('li')[activeIndex];
       if (activeLi) {
         updateEffectPosition(activeLi);
-        textRef.current?.classList.add('active');
-        // Reveal effect layers only after correct positioning
+        // Reveal the particle/filter layer only after correct positioning.
         if (filterRef.current) filterRef.current.style.opacity = '1';
-        if (textRef.current) textRef.current.style.opacity = '1';
       }
     };
 
@@ -171,7 +160,6 @@ const GooeyNav = ({
         </ul>
       </nav>
       <span className="effect filter" ref={filterRef} />
-      <span className="effect text" ref={textRef} />
     </div>
   );
 };

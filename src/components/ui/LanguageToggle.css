@@ -1,0 +1,50 @@
+/* Language Toggle Button */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 4px 10px;
+  background: rgba(8, 10, 18, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.72);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+@media (max-width: 768px) {
+  .lang-toggle {
+    cursor: pointer;
+    font-size: 0.65rem;
+    padding: 3px 10px;
+  }
+}
+
+.lang-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--text-primary);
+}
+
+.lang-toggle-lang {
+  opacity: 0.55;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+.lang-toggle-lang.lang-toggle-active {
+  opacity: 1;
+  color: #fff;
+}
+
+.lang-toggle-divider {
+  width: 0.5px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 4px;
+  transition: all 0.25s ease;
+  position: relative;
+  top: -1px;
+}

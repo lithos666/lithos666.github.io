@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════
    Year One Projects — 大一学年实践作品集
-   
+
    Design language: Apple glassmorphism + cosmic accent
    Tabs: smooth spring animation, each tab has unique color
    Cards: glass-morphism with colored accents per project
@@ -10,7 +10,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  padding: clamp(80px, 10vw, 140px) clamp(24px, 6vw, 80px);
+  padding: clamp(112px, 14vw, 190px) clamp(20px, 6vw, 80px);
   /* Translucent — lets the fixed hero video faintly show through */
   background: var(--section-bg);
   overflow: hidden;
@@ -23,7 +23,7 @@
   border-radius: 50%;
   pointer-events: none;
   filter: blur(120px);
-  opacity: 0.7;
+  opacity: 0.22;
 }
 
 .y1-glow-1 {
@@ -54,8 +54,9 @@
 /* ═══════════════════════════════════════════
    HEADER ══════════════════════════════════ */
 .y1-header {
-  text-align: center;
-  margin-bottom: 28px;              /* was 56px — reduced gap */
+  width: min(1280px, 100%);
+  margin: 0 auto 52px;
+  text-align: left;
   position: relative;
   z-index: 1;
 }
@@ -70,24 +71,26 @@
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.03);
+  background: transparent;
   backdrop-filter: blur(10px);
   margin-bottom: 20px;
 }
 
 .y1-title {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  max-width: 900px;
+  font-size: clamp(2.8rem, 6vw, 5.4rem);
+  font-weight: 650;
+  letter-spacing: -0.055em;
   color: #ffffff;
   margin-bottom: 12px;
   line-height: 1.2;
 }
 
 .y1-subtitle {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.35);
-  letter-spacing: 0.06em;
+  max-width: 680px;
+  font-size: clamp(0.95rem, 1.4vw, 1.12rem);
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.02em;
   font-weight: 400;
 }
 
@@ -115,9 +118,9 @@
   justify-content: flex-start;    /* 内部内容左对齐 */
   gap: 10px;
   padding: 10px 16px;
-  border-radius: 14px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.07);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.018);
   backdrop-filter: blur(16px) saturate(120%);
   -webkit-backdrop-filter: blur(16px) saturate(120%);
   cursor: pointer;
@@ -128,7 +131,7 @@
 
 .y1-tab:hover {
   background: var(--tab-accent);
-  transform: translateY(-1px);
+  transform: none;
 }
 
 .y1-tab--active {
@@ -189,26 +192,19 @@
 /* ═══════════════════════════════════════════
    PROJECT CARD — Glass morphism with accent ═════════════ */
 .y1-card {
-  border-radius: 20px;
+  border-radius: 28px;
   padding: 36px 40px;
-  background: rgba(6, 4, 12, 0.7);
+  background: rgba(17, 17, 19, 0.95);
   backdrop-filter: blur(30px) saturate(140%);
   -webkit-backdrop-filter: blur(30px) saturate(140%);
   border: 1px solid var(--card-accent, rgba(255, 64, 129, 0.12));
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
-    0 20px 60px -20px rgba(0, 0, 0, 0.5),
-    0 0 80px -20px var(--card-accent-bg, transparent);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .y1-card:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
-    0 24px 72px -20px rgba(0, 0, 0, 0.55),
-    0 0 100px -20px var(--card-accent-bg, transparent),
-    0 0 40px -10px var(--card-accent-bg, transparent);
+  transform: none;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
 }
 
 /* Card header */
@@ -420,7 +416,7 @@
 .coverflow-track {
   position: relative;
   width: 100%;
-  height: 100px;               
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -465,7 +461,7 @@
   top: 50%;
   left: 50%; /* 补充：让起始点在水平中心 */
   transform: translate(-50%, -50%); /* 修改：将 -20% 改为 -50% */
-  
+
   /* 以下保持你原来的属性不变 */
   border-radius: 20px;
   background: rgba(6, 4, 14, 0.75);
