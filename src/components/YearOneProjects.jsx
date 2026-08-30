@@ -152,7 +152,6 @@ const PROJECTS = [
       asset('/projects/1/重庆夏令营——明月湖/产品图.jpg'),
       asset('/projects/1/重庆夏令营——明月湖/Demo Day PPT.png'),
       asset('/projects/1/重庆夏令营——明月湖/1.png'),
-      asset('/projects/1/重庆夏令营——明月湖/中期汇报PPT制作的思维导图.png'),
     ],
     documents: [
       { name: '最终汇报.pptx', path: asset('/projects/1/重庆夏令营——明月湖/最终版本.pptx') },
@@ -376,21 +375,134 @@ const PROJECTS = [
   },
 ];
 
+const YEAR_ONE_EN = {
+  'chongqing-camp': {
+    titleEn: 'Mingyue Lake Innovation Camp',
+    subtitleEn: 'Smart Orchid Care · Product Design · Venture Training',
+    categoryEn: 'Summer Practice · Innovation & Entrepreneurship',
+    yearEn: 'Summer 2024',
+    tagsEn: ['Summer Program', 'Smart Plant Care', 'Product Design', 'Pitch Deck'],
+    descriptionEn: 'A summer innovation program at Chongqing Mingyue Lake focused on a smart orchid-care product. The work combined market research, product definition, competitive analysis, business-model exploration, and a Demo Day pitch.',
+  },
+  'zhixing-internship': {
+    titleEn: 'Product Design Internship · Zhixing Technology',
+    subtitleEn: 'Parametric Modeling · Product Design · Industrial Design',
+    categoryEn: 'Industry Internship · Industrial Design',
+    yearEn: 'Summer–Fall 2024',
+    tagsEn: ['Fusion 360', 'KeyShot', 'Industrial Design', 'Patent Research', 'Work Logs'],
+    descriptionEn: 'Engineering and industrial-design work completed at Zhixing Technology, a Pre-A-funded mobility startup. Responsibilities covered full-vehicle CAD for the Hercules off-road platform, part-library management, visual identity, competitor and patent research, and structured daily documentation.',
+    highlightsEn: [
+      'Hercules vehicle model supported by a 613-part SolidWorks and Creo library',
+      'Complete chassis and automotive-suspension modeling',
+      'Multiple logo and product-identity concepts across STEP, PDF, PSD, and AI formats',
+      'Competitive landscape and patent research combining market and technical analysis',
+      'Sixteen structured internship work logs documenting decisions and progress',
+    ],
+  },
+  'robocon-team': {
+    titleEn: 'Robocon Team',
+    subtitleEn: 'Robot Chassis · Suspension System · Competition Preparation',
+    categoryEn: 'Robotics Competition · Mechanical Design',
+    yearEn: 'Fall 2024',
+    tagsEn: ['Robocon', 'SolidWorks', 'Chassis Design', 'Suspension', 'Mechanical Design'],
+    descriptionEn: 'Mechanical-design training for the national Robocon competition. My work focused on robot chassis architecture and suspension modeling, strengthening parametric CAD, assembly design, and system-integration skills.',
+    highlightsEn: [
+      'Chassis and suspension system comprising roughly 100 SolidWorks parts and assemblies',
+      'Independent chassis-module design and iterative optimization',
+      'Linear-rail mechanism design for guided motion',
+      'System-level robot concept and design documentation',
+    ],
+  },
+  'physics-simulation': {
+    titleEn: 'Physics Experiments & COMSOL Simulation',
+    subtitleEn: 'Turbulence · Suspensions · Kapitza Pendulum',
+    categoryEn: 'Experimental Physics · Numerical Methods',
+    yearEn: 'Fall 2024',
+    tagsEn: ['COMSOL Multiphysics', 'Turbulence', 'Fluid Mechanics', 'Effective Negative Gravity'],
+    descriptionEn: 'Experimental and numerical studies of stability in oscillating multiphase systems, combining fluid mechanics, suspension behavior, and nonlinear dynamics.',
+    highlightsEn: [
+      'Two-dimensional COMSOL simulation of Rayleigh–Taylor instability',
+      'Four comparative parameter studies of magnetic suspensions',
+      'Theoretical derivation and experiment for the Kapitza pendulum',
+      'Solution and application of first-order ordinary differential-equation systems',
+    ],
+  },
+  'engineering-principles': {
+    titleEn: 'Engineering Principles',
+    subtitleEn: 'Motor Drive · PLC · Digital Logic',
+    categoryEn: 'Engineering Fundamentals · Electronic Systems',
+    yearEn: 'Fall 2024',
+    tagsEn: ['Motor Drive', 'STM32', 'PLC', 'Verilog/HDL', 'Digital Logic'],
+    descriptionEn: 'Integrated engineering coursework spanning PWM motor drives, programmable logic devices, FPGA fundamentals, and Verilog hardware-description methods.',
+    highlightsEn: [
+      'PWM motor-drive design and pulse-width modulation experiments',
+      'Programmable logic studies covering FPGA architecture and HDL development',
+      'Integrated engineering design assignment and technical documentation',
+      'Closed-loop line-following vehicle prototype',
+    ],
+  },
+  'engineering-analysis-ship': {
+    titleEn: 'Quantitative Engineering Analysis',
+    subtitleEn: 'CAE · Hydrofoil Design · Structural Analysis',
+    categoryEn: 'CAE · Marine Engineering',
+    yearEn: 'Fall 2024',
+    tagsEn: ['Finite-Element Analysis', 'STL/STEP', 'Structural Optimization', 'Marine Design', 'NACA Hydrofoil'],
+    descriptionEn: 'A quantitative engineering-design study centered on a hydrofoil craft, progressing from NACA profile selection and parametric CAD to structural-load analysis and cross-platform model delivery.',
+    highlightsEn: [
+      'Complete three-dimensional hydrofoil craft model',
+      'Parameterized NACA hydrofoil profile for hydrodynamic design',
+      'QEA report v3.0 summarizing the quantitative-analysis workflow',
+      'Interoperable models for SolidWorks, CATIA, and Inventor',
+    ],
+  },
+  'linear-algebra-face': {
+    titleEn: 'Linear Algebra · Face Recognition',
+    subtitleEn: 'Matrix Methods for Digital Image Processing',
+    categoryEn: 'Applied Mathematics · Image Processing',
+    yearEn: 'Fall 2024',
+    tagsEn: ['Linear Algebra', 'MATLAB', 'Image Processing', 'Face Detection', 'PCA'],
+    descriptionEn: 'An applied linear-algebra project using face recognition to connect matrix representation, eigenvalue decomposition, and PCA dimensionality reduction with digital-image processing.',
+    highlightsEn: [
+      'Pixel-matrix representation and the geometry of grayscale transformations',
+      'PCA face recognition using eigendecomposition for dimensionality reduction',
+      'Interactive face-detection interface built with MATLAB App Designer',
+      'Supporting lecture notes and a documented implementation plan',
+    ],
+  },
+  'nature-design-bionic': {
+    titleEn: 'Biomimetic Fish Design',
+    subtitleEn: 'Biomimetics · Product Design · Form Exploration',
+    categoryEn: 'Product Design · Biomimetics',
+    yearEn: 'Fall 2024',
+    tagsEn: ['Biomimetics', 'Form Study', 'Product Design'],
+    descriptionEn: 'A biomimetic design study translating biological structures and natural forms into product-shape concepts.',
+    highlightsEn: [
+      'Analysis and abstraction of biological forms found in nature',
+      'Concept-development process translating natural features into product geometry',
+    ],
+  },
+};
+
+const LOCALIZED_PROJECTS = PROJECTS.map(project => ({
+  ...project,
+  ...YEAR_ONE_EN[project.id],
+}));
+
 /**
  * 判断大一项目的类型标签
  */
 const detectYearOneStatus = (project) => {
-  if (!project?.id) return '课程项目';
+  if (!project?.id) return 'status.coursework';
   const practiceIds = ['product-design', 'personal-practice-report', 'chongqing-camp', 'zhixing-internship', 'robocon-team'];
-  if (practiceIds.includes(project.id)) return '实践项目';
-  return '课程项目';
+  if (practiceIds.includes(project.id)) return 'status.practice';
+  return 'status.coursework';
 };
 
 export default function YearOneProjects() {
   const { t } = useI18n();
   return (
     <CoverFlowCarousel
-      projects={PROJECTS}
+      projects={LOCALIZED_PROJECTS}
       sectionId="year-one"
       badgeText={t('yearone.badge-text')}
       title={t('yearone.title')}

@@ -28,12 +28,20 @@ const GooeyNav = ({
   particleR = 100,
   timeVariance = 300,
   colors = [1, 2, 3, 1, 2, 3, 1, 4],
-  initialActiveIndex = 0
+  initialActiveIndex = 0,
+  activeIndex: controlledActiveIndex,
+  onActiveIndexChange,
 }) => {
   const containerRef = useRef(null);
   const navRef = useRef(null);
   const filterRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
+  const [internalActiveIndex, setInternalActiveIndex] = useState(initialActiveIndex);
+  const activeIndex = controlledActiveIndex ?? internalActiveIndex;
+
+  const setActiveIndex = index => {
+    if (controlledActiveIndex === undefined) setInternalActiveIndex(index);
+    onActiveIndexChange?.(index);
+  };
 
   const makeParticles = element => {
     const d = particleDistances;
@@ -91,7 +99,8 @@ const GooeyNav = ({
   };
 
   const handleClick = (e, index) => {
-    const liEl = e.currentTarget;
+    const liEl = e.currentTarget.closest('li');
+    if (!liEl) return;
     if (activeIndex === index) return;
 
     setActiveIndex(index);
@@ -107,13 +116,10 @@ const GooeyNav = ({
     }
   };
 
-  const handleKeyDown = (e, index) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+  const handleKeyDown = (e) => {
+    if (e.key === ' ') {
       e.preventDefault();
-      const liEl = e.currentTarget.parentElement;
-      if (liEl) {
-        handleClick({ currentTarget: liEl }, index);
-      }
+      e.currentTarget.click();
     }
   };
 
@@ -152,7 +158,12 @@ const GooeyNav = ({
         <ul ref={navRef}>
           {items.map((item, index) => (
             <li key={index} className={activeIndex === index ? 'active' : ''}>
-              <a href={item.href} onClick={e => handleClick(e, index)} onKeyDown={e => handleKeyDown(e, index)}>
+              <a
+                href={item.href}
+                aria-current={activeIndex === index ? 'page' : undefined}
+                onClick={e => handleClick(e, index)}
+                onKeyDown={handleKeyDown}
+              >
                 {item.label}
               </a>
             </li>

@@ -288,7 +288,10 @@ export default function ProjectDetailModal({ project, onClose }) {
               <div className="pdm-docs">
                 {documents.map((doc, i) => {
                   // 安全获取文档属性
-                  const docName = typeof doc.name === 'string' ? doc.name : '未命名文件';
+                  const localizedDocName = lang === 'en' ? doc.nameEn : doc.name;
+                  const docName = typeof localizedDocName === 'string'
+                    ? localizedDocName
+                    : (lang === 'en' ? 'Untitled file' : '未命名文件');
                   const docPath = typeof doc.path === 'string' ? doc.path : '#';
 
                   // 根据扩展名选择图标

@@ -6,6 +6,21 @@ import MetallicPaint from './ui/MetallicPaint';
 import { COVER_FLOW, CARD_STYLE } from '../constants';
 import './YearOneProjects.css';
 
+const PUBLISHED_EVIDENCE_PATHS = new Set([
+  '/projects/3/数值分析/工程数值分析第三次汇报.pdf',
+  '/projects/3/产品制造/final-report.docx',
+  '/projects/3/bldc-motor/docs/电机设计-工程应用指南.md',
+  '/projects/3/bldc-motor/models/Stator-Body.stl',
+  '/projects/3/bldc-motor/models/Rotor-Body.stl',
+  '/projects/3/bldc-motor/models/Stator Base-Body.stl',
+  '/projects/3/bldc-motor/models/Base Ring-Body.stl',
+]);
+
+const getPublishedDocuments = (project) => (project.documents || []).filter(doc => {
+  const path = typeof doc?.path === 'string' ? doc.path : '';
+  return /^https?:\/\//i.test(path) || PUBLISHED_EVIDENCE_PATHS.has(path);
+});
+
 /**
  * CoverFlowCarousel — 共享的 Cover Flow 轮播组件
  *
@@ -219,7 +234,7 @@ export default function CoverFlowCarousel({
               className="y1-tab-icon"
               style={{ background: project.color }}
             >
-              {(project.title || '').charAt(0)}
+              {getLocalizedField(project, 'titleEn', 'title').charAt(0)}
             </span>
             <span className="y1-tab-text">
               <span className="y1-tab-title">{getLocalizedField(project, 'titleEn', 'title')}</span>
@@ -379,7 +394,10 @@ export default function CoverFlowCarousel({
                       style={{ background: project.color }}
                       onClick={(e) => {
                         e.stopPropagation();
-                        setSelectedProject(project);
+                        setSelectedProject({
+                          ...project,
+                          documents: getPublishedDocuments(project),
+                        });
                       }}
                     >
                       {t('view-details')}

@@ -264,6 +264,10 @@ export const translations = {
     zh: '访学申请',
     en: 'Exchange Application'
   },
+  'status.social-practice': {
+    zh: '社会实践',
+    en: 'Social Research'
+  },
 
   // Year Three Projects (大三项目)
   'yearthree.badge-text': {

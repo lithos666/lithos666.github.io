@@ -26,19 +26,32 @@ const PROJECTS = [
   {
     id: 'stirling-engine',
     title: '斯特林发动机',
+    titleEn: 'Gamma-Type Stirling Engine',
     subtitle: '热机设计 · COMSOL多物理场仿真 · ADAMS动力学',
+    subtitleEn: 'Thermal Design · COMSOL Multiphysics · ADAMS Dynamics',
     category: '机械设计 · 热力学',
+    categoryEn: 'Mechanical Design · Thermodynamics',
     year: '2025 春',
+    yearEn: 'Spring 2025',
     color: '#E65100',
     accentColor: 'rgba(230,81,0,0.10)',
     tags: ['SolidWorks', 'COMSOL', 'ADAMS', '热力学循环', 'CNC公差配合'],
+    tagsEn: ['SolidWorks', 'COMSOL', 'ADAMS', 'Thermodynamic Cycle', 'CNC Tolerancing'],
     description: '完整的Gamma型斯特林发动机设计与分析项目。从概念选型、参数化三维建模（41个SLDPRT零件）、到多物理场耦合仿真与多体动力学验证。',
+    descriptionEn: 'End-to-end design and validation of a gamma-type Stirling engine, spanning concept selection, parametric modeling of a 41-part assembly, coupled multiphysics simulation, and multibody dynamics verification.',
     highlights: [
       'Gamma型斯特林发动机 — 41个SLDPRT零件 + 完整装配 + 机加工',
       'COMSOL 流-固耦合(FSI)仿真 + 气缸热分析(.3mf) + 飞轮拓扑优化',
       'ADAMS 多体动力学仿真：曲柄连杆机构验证',
       '加工工艺链：3D打印件清单 + 公差配合(PPT系列) + 机加工清单',
       '典型墙体的传热分析',
+    ],
+    highlightsEn: [
+      'Gamma-type engine — 41 SolidWorks parts, complete assembly, and machining-ready design',
+      'COMSOL fluid–structure interaction, cylinder thermal analysis, and flywheel topology optimization',
+      'ADAMS multibody simulation validating the crank–slider mechanism',
+      'Fabrication workflow covering 3D-printed parts, tolerance design, and machining BOM',
+      'Steady-state heat-transfer analysis of a representative wall assembly',
     ],
     images: [
       // asset('/projects/2/斯特林发动机/渲染模型0.png'),
@@ -66,19 +79,32 @@ const PROJECTS = [
   {
     id: 'bionic-arm',
     title: '仿生机械臂',
+    titleEn: 'Bionic Robotic Hand',
     subtitle: 'Inmoov Hand · 3D打印 · MediaPipe视觉伺服',
+    subtitleEn: 'InMoov Hand · 3D Printing · MediaPipe Visual Servoing',
     category: '嵌入式系统 · 机器人',
+    categoryEn: 'Embedded Systems · Robotics',
     year: '2025 春',
+    yearEn: 'Spring 2025',
     color: '#00BFA5',
     accentColor: 'rgba(0,191,165,0.10)',
     tags: ['Arduino', 'C++', 'MediaPipe', '3D打印', 'Inmoov', '视觉追踪'],
+    tagsEn: ['Arduino', 'C++', 'MediaPipe', '3D Printing', 'InMoov', 'Visual Tracking'],
     description:
       '基于 Inmoov Hand 开源项目的仿生机械手系统。采用 3D 打印技术制作完整手部结构，通过 MediaPipe 实时手部姿态检测实现视觉伺服闭环控制。',
+    descriptionEn:
+      'A 3D-printed robotic hand developed from the open-source InMoov platform. MediaPipe detects hand poses in real time and maps them to Arduino commands for closed-loop visual servo control.',
     highlights: [
       'Inmoov Hand — 38个 STL 文件 + 14个 STEP 模型完整打印件',
       'MediaPipe 实时21关键点检测 → 坐标映射 → Arduino串口通信',
       '3D打印组件 + 电路板 DRL 文件，可直接打印制作',
       '配套演示视频与实拍记录',
+    ],
+    highlightsEn: [
+      'Complete InMoov hand build based on 38 STL files and 14 STEP models',
+      'MediaPipe 21-landmark tracking → coordinate mapping → Arduino serial control',
+      'Fabrication package including printable components and PCB drill files',
+      'Demonstration videos and physical prototype records',
     ],
     images: [
       asset('/projects/2/仿生机械臂/1月5日 (1).gif'),
@@ -102,26 +128,33 @@ const PROJECTS = [
   {
     id: 'personal-practice-s2',
     title: '个性化实践·综合',
+    titleEn: 'Integrated Engineering Practice',
     subtitle: '仿生机械臂v2 · 气缸系统 · 心电检测',
+    subtitleEn: 'Bionic Hand v2 · Pneumatic System · ECG Analysis',
     category: '综合实践 · 多学科交叉',
+    categoryEn: 'Multidisciplinary Engineering',
     year: '2025 春',
+    yearEn: 'Spring 2025',
     color: '#FF6D00',
     accentColor: 'rgba(255,109,0,0.10)',
     tags: ['SolidWorks', 'MATLAB', 'ECG', 'STEP建模'],
+    tagsEn: ['SolidWorks', 'MATLAB', 'ECG', 'STEP Modeling'],
     description: '大二上学期个性化实践综合性成果集合。仿生机械臂v2迭代升级、气缸系统热力学分析、ECG心电检测算法、斯特林动力学仿真，每项均配演示视频和报告。',
+    descriptionEn: 'A multidisciplinary practice portfolio combining a second-generation bionic hand, pneumatic-system thermodynamic analysis, ECG detection algorithms, and Stirling-engine dynamics. Each study includes a report and working demonstration.',
     highlights: [
       '仿生机械臂 v2 — 大一版本迭代升级，新增 STL/STEP/KSP 三维模型',
       '气缸系统 — 热力学分析报告（PDF）+ 活塞机构原理说明',
       '心电信号检测 — ECG 波形识别算法与检测流程文档',
       '每项均配演示视频（GIF动图 + MP4实拍），共6组多媒体素材',
     ],
+    highlightsEn: [
+      'Bionic hand v2 — mechanical iteration with updated STL, STEP, and KeyShot models',
+      'Pneumatic cylinder system — thermodynamic analysis and piston-mechanism study',
+      'ECG detection — waveform recognition algorithm and documented analysis workflow',
+      'Six sets of GIF and MP4 evidence covering the complete practice portfolio',
+    ],
     images: [
       asset('/projects/2/个性化实践/Scene-Template-platform-v3-cupra.7.png'),
-      asset('/projects/2/个性化实践/手足.gif'),
-      asset('/projects/2/个性化实践/1月6日.gif'),
-      asset('/projects/2/个性化实践/4e82b48c94f6607ac6d2fbf48673e5bf.gif'),
-      asset('/projects/2/个性化实践/c2a3eb8edcf1d70e5bdbd2b5fa9a291e.gif'),
-      asset('/projects/2/个性化实践/7034c8a3cf3611e3e9e27ab8786e5263.gif'),
     ],
     documents: [
       { name: 'PPT汇报.pptx', path: asset('/projects/2/个性化实践/个性化实践20232846——肖楚煜.pptx') },
@@ -143,14 +176,21 @@ const PROJECTS = [
   {
     id: 'signal-processing-gui',
     title: '信号处理系统',
+    titleEn: 'Signal Processing & ECG Analysis System',
     subtitle: 'MATLAB GUI · C语言嵌入式 · FIR/IIR滤波器 · ECG心电分析 · AI标注',
+    subtitleEn: 'MATLAB GUI · Embedded C · FIR/IIR Filters · ECG Analysis · AI Annotation',
     category: 'DSP · 数字信号处理 · 生物医学工程',
+    categoryEn: 'DSP · Biomedical Signal Processing',
     year: '2025 春',
+    yearEn: 'Spring 2025',
     color: '#00BCD4',
     accentColor: 'rgba(0,188,212,0.10)',
     tags: ['MATLAB', 'C语言', 'FIR/IIR', 'FFT', '卡尔曼滤波', 'App Designer', 'MIT-BIH', 'QRS检测', 'RNN'],
+    tagsEn: ['MATLAB', 'Embedded C', 'FIR/IIR', 'FFT', 'Kalman Filter', 'App Designer', 'MIT-BIH', 'QRS Detection', 'RNN'],
     description:
       '基于MATLAB与C语言的全功能数字信号处理与心电采集分析综合系统。MATLAB端使用App Designer开发交互界面，完成FIR/IIR滤波器设计、AI心电信号标注(RNN)、ECG双通道分析与卡尔曼滤波降噪。C语言嵌入式端实现完整的便携式心电采集与分析管线：采样→预处理→带通滤波→QRS检测→心率计算，并支持MIT-BIH标准数据集验证与sEMG肌电信号扩展。',
+    descriptionEn:
+      'An end-to-end DSP and ECG acquisition system built with MATLAB and embedded C. The App Designer interface integrates FIR/IIR design, RNN-assisted ECG annotation, dual-channel analysis, and Kalman denoising; the embedded pipeline covers sampling, preprocessing, band-pass filtering, QRS detection, and heart-rate estimation, validated against MIT-BIH data.',
     highlights: [
       'MATLAB GUI 全功能平台 — App Designer交互界面，FIR/IIR滤波器设计任务1-7全系列',
       'AI心电信号标注 — RNN神经网络实现ECG波形自动分类与标注',
@@ -160,6 +200,16 @@ const PROJECTS = [
       'ECG双通道分析 — R波检测 + 心率变异(HRV)分析 + 波形特征提取',
       '卡尔曼滤波降噪 — ECG基线漂移去除与噪声抑制',
       'sEMG肌电信号扩展 — 表面肌电同步采集与分析模块',
+    ],
+    highlightsEn: [
+      'MATLAB App Designer platform covering a complete series of FIR/IIR filter-design tasks',
+      'RNN-based ECG waveform classification and automatic annotation',
+      'Music synthesis engine using sinusoidal composition, envelope modulation, and WAV output',
+      'Embedded C pipeline: sampling → baseline removal → band-pass filtering → QRS detection → heart rate',
+      'Validation with more than 1,500 MIT-BIH reference records',
+      'Dual-channel ECG analysis with R-wave detection, HRV analysis, and feature extraction',
+      'Kalman filtering for baseline-drift removal and noise suppression',
+      'Extension module for synchronized surface-EMG acquisition and analysis',
     ],
     images: [
       asset('/projects/2/信号分析仪/心电信号.png'),
@@ -186,24 +236,36 @@ const PROJECTS = [
   {
     id: 'pneumatic-car',
     title: '气动小车',
+    titleEn: '3D-Printed Pneumatic Vehicle',
     subtitle: '3D打印 · 完整车体结构 · STEP装配 · BOM物料清单',
+    subtitleEn: '3D Printing · Full Vehicle Architecture · STEP Assembly · BOM',
     category: '机械工程 · 快速原型 · 车辆设计',
+    categoryEn: 'Mechanical Engineering · Rapid Prototyping · Vehicle Design',
     year: '2025 春',
+    yearEn: 'Spring 2025',
     color: '#795548',
     accentColor: 'rgba(121,85,72,0.10)',
     tags: ['3D打印', 'SolidWorks', 'STEP', '气动传动', '变速箱', '差速器', '悬架系统'],
+    tagsEn: ['3D Printing', 'SolidWorks', 'STEP', 'Pneumatic Drive', 'Gearbox', 'Differential', 'Suspension'],
     description:
       '基于3D打印技术的气动动力小车完整工程项目。涵盖完整的车辆结构设计：车架总成、发动机模块、变速箱与差速器传动系统、方向盘转向机构、前后悬架系统。49个独立STEP文件、整车装配、完整BOM物料清单，支持直接导入切片软件打印。',
+    descriptionEn:
+      'A complete pneumatic vehicle engineered for additive manufacturing. The 49-part STEP package covers the chassis, power module, gearbox, differential, steering, and front/rear suspension, together with a full assembly and production BOM.',
     highlights: [
       '完整车体结构 — 7大核心模块：变速箱 / 差速器 / 车架 / 发动机 / 方向盘 / 前悬 / 后悬',
       '传动系统 — 变速箱 + 差速器双模块设计，实现动力分配与变速功能',
       '悬架系统 — 前后独立悬挂，保证行驶稳定性与减震性能',
       'BOM 物料清单 — 2401-小车BOM.xlsx（零件编号/数量/材料）',
     ],
+    highlightsEn: [
+      'Seven major vehicle modules: gearbox, differential, chassis, engine, steering, front suspension, and rear suspension',
+      'Integrated gearbox and differential for speed conversion and torque distribution',
+      'Independent front and rear suspension designed for stability and vibration isolation',
+      'Manufacturing BOM documenting part numbers, quantities, and materials',
+    ],
     images: [asset('/projects/2/气动小车/气动小车.png'),
              asset('/projects/2/气动小车/气动小车1.png'),
              asset('/projects/2/气动小车/气动小车2.png'),
-             asset('/projects/2/气动小车/气动小车3.png'),
              asset('/projects/2/气动小车/变速箱.gif'),
              asset('/projects/2/气动小车/bom.jpg'),
              asset('/projects/2/气动小车/变速箱1.gif'),
@@ -222,18 +284,30 @@ const PROJECTS = [
   {
     id: 'keyshot-gallery',
     title: 'KeyShot 渲染案例集',
+    titleEn: 'KeyShot Product Visualization',
     subtitle: '工业级产品可视化 · PBR材质 · 场景布光',
+    subtitleEn: 'Product Visualization · PBR Materials · Lighting Design',
     category: '工业设计 · 渲染表现',
+    categoryEn: 'Industrial Design · Rendering',
     year: '2025 春',
+    yearEn: 'Spring 2025',
     color: '#AB47BC',
     accentColor: 'rgba(171,71,188,0.10)',
     tags: ['KeyShot', 'PBR渲染', '产品可视化', '.ksp', '.obj'],
+    tagsEn: ['KeyShot', 'PBR Rendering', 'Product Visualization', '.ksp', '.obj'],
     description: '工业级产品渲染作品合集，展示KeyShot高级渲染技能。每个案例保留完整.ksp工程文件、高清渲染图、原始3D模型文件及渲染笔记PDF。',
+    descriptionEn: 'A collection of product-visualization studies demonstrating advanced KeyShot workflows. Each case preserves its source model, complete KSP scene, high-resolution output, and rendering notes for reproducibility.',
     highlights: [
       '可口可乐场景 — PBR材质(玻璃/液体/标签) + HDRI环境光 + 焦散特效',
       '蜘蛛侠角色 — 复杂材质(哑光战衣/金属配件/眼睛反射)',
       '铝合金渲染 — 金属质感产品可视化',
       '每个案例保留 .ksp 源文件 → 可直接学习参数设置',
+    ],
+    highlightsEn: [
+      'Coca-Cola scene — glass, liquid, and label materials with HDRI lighting and caustics',
+      'Spider-Man character — layered fabric, metallic accessories, and reflective eye materials',
+      'Aluminum-alloy study focused on physically credible metallic appearance',
+      'Editable KSP source scenes preserved for every visualization study',
     ],
     images: [
       asset('/projects/2/keyshot渲染案例/蜘蛛侠.png'),
@@ -259,18 +333,30 @@ const PROJECTS = [
   {
     id: 'sutd-application',
     title: 'SUTD 新加坡访学申请',
+    titleEn: 'SUTD Exchange Application',
     subtitle: '新加坡科技设计大学 · CSC公派留学',
+    subtitleEn: 'Singapore University of Technology and Design · CSC Scholarship',
     category: '访学申请 · 学术交流',
+    categoryEn: 'International Exchange · Academic Application',
     year: '2025',
+    yearEn: '2025',
     color: '#00897B',
     accentColor: 'rgba(0,137,123,0.10)',
     tags: ['SUTD', 'CSC公派', '英语成绩', '学习计划'],
+    tagsEn: ['SUTD', 'CSC Scholarship', 'English Proficiency', 'Study Plan'],
     description: '申请新加坡科技设计大学(SUTD)交换/访学项目的完整材料集。包含中英文成绩单、英语证明、个人学习计划、费用预算明细等全部必要文档。',
+    descriptionEn: 'A complete application package for an exchange program at the Singapore University of Technology and Design, including bilingual transcripts, English-proficiency records, a study plan, and a detailed budget.',
     highlights: [
       'SUTD 官方邀请函 — Chongqing University Invitation Letter (PDF)',
       '中英文官方成绩单 — 出国交流专用版本',
       'CET4 (534) / CET6 (436) 成绩单 — 英语能力证明',
       '学习计划书 — 中英文双语版本（研究目标与计划安排）',
+    ],
+    highlightsEn: [
+      'Official invitation letter issued for the Chongqing University exchange program',
+      'Official Chinese and English transcripts prepared for international exchange',
+      'CET-4 score of 534 and CET-6 score of 436 as English-proficiency evidence',
+      'Bilingual study plan outlining academic objectives and the proposed schedule',
     ],
     images: [
       asset('/projects/2/SUTD访学申请/贺信.jpg'),
@@ -289,18 +375,30 @@ const PROJECTS = [
   {
     id: 'robotics-course',
     title: '机器人基础',
+    titleEn: 'Foundations of Robotics',
     subtitle: '明创班 · 课程实验与仿真',
+    subtitleEn: 'Honors Program · Laboratory & Simulation',
     category: '机器人学 · 课程实验',
+    categoryEn: 'Robotics · Coursework',
     year: '2025 春',
+    yearEn: 'Spring 2025',
     color: '#26A69A',
     accentColor: 'rgba(38,166,154,0.10)',
     tags: ['Arduino', 'C++', 'MATLAB', 'ROS Toolbox', 'Simulink'],
+    tagsEn: ['Arduino', 'C++', 'MATLAB', 'ROS Toolbox', 'Simulink'],
     description: '明创班《机器人技术》课程的完整实验与仿真资料集。',
+    descriptionEn: 'A complete set of laboratory exercises and simulation studies from the honors-program robotics course, covering embedded control, kinematics, ROS tools, and vision prototypes.',
     highlights: [
       'Arduino 实验：舵机控制 / LED / 色块追踪 / 循迹 / 自动跟随（多版本）',
       'MATLAB Robotics Toolbox — 正逆运动学仿真',
       'ROS rvctools 工具箱配置与仿真环境',
       'OpenCV Python 视觉算法原型（颜色识别 / 方框检测）',
+    ],
+    highlightsEn: [
+      'Arduino experiments in servo control, LED control, color tracking, line following, and autonomous following',
+      'Forward- and inverse-kinematics simulations using MATLAB Robotics Toolbox',
+      'ROS/RVC toolbox configuration and simulation environment setup',
+      'OpenCV Python prototypes for color recognition and bounding-box detection',
     ],
     images: [asset('/projects/2/机器人基础/机器人基础.jpg')],
     documents: [
@@ -319,18 +417,30 @@ const PROJECTS = [
   {
     id: 'probability-stats',
     title: '概率论与数理统计',
+    titleEn: 'Probability & Mathematical Statistics',
     subtitle: '随机过程 · Monte Carlo · 数据分析',
+    subtitleEn: 'Stochastic Processes · Monte Carlo · Data Analysis',
     category: '数学 · 统计应用',
+    categoryEn: 'Mathematics · Applied Statistics',
     year: '2025 春',
+    yearEn: 'Spring 2025',
     color: '#3F51B5',
     accentColor: 'rgba(63,81,181,0.10)',
     tags: ['概率论', 'MATLAB', 'Monte Carlo', '统计分布', 'SVM'],
+    tagsEn: ['Probability', 'MATLAB', 'Monte Carlo', 'Statistical Distributions', 'SVM'],
     description: '概率论与数理统计课程的实践应用项目。将随机事件、条件概率、常见分布等理论概念通过MATLAB数值模拟加以验证与应用。',
+    descriptionEn: 'Applied coursework in probability and mathematical statistics, using MATLAB simulations to validate stochastic events, conditional probability, common distributions, and statistical learning methods on engineering data.',
     highlights: [
       'MATLAB 统计仿真 — 分布拟合、直方图、置信区间可视化',
       '支持向量机 SVM — 分类与回归分析（多版本实现）',
       'ACO-SVM 蚁群优化算法改进SVM',
       '轴承直径分析 — 实际工程数据分析案例',
+    ],
+    highlightsEn: [
+      'MATLAB statistical simulations for distribution fitting, histograms, and confidence intervals',
+      'Support-vector-machine implementations for classification and regression',
+      'Ant-colony optimization applied to SVM parameter selection',
+      'Bearing-diameter study using real engineering measurement data',
     ],
     images: [asset('/projects/2/概率论/SVM和贝叶斯决策边界.png'),
              asset('/projects/2/概率论/蚁群算法.png'),
@@ -352,24 +462,35 @@ const PROJECTS = [
   {
     id: 'maogai-practice',
     title: '毛概社会实践',
+    titleEn: 'Social Research: Cycling Through Bayu',
     subtitle: '骑行巴渝 · 红色文化调研',
+    subtitleEn: 'Cycling Through Bayu · Cultural Heritage Field Research',
     category: '社会实践',
+    categoryEn: 'Social Research',
     year: '2025 春',
+    yearEn: 'Spring 2025',
     color: '#D32F2F',
     accentColor: 'rgba(211,47,47,0.10)',
     tags: ['毛概', '社会实践', '红色文化', '调研报告'],
+    tagsEn: ['Social Research', 'Cultural Heritage', 'Field Study', 'Research Report'],
     description: '毛概课程社会实践项目——「骑行巴渝」红色文化调研活动，完成调研报告与团队协作文档。',
+    descriptionEn: 'A team-based field study documenting Chongqing’s revolutionary cultural heritage through the “Cycling Through Bayu” route, culminating in a research report and a complete set of collaboration records.',
     highlights: [
       '骑行巴渝调研 — 红色文化探访与记录',
       '团队分工与协作 — 人员名单与管理文档',
       '研究背景与目标 — 项目规划文档',
       '完整调研报告 — 多版本迭代',
     ],
+    highlightsEn: [
+      'Field visits and documentation of local revolutionary heritage sites',
+      'Defined team roles, research ownership, and collaboration records',
+      'Research framing covering the project background, objectives, and fieldwork plan',
+      'Complete research report refined through multiple iterations',
+    ],
     images: [
       asset('/projects/2/毛概——029班-5组社会实践/骑行.jpg'),
       asset('/projects/2/毛概——029班-5组社会实践/雾都.jpg'),
       asset('/projects/2/毛概——029班-5组社会实践/最终版本-封面.jpg'),
-      '/projects/2/毛概——029班-5组社会实践/最终版本.mp4',
     ],
     documents: [
       { name: '骑行巴渝报告.docx', path: '/projects/2/毛概——029班-5组社会实践/骑行巴渝——毛概中期作业.docx' },
@@ -388,11 +509,11 @@ const YEAR_TWO_PRACTICE_IDS = new Set([
 ]);
 
 const detectYearTwoStatus = (project) => {
-  if (!project?.id) return '课程项目';
-  if (YEAR_TWO_PRACTICE_IDS.has(project.id)) return '实践项目';
-  if (project.id.includes('sutd')) return '访学申请';
-  if (project.id.includes('maogai')) return '社会实践';
-  return '课程项目';
+  if (!project?.id) return 'status.coursework';
+  if (YEAR_TWO_PRACTICE_IDS.has(project.id)) return 'status.practice';
+  if (project.id.includes('sutd')) return 'status.exchange';
+  if (project.id.includes('maogai')) return 'status.social-practice';
+  return 'status.coursework';
 };
 
 export default function YearTwoProjects() {

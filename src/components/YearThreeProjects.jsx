@@ -161,7 +161,6 @@ const PROJECTS = [
     ],
     images: [
       asset('/projects/3/微电路设计/海报.jpg'),
-      asset('/projects/3/微电路设计/视频.gif'),
     ],
     documents: [
       { name: '扫地机PCB_Gerber', path: '/projects/3/微电路设计/dianjiqudong.eprj' },
@@ -195,10 +194,7 @@ const PROJECTS = [
       asset('/projects/3/自动控制原理/禅教台灯.jpg'),
       asset('/projects/3/自动控制原理/禅教台灯1.jpg'),
       asset('/projects/3/自动控制原理/死亡搁浅.jpg'),
-      asset('/projects/3/自动控制原理/台灯渲染图.jpg'),
-      asset('/projects/3/自动控制原理/台灯渲染图1.jpg'),
       asset('/projects/3/自动控制原理/台灯转动.gif'),
-      asset('/projects/3/自动控制原理/buck电路原理图.jpg'),
     ],
     documents: [
       { name: '最终报告.docx', path: '/projects/3/自动控制原理/《自动控制原理》报告参考-2025.docx' },
@@ -230,7 +226,7 @@ const PROJECTS = [
       asset('/projects/3/数值分析/poster-3.jpg'),
     ],
     documents: [
-      { name: '第三次汇报.pdf', path: asset('/projects/3/数值分析/工程数值分析第三次汇报.pdf') },
+      { name: '第三次汇报.pdf', nameEn: 'Numerical Analysis Presentation.pdf', path: asset('/projects/3/数值分析/工程数值分析第三次汇报.pdf') },
     ],
   },
 
@@ -261,7 +257,7 @@ const PROJECTS = [
       asset('/projects/3/产品制造/product-image-2.png'),
     ],
     documents: [
-      { name: '结项报告.docx', path: '/projects/3/产品制造/final-report.docx' },
+      { name: '结项报告.docx', nameEn: 'Final Manufacturing Report.docx', path: '/projects/3/产品制造/final-report.docx' },
     ],
   },
   // ══════════════════════════════════════════════════
@@ -358,31 +354,166 @@ const PROJECTS = [
       asset('/projects/3/bldc-motor/images/磁铁物料-2.JPEG'),
     ],
     documents: [
-      { name: '运行视频.mp4', path: 'https://github.com/lithos666/diy_Brushless-DC-Motor' },
-      { name: '电机设计-工程应用指南.md', path: asset('/projects/3/bldc-motor/docs/电机设计-工程应用指南.md') },
-      { name: 'Stator-Body.stl', path: asset('/projects/3/bldc-motor/models/Stator-Body.stl') },
-      { name: 'Rotor-Body.stl', path: asset('/projects/3/bldc-motor/models/Rotor-Body.stl') },
-      { name: 'Stator Base-Body.stl', path: asset('/projects/3/bldc-motor/models/Stator Base-Body.stl') },
-      { name: 'Base Ring-Body.stl', path: asset('/projects/3/bldc-motor/models/Base Ring-Body.stl') },
+      { name: '运行视频.mp4', nameEn: 'Motor Demo & Repository', path: 'https://github.com/lithos666/diy_Brushless-DC-Motor' },
+      { name: '电机设计-工程应用指南.md', nameEn: 'Motor Engineering Guide.md', path: asset('/projects/3/bldc-motor/docs/电机设计-工程应用指南.md') },
+      { name: 'Stator-Body.stl', nameEn: 'Stator-Body.stl', path: asset('/projects/3/bldc-motor/models/Stator-Body.stl') },
+      { name: 'Rotor-Body.stl', nameEn: 'Rotor-Body.stl', path: asset('/projects/3/bldc-motor/models/Rotor-Body.stl') },
+      { name: 'Stator Base-Body.stl', nameEn: 'Stator Base-Body.stl', path: asset('/projects/3/bldc-motor/models/Stator Base-Body.stl') },
+      { name: 'Base Ring-Body.stl', nameEn: 'Base Ring-Body.stl', path: asset('/projects/3/bldc-motor/models/Base Ring-Body.stl') },
     ],
   },
 ];
+
+const YEAR_THREE_EN = {
+  'startup-flowerpot': {
+    titleEn: 'Lan Spirit Smart Planter',
+    subtitleEn: 'National Innovation Program · IoT · Embedded Systems',
+    categoryEn: 'Product Innovation · IoT · Embedded Systems',
+    yearEn: 'Fall 2025',
+    tagsEn: ['SolidWorks', 'Arduino', 'IoT', 'Venture Design', 'Prototype Validation'],
+    descriptionEn: 'An award-winning national student innovation project for an intelligent home-gardening planter. The system combines automatic irrigation, light monitoring, temperature and humidity regulation, and multi-sensor feedback in an iterated physical product.',
+    highlightsEn: [
+      'Lan Spirit v1.2 STEP model with parametric fan housing and core structural components',
+      'Two physical prototype generations progressing from proof of concept to functional validation',
+      'Complete close-out package with final report and presentation deck',
+      'Venture-defense materials covering user needs, technical architecture, business model, and budget',
+      'Official documentation for the nationally funded student innovation program',
+    ],
+  },
+  'math-physics-method': {
+    titleEn: 'Charged-Droplet Splash Suppression',
+    subtitleEn: 'Partial Differential Equations · COMSOL · FEM Meshing',
+    categoryEn: 'Applied Mathematics · Computational Physics',
+    yearEn: 'Fall 2025',
+    tagsEn: ['COMSOL Multiphysics', 'MATLAB', 'Partial Differential Equations', 'FEM Mesh', 'Fluid Mechanics'],
+    descriptionEn: 'A computational study applying partial-differential-equation methods to splash suppression in electrically charged droplets. The workflow combines COMSOL multiphysics simulation with a customized MATLAB distmesh preprocessor and literature-based theoretical analysis.',
+    highlightsEn: [
+      'Three COMSOL water-impact simulations comparing different physical parameters',
+      'Customized MATLAB FEM mesh generator based on distmesh, with a Python companion tool',
+      'Theoretical derivation and numerical validation of charge-induced splash suppression',
+      'Complete midterm and final technical presentations',
+    ],
+  },
+  'microcircuit-design': {
+    titleEn: 'Voice-Controlled Cleaning Robot',
+    subtitleEn: 'Four-Layer PCB · Embedded C · WonderEcho Voice Module',
+    categoryEn: 'Electronics · PCB Design · Embedded Systems',
+    yearEn: 'Fall 2025',
+    tagsEn: ['PCB', 'Altium/Eagle', 'Embedded C', 'STM32', 'Voice Recognition', 'Gerber'],
+    descriptionEn: 'An integrated electronics project combining a four-layer cleaning-robot PCB, the WonderEcho AI voice-interaction module, four generations of voice-controlled mobile robots, and two USB-hub PCB variants.',
+    highlightsEn: [
+      'Complete four-layer cleaning-robot PCB with manufacturing-ready Gerber output',
+      'Hardware–software co-development of the WonderEcho voice module',
+      'Four iterative robot generations developed in Arduino and C++',
+      'Standard and enhanced USB-hub PCB designs delivered as editable projects',
+    ],
+  },
+  'auto-control-theory': {
+    titleEn: 'Buck-Converter Dimming Control',
+    subtitleEn: 'PSIM · STM32 Firmware · PID Control · Mechatronic Lamp',
+    categoryEn: 'Control Engineering · Embedded Control',
+    yearEn: 'Fall 2025',
+    tagsEn: ['PSIM', 'PID Control', 'STM32', 'Embedded C', 'Root Locus', 'Frequency Response'],
+    descriptionEn: 'A control-engineering portfolio integrating three systems: a PSIM-validated buck converter, a PID-based automatic dimming controller, and a mechatronic desk lamp assembled from 40 printed parts with an optical safety curtain.',
+    highlightsEn: [
+      'PSIM study of buck-converter behavior under parasitic resistance and capacitance',
+      'Complete automatic-dimming project trail from brief and midterm review to final presentation',
+      'Mechatronic lamp comprising 40 printable parts, a STEP assembly, and an optical safety device',
+      'Two expressive lamp concepts exploring motion and sound-responsive lighting',
+    ],
+  },
+  'numerical-analysis': {
+    titleEn: 'Engineering Numerical Methods',
+    subtitleEn: 'Numerical Algorithms · MATLAB · Error Analysis',
+    categoryEn: 'Computational Mathematics · Numerical Methods',
+    yearEn: 'Spring 2026',
+    tagsEn: ['MATLAB', 'Numerical Integration', 'Interpolation', 'ODE Solvers', 'Error Analysis'],
+    descriptionEn: 'Applied numerical-analysis coursework implemented in MATLAB, covering interpolation and approximation, numerical differentiation and integration, ordinary differential equations, iterative linear solvers, and engineering error analysis.',
+    highlightsEn: [
+      'Lagrange, Newton, and spline interpolation implementations',
+      'Trapezoidal, Simpson, and Gaussian quadrature methods',
+      'Euler and Runge–Kutta ODE solvers with stability analysis',
+      'Complete midterm and final technical presentations',
+    ],
+  },
+  'product-manufacturing': {
+    titleEn: 'Product Manufacturing & Process Planning',
+    subtitleEn: 'Manufacturing Processes · CAD/CAM · Engineering Drawings',
+    categoryEn: 'Manufacturing Engineering · Product Design',
+    yearEn: 'Spring 2026',
+    tagsEn: ['SolidWorks', 'Process Planning', 'CAD/CAM', 'Product Design', 'Engineering Drawings'],
+    descriptionEn: 'An end-to-end manufacturing project covering structural product design, process planning, CAD/CAM modeling, machining simulation, and design-for-manufacture validation.',
+    highlightsEn: [
+      'Three-dimensional product architecture and assembly design',
+      'Manufacturing-route planning and process optimization',
+      'CNC programming and machining simulation through a CAD/CAM workflow',
+      'Complete design-and-manufacturing documentation package',
+    ],
+  },
+  lerobot: {
+    titleEn: 'LeRobot Dental Implantation Robot',
+    subtitleEn: 'ArUco Localization · ACT Imitation Learning · Policy Generalization',
+    categoryEn: 'Embodied AI · Medical Robotics',
+    yearEn: 'Spring 2026',
+    tagsEn: ['ArUco Localization', 'ACT', 'Imitation Learning', 'Dental Robotics', 'Teleoperation'],
+    descriptionEn: 'A dental implantation manipulation demonstrator built on Hugging Face LeRobot. A six-degree-of-freedom arm combines master–slave teleoperation, RGB vision, ArUco-based base-pose calibration, and ACT policy learning to reproduce implantation motions across varied poses.',
+    highlightsEn: [
+      'Six-DOF arm with five rotary joints and a parallel gripper, teleoperated for demonstration collection',
+      'Unified LeRobot pipeline for dual-arm state, top-view and wrist-camera video, and synchronized replay',
+      'ArUco-based camera-to-robot calibration and target alignment using the base-joint pose',
+      'ACT action-chunking policy with reinforcement-learning exploration for improved robustness',
+    ],
+  },
+  'body-mesh-strain': {
+    titleEn: '3D Human-Mesh Strain Analysis',
+    subtitleEn: 'Trimesh Mechanics · Blender Heatmaps · Biomechanics',
+    categoryEn: 'Computational Geometry · Biomechanical Simulation',
+    yearEn: 'Spring 2026',
+    tagsEn: ['Blender', 'Trimesh', 'Python', 'Strain Analysis', 'Heatmap Visualization'],
+    descriptionEn: 'A Python and Blender workflow for comparing human-body meshes across poses. It calculates per-face area strain, shear-like shape distortion, and edge-length strain, then renders vertex-color heatmaps to expose regions of stretch, compression, and distortion for apparel and ergonomic design.',
+    highlightsEn: [
+      'Region-of-interest selection in Blender with scripted face-ID export',
+      'Per-triangle calculation of area, shape-distortion, and edge-length strain exported to CSV',
+      'Red–green–blue vertex-color heatmaps with one-click switching between metrics',
+      'Engineering interpretation of high-strain regions around the shoulder and underarm',
+    ],
+  },
+  'bldc-motor': {
+    titleEn: 'DIY Brushless DC Motor (BLDC)',
+    subtitleEn: '12-Slot / 16-Pole · 3D-Printed Air-Core Stator · ESP32 Drive',
+    categoryEn: 'Motor Design · Additive Manufacturing · Embedded Control',
+    yearEn: 'Summer 2026',
+    tagsEn: ['BLDC', '3D Printing', 'ESP32-S3', 'ESC Drive', 'Sensorless Commutation'],
+    descriptionEn: 'A self-built three-phase BLDC motor with a 12-slot, 16-pole fractional-slot air-core topology. The project covered CAD, printing, winding, star connection, and ESP32-S3/ESC commissioning, reaching a measured KV of approximately 1,000–1,200 before the next high-speed iteration.',
+    highlightsEn: [
+      '12-slot / 16-pole fractional-slot topology with air-core coils and no cogging torque',
+      'Four-piece printable motor structure: stator, stator base, rotor, and base ring',
+      'Concentrated winding with 17 turns per tooth and a three-phase star connection',
+      'ESP32-S3 generating a 50 Hz throttle PWM for a 40 A sensorless ESC on a 2S supply',
+    ],
+  },
+};
+
+const LOCALIZED_PROJECTS = PROJECTS.map(project => ({
+  ...project,
+  ...YEAR_THREE_EN[project.id],
+}));
 
 /** 大三实践项目 ID 集合 */
 const YEAR_THREE_PRACTICE_IDS = new Set(['ergonomics', 'startup-flowerpot', 'lerobot', 'bldc-motor']);
 
 /** 大三项目状态检测: 区分实践项目 / 课程项目 */
 const detectYearThreeStatus = (project) => {
-  if (!project?.id) return '课程项目';
-  if (YEAR_THREE_PRACTICE_IDS.has(project.id)) return '实践项目';
-  return '课程项目';
+  if (!project?.id) return 'status.coursework';
+  if (YEAR_THREE_PRACTICE_IDS.has(project.id)) return 'status.practice';
+  return 'status.coursework';
 };
 
 export default function YearThreeProjects() {
   const { t } = useI18n();
   return (
     <CoverFlowCarousel
-      projects={PROJECTS}
+      projects={LOCALIZED_PROJECTS}
       sectionId="year-three"
       badgeText={t('yearthree.badge-text')}
       title={t('yearthree.title')}
