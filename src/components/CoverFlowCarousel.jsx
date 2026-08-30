@@ -21,6 +21,38 @@ const getPublishedDocuments = (project) => (project.documents || []).filter(doc 
   return /^https?:\/\//i.test(path) || PUBLISHED_EVIDENCE_PATHS.has(path);
 });
 
+const getResponsiveCoverFlow = () => {
+  const viewportWidth = typeof window === 'undefined' ? 1440 : window.innerWidth;
+
+  if (viewportWidth <= 600) {
+    return {
+      activeWidth: Math.min(360, viewportWidth - 28),
+      activeHeight: 440,
+      inactiveWidth: 240,
+      inactiveHeight: 300,
+      xOffset: 250,
+    };
+  }
+
+  if (viewportWidth <= 900) {
+    return {
+      activeWidth: 430,
+      activeHeight: 540,
+      inactiveWidth: 320,
+      inactiveHeight: 390,
+      xOffset: 300,
+    };
+  }
+
+  return {
+    activeWidth: COVER_FLOW.ACTIVE_CARD_WIDTH,
+    activeHeight: COVER_FLOW.ACTIVE_CARD_HEIGHT,
+    inactiveWidth: COVER_FLOW.INACTIVE_CARD_WIDTH,
+    inactiveHeight: COVER_FLOW.INACTIVE_CARD_HEIGHT,
+    xOffset: COVER_FLOW.CARD_X_OFFSET,
+  };
+};
+
 /**
  * CoverFlowCarousel — 共享的 Cover Flow 轮播组件
  *
@@ -51,8 +83,15 @@ export default function CoverFlowCarousel({
   const containerRef = useRef(null);
   const dragX = useMotionValue(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [coverFlowSize, setCoverFlowSize] = useState(getResponsiveCoverFlow);
   const dragStartX = useRef(0);
   const { lang, t } = useI18n();
+
+  useEffect(() => {
+    const syncCoverFlowSize = () => setCoverFlowSize(getResponsiveCoverFlow());
+    window.addEventListener('resize', syncCoverFlowSize);
+    return () => window.removeEventListener('resize', syncCoverFlowSize);
+  }, []);
 
   // ── 双语项目数据处理 ──
   // 如果项目有 _zh/_en 字段，使用对应语言的文本；否则回退到原字段
@@ -119,12 +158,12 @@ export default function CoverFlowCarousel({
         : Math.min(CARD_STYLE.BLUR_MAX, absOffset * absOffset * 3 + absOffset * 2);
 
     // X 轴偏移、层级、3D 倾斜
-    const xOffset = offset * COVER_FLOW.CARD_X_OFFSET;
+    const xOffset = offset * coverFlowSize.xOffset;
     const zIndex = total - absOffset;
     const rotateY = offset * -COVER_FLOW.ROTATE_Y_DEG;
 
     return { scale, opacity, blur, xOffset, zIndex, rotateY };
-  }, [activeIndex, projects.length]);
+  }, [activeIndex, coverFlowSize.xOffset, projects.length]);
 
   // ── 键盘事件监听 ──
   useEffect(() => {
@@ -299,9 +338,9 @@ export default function CoverFlowCarousel({
                 style={{
                   '--cf-color': project.color,
                   '--cf-accent': project.accentColor,
-                  width: isActive ? COVER_FLOW.ACTIVE_CARD_WIDTH : COVER_FLOW.INACTIVE_CARD_WIDTH,
-                  height: isActive ? COVER_FLOW.ACTIVE_CARD_HEIGHT : COVER_FLOW.INACTIVE_CARD_HEIGHT,
-                  x: s.xOffset - (isActive ? COVER_FLOW.ACTIVE_CARD_WIDTH / 2 : COVER_FLOW.INACTIVE_CARD_WIDTH / 2),
+                  width: isActive ? coverFlowSize.activeWidth : coverFlowSize.inactiveWidth,
+                  height: isActive ? coverFlowSize.activeHeight : coverFlowSize.inactiveHeight,
+                  x: s.xOffset - (isActive ? coverFlowSize.activeWidth / 2 : coverFlowSize.inactiveWidth / 2),
                   zIndex: s.zIndex,
                   cursor: isDragging ? 'grabbing' : 'pointer',
                 }}

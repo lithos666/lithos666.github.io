@@ -6,15 +6,15 @@
 // ── Cover Flow 轮播配置 ──
 export const COVER_FLOW = {
   /** 两侧卡片 X 轴偏移基数 (px) */
-  CARD_X_OFFSET: 280,
+  CARD_X_OFFSET: 380,
   /** 中心卡片宽度 (px) */
-  ACTIVE_CARD_WIDTH: 480,
+  ACTIVE_CARD_WIDTH: 600,
   /** 侧边卡片宽度 (px) */
-  INACTIVE_CARD_WIDTH: 416,
+  INACTIVE_CARD_WIDTH: 500,
   /** 中心卡片高度 (px) */
-  ACTIVE_CARD_HEIGHT: 520,
+  ACTIVE_CARD_HEIGHT: 640,
   /** 侧边卡片高度 (px) */
-  INACTIVE_CARD_HEIGHT: 442,
+  INACTIVE_CARD_HEIGHT: 540,
   /** 3D 倾斜角度 (deg) */
   ROTATE_Y_DEG: 9,
   /** 拖拽触发速度阈值 */
