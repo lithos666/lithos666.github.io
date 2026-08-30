@@ -29,3 +29,4 @@
 *.jpeg -diff
 *.gif -diff
 *.svg -diff
+*.pdf -diff

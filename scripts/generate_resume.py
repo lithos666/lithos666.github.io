@@ -9,6 +9,7 @@ from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
+    Image,
     KeepTogether,
     PageBreak,
     Paragraph,
@@ -22,6 +23,7 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_PDF = ROOT / "output" / "pdf" / "Xiao-Chuyu-Resume.pdf"
 PUBLIC_PDF = ROOT / "public" / "resume" / "Xiao-Chuyu-Resume.pdf"
+PROFILE_PHOTO = ROOT / "scripts" / "assets" / "Xiao-Chuyu-Photo.jpg"
 
 BLUE = colors.HexColor("#0B5A97")
 TEAL = colors.HexColor("#087F8C")
@@ -221,20 +223,8 @@ def skill_row(label, detail):
     return table
 
 
-def footer(canvas, doc):
-    canvas.saveState()
-    canvas.setStrokeColor(RULE)
-    canvas.setLineWidth(0.45)
-    canvas.line(16 * mm, 12 * mm, 194 * mm, 12 * mm)
-    canvas.setFont("ResumeSans", 7.4)
-    canvas.setFillColor(MUTED)
-    canvas.drawString(16 * mm, 8.5 * mm, "Xiao Chuyu | Robotics Engineering Portfolio")
-    canvas.drawRightString(194 * mm, 8.5 * mm, f"Page {doc.page}")
-    canvas.restoreState()
-
-
-def build_story():
-    story = [
+def resume_header():
+    header_text = [
         Paragraph("Xiao Chuyu", styles["ResumeName"]),
         Paragraph(
             "Robotics Engineering / Embedded Control / Medical Devices / Student Founder",
@@ -255,6 +245,55 @@ def build_story():
             "product validation and market evidence to create testable physical systems.",
             styles["ResumeSummary"],
         ),
+    ]
+
+    photo = Image(str(PROFILE_PHOTO), width=26 * mm, height=36.95 * mm)
+    photo.hAlign = "CENTER"
+    photo_frame = Table([[photo]], colWidths=[27 * mm], rowHeights=[38 * mm])
+    photo_frame.setStyle(
+        TableStyle(
+            [
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 0.5 * mm),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 0.5 * mm),
+                ("TOPPADDING", (0, 0), (-1, -1), 0.5 * mm),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 0.5 * mm),
+                ("BOX", (0, 0), (-1, -1), 0.45, RULE),
+            ]
+        )
+    )
+
+    table = Table([[header_text, "", photo_frame]], colWidths=[147 * mm, 4 * mm, 27 * mm])
+    table.setStyle(
+        TableStyle(
+            [
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+                ("TOPPADDING", (0, 0), (-1, -1), 0),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+            ]
+        )
+    )
+    return table
+
+
+def footer(canvas, doc):
+    canvas.saveState()
+    canvas.setStrokeColor(RULE)
+    canvas.setLineWidth(0.45)
+    canvas.line(16 * mm, 12 * mm, 194 * mm, 12 * mm)
+    canvas.setFont("ResumeSans", 7.4)
+    canvas.setFillColor(MUTED)
+    canvas.drawString(16 * mm, 8.5 * mm, "Xiao Chuyu | Robotics Engineering Portfolio")
+    canvas.drawRightString(194 * mm, 8.5 * mm, f"Page {doc.page}")
+    canvas.restoreState()
+
+
+def build_story():
+    story = [
+        resume_header(),
         section("Education"),
         Spacer(1, 1.2 * mm),
         entry_header(
