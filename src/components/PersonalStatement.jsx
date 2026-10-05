@@ -15,37 +15,113 @@ const fadeUp = {
 const COPY = {
   zh: {
     label: '关于我',
-    heading: '我怎样把想法，\n做成可验证的产品。',
-    intro: '重庆大学机器人工程专业大三 · Goodent 联合创始人',
-    focus: 'Capability Map',
+    heading: '从想法到原型',
+    intro: '重庆大学机器人工程专业大四 · 已通过推免获硕士录取 · Goodent 联合创始人',
+    focus: '能力与实践',
+    evidenceLabel: '项目实践',
     buildTitle: '我的工作方式',
-    buildBody: '我通常先确认真实场景和核心问题，再完成机械、电子、控制与软件的集成，最后用测试结果和用户反馈决定下一次迭代。',
+    buildBody: '我会先把使用场景和需求问清楚，再动手做原型，把结构、电路和控制程序接起来。测试中发现的问题和用户反馈，会成为下一次修改的依据。',
     buildPath: '理解场景 → 定义问题 → 完成原型 → 测试验证 → 继续迭代',
     currentTitle: '目前在做',
     bioTitle: '我的经历',
-    bio: '过去三年，我在项目制学习中完成了 20 余个工程项目，逐步建立机械设计、嵌入式控制、机器人和产品验证能力。实习与创业经历也让我开始学习用户研究、竞品分析与市场验证。目前，我正以 Goodent 联合创始人的身份推进智能牙科微动力系统，并持续开展牙科机器人实践。',
+    bio: '三年来，我在项目制学习中完成了 20 余个工程项目，从机械结构、电路到控制程序，一边做一边补齐知识。实习和创业也让我开始走出实验室，学习如何了解用户、分析竞品和验证需求。现在，我作为 Goodent 联合创始人推进智能牙科微动力系统，也继续开展牙科机器人实验。',
   },
   en: {
     label: 'About',
-    heading: 'How I turn an idea into a product that can be tested.',
-    intro: 'Robotics Engineering Junior at Chongqing University · Co-founder of Goodent',
+    heading: 'From Idea to Prototype',
+    intro: 'Fourth-year Robotics Engineering Student at Chongqing University · Admitted to a Master’s Programme through Recommendation · Goodent Co-founder',
     focus: 'Capability Map',
+    evidenceLabel: 'In practice',
     buildTitle: 'How I Work',
-    buildBody: 'I begin by confirming the real context and core problem, integrate mechanics, electronics, control and software, then use test results and user feedback to decide the next iteration.',
+    buildBody: 'I start by asking how a product will be used and what it needs to do. Then I build a prototype and connect the structure, electronics and control software. Test findings and user feedback guide what I change next.',
     buildPath: 'Understand → Define → Prototype → Validate → Iterate',
     currentTitle: 'Current Work',
     bioTitle: 'My Background',
-    bio: 'Over three years of project-based study, I have completed more than 20 engineering projects and developed practical skills in mechanical design, embedded control, robotics and product validation. Internships and venture work have also introduced me to user research, competitive analysis and market validation. I now co-lead Goodent while continuing my work in dental robotics.',
+    bio: 'Over three years of project-based study, I have completed more than 20 engineering projects, learning through mechanical structures, circuits and control software. Internships and startup work have also taken me beyond the lab to learn about users, competitors and demand. I now develop an intelligent dental power system as a Goodent co-founder while continuing my dental robotics experiments.',
   },
 };
 
 const FOCUS_AREAS = [
-  { index: '01', title: 'Mechanical', body: 'SolidWorks · Fusion 360 · CAD · DFM · 3D Printing', color: '#64D2FF', glow: '190 100 70' },
-  { index: '02', title: 'Simulation', body: 'COMSOL · ADAMS · PSIM · MATLAB', color: '#BF5AF2', glow: '282 87 65' },
-  { index: '03', title: 'Embedded', body: 'STM32 · ESP32-S3 · PCB · C/C++ · Sensor Integration', color: '#0A84FF', glow: '210 100 52' },
-  { index: '04', title: 'Robotics', body: 'LeRobot · MediaPipe · ArUco · ACT', color: '#FF7657', glow: '12 100 67' },
-  { index: '05', title: 'Product', body: 'Prototype Development · User Research · Medical Device Development', color: '#30D158', glow: '135 64 50' },
-  { index: '06', title: 'Strategy', body: 'Market Research · Competitive Analysis · Pitching · Fundraising', color: '#FF9F0A', glow: '35 100 52' },
+  {
+    index: '01',
+    title: { zh: '机械设计', en: 'Mechanical Design' },
+    description: {
+      zh: '我从零件建模到整机装配，设计能制造、能运行的机械结构。',
+      en: 'I design parts and assemblies that can be manufactured and put into motion.',
+    },
+    tools: ['SolidWorks', 'Fusion 360', { zh: '3D 打印', en: '3D Printing' }, 'DFM'],
+    evidence: { zh: '气动小车、Robocon 底盘', en: 'Pneumatic vehicle · Robocon chassis' },
+    color: '#64D2FF',
+    glow: '190 100 70',
+  },
+  {
+    index: '02',
+    title: { zh: '仿真分析', en: 'Simulation' },
+    description: {
+      zh: '我用仿真检查热流体、机构运动和电路响应，为设计修改提供依据。',
+      en: 'I use thermal, motion and circuit simulations to guide design changes.',
+    },
+    tools: ['COMSOL', 'ADAMS', 'PSIM', 'MATLAB'],
+    evidence: { zh: '斯特林发动机', en: 'Stirling engine' },
+    color: '#BF5AF2',
+    glow: '282 87 65',
+  },
+  {
+    index: '03',
+    title: { zh: '嵌入式控制', en: 'Embedded Control' },
+    description: {
+      zh: '我把传感器、电路和控制程序接起来，并在实物上调试系统响应。',
+      en: 'I integrate sensors, circuits and firmware, then tune the hardware response.',
+    },
+    tools: ['STM32', 'ESP32-S3', 'C/C++', 'PCB'],
+    evidence: { zh: 'Goodent、Buck 调光系统', en: 'Goodent · Buck dimming system' },
+    color: '#0A84FF',
+    glow: '210 100 52',
+  },
+  {
+    index: '04',
+    title: { zh: '机器人', en: 'Robotics' },
+    description: {
+      zh: '我搭建视觉定位和示教采集流程，用模仿学习探索机械臂操作。',
+      en: 'I connect vision, demonstration data and imitation learning in robot experiments.',
+    },
+    tools: ['LeRobot', 'ACT', 'ArUco', 'MediaPipe'],
+    evidence: { zh: 'LeRobot 牙科机器人', en: 'LeRobot dental robot' },
+    color: '#FF7657',
+    glow: '12 100 67',
+  },
+  {
+    index: '05',
+    title: { zh: '产品开发', en: 'Product Development' },
+    description: {
+      zh: '我把使用需求转成产品原型，通过测试和用户反馈继续改进。',
+      en: 'I turn user needs into prototypes and refine them through testing and feedback.',
+    },
+    tools: [
+      { zh: '原型制作', en: 'Prototyping' },
+      { zh: '用户研究', en: 'User Research' },
+      { zh: '传感器集成', en: 'Sensor Integration' },
+    ],
+    evidence: { zh: '兰精灵、Goodent', en: 'Lanjingling · Goodent' },
+    color: '#30D158',
+    glow: '135 64 50',
+  },
+  {
+    index: '06',
+    title: { zh: '市场与创业', en: 'Market & Ventures' },
+    description: {
+      zh: '我通过用户调研和竞品分析梳理产品定位，参与商业计划与融资沟通。',
+      en: 'I use market and competitor research to shape products, plans and funding pitches.',
+    },
+    tools: [
+      { zh: '市场调研', en: 'Market Research' },
+      { zh: '竞品分析', en: 'Competitor Analysis' },
+      { zh: '路演', en: 'Pitching' },
+    ],
+    evidence: { zh: '致行科技、Goodent', en: 'ZixingTech · Goodent' },
+    color: '#FF9F0A',
+    glow: '35 100 52',
+  },
 ];
 
 const CURRENT_WORK = [
@@ -53,19 +129,24 @@ const CURRENT_WORK = [
     type: { zh: '创业项目 · 项目负责人', en: 'Startup · Project Lead' },
     title: { zh: 'Goodent · 智能牙科微动力系统', en: 'Goodent · Intelligent Dental Power System' },
     description: {
-      zh: 'Goodent 是我参与创立的牙科医疗器械项目，面向临床操作开发智能牙科微动力系统。我担任项目负责人（Leader），负责产品定义、系统架构、电机控制与团队推进；项目已获得 50 万元种子轮投资，现处于原型验证与合规准备阶段。',
-      en: 'Goodent is a dental medical-device startup I co-founded to develop an intelligent dental power system. As Project Lead, I own product definition, system architecture, motor control and team delivery. The project has secured RMB 500k in seed funding and is now in prototype validation and regulatory preparation.',
+      zh: '我参与创立 Goodent，面向临床操作开发智能牙科微动力系统。作为项目负责人，我负责确定产品需求、设计系统架构、调试电机控制，并协调团队推进。项目已获得 50 万元种子轮投资，目前正在验证原型、准备合规材料。',
+      en: 'I co-founded Goodent to develop an intelligent dental power system for clinical use. As Project Lead, I define product needs, design the system architecture, tune motor control and coordinate the team. The project has secured RMB 500k in seed funding and is now validating prototypes and preparing regulatory materials.',
     },
-    tags: ['BLDC Control', 'Torque Estimation', 'STM32', 'Medical Devices'],
+    tags: [
+      { zh: '无刷电机控制', en: 'BLDC Control' },
+      { zh: '扭矩估算', en: 'Torque Estimation' },
+      'STM32',
+      { zh: '医疗器械', en: 'Medical Devices' },
+    ],
   },
   {
     type: { zh: '机器人研究', en: 'Robotics Research' },
-    title: 'LeRobot Dental Robotics',
+    title: { zh: 'LeRobot · 牙科机器人', en: 'LeRobot · Dental Robotics' },
     description: {
-      zh: '围绕牙科操作的视觉定位、示教数据采集与模仿学习实践，探索不同位姿下的操作泛化。',
-      en: 'Exploring visual positioning, demonstration-data capture and imitation learning for dental manipulation across varied poses.',
+      zh: '我在搭建牙科操作的视觉定位与示教数据采集流程，结合 ACT 模仿学习，测试机械臂在不同位姿下能否复现操作动作。',
+      en: 'I am building visual positioning and demonstration-data workflows for dental manipulation, using ACT imitation learning to test whether the arm can reproduce motions across different poses.',
     },
-    tags: ['LeRobot', 'ACT', 'ArUco', 'Vision-based Control'],
+    tags: ['LeRobot', 'ACT', 'ArUco', { zh: '视觉控制', en: 'Vision-based Control' }],
   },
 ];
 
@@ -133,10 +214,22 @@ export default function PersonalStatement() {
                 glowColor={area.glow}
                 colors={[area.color, '#f5f5f7', area.color]}
                 fillOpacity={0.22}
+                style={{ '--focus-color': area.color }}
               >
-                <span className="ps-focus-index">{area.index}</span>
-                <h3 className="ps-card-title">{area.title}</h3>
-                <p className="ps-card-copy">{area.body}</p>
+                <div className="ps-focus-heading">
+                  <span className="ps-focus-index">{area.index}</span>
+                  <h4 className="ps-card-title">{localized(area.title, lang)}</h4>
+                </div>
+                <p className="ps-card-copy">{localized(area.description, lang)}</p>
+                <div className="ps-focus-tools">
+                  {area.tools.map((tool) => (
+                    <span key={localized(tool, lang)}>{localized(tool, lang)}</span>
+                  ))}
+                </div>
+                <p className="ps-focus-evidence">
+                  <span>{copy.evidenceLabel}</span>
+                  {localized(area.evidence, lang)}
+                </p>
               </BorderGlow>
             ))}
           </div>
@@ -174,7 +267,9 @@ export default function PersonalStatement() {
                   <h4 className="ps-highlight-title">{localized(project.title, lang)}</h4>
                   <p className="ps-highlight-desc">{localized(project.description, lang)}</p>
                   <div className="ps-highlight-tech">
-                    {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                    {project.tags.map((tag) => (
+                      <span key={localized(tag, lang)}>{localized(tag, lang)}</span>
+                    ))}
                   </div>
                 </article>
               ))}

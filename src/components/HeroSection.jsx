@@ -11,7 +11,7 @@ class ErrorBoundary extends Component {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
@@ -30,9 +30,9 @@ class ErrorBoundary extends Component {
         }}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '1.2rem', marginBottom: '8px', color: 'rgba(255,255,255,0.9)' }}>
-              Goodent Portfolio
+              {this.props.title}
             </div>
-            <div style={{ fontSize: '0.85rem', opacity: 0.6 }}>Loading...</div>
+            <div style={{ fontSize: '0.85rem', opacity: 0.6 }}>{this.props.message}</div>
           </div>
         </div>
       );
@@ -81,7 +81,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary title={t('hero.fallback-title')} message={t('hero.fallback-message')}>
       {/* ═══ FIXED VIDEO BACKDROP ═══ */}
       <div className="hero-backdrop">
         <video

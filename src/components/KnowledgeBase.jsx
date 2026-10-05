@@ -84,11 +84,11 @@ const ENGINEERING_NOTES = [
     title: text('LeRobot ACT 训练与数据检查', 'LeRobot ACT Training and Dataset Review'),
     description: text('从示教采集、轨迹质量到动作分块策略的实践检查项。', 'Practical checks spanning demonstrations, trajectory quality and action-chunk policies.'),
     summary: text(
-      '策略性能经常受数据质量限制。训练前先检查任务阶段覆盖、关节轨迹、相机视角和操作节奏，比盲目增加 epoch 更有效。',
+      '策略性能经常受数据质量限制。训练前先检查任务阶段覆盖、关节轨迹、相机视角和操作节奏，比盲目增加训练轮次更有效。',
       'Policy performance is often data-limited. Reviewing task-phase coverage, joint trajectories, camera views and operator timing is more valuable than blindly adding epochs.'
     ),
     takeaways: {
-      zh: ['把一次任务拆成可标注的阶段', '检查异常峰值与时间不同步', '保留代表成功与失败的 episode'],
+      zh: ['把一次任务拆成可标注的阶段', '检查异常峰值与时间不同步', '保留有代表性的成功与失败示教片段'],
       en: ['Split tasks into labelable phases', 'Inspect spikes and timing misalignment', 'Keep representative successful and failed episodes'],
     },
     related: { label: text('查看 LeRobot 案例', 'View LeRobot case study'), href: '#works' },
@@ -101,7 +101,7 @@ const ENGINEERING_NOTES = [
     title: text('ArUco 位姿与机械臂坐标对齐', 'ArUco Pose and Robot-Frame Alignment'),
     description: text('梳理相机标定、标记板、坐标变换与误差检查。', 'Notes on camera calibration, fiducials, frame transforms and error checks.'),
     summary: text(
-      '视觉定位不是获得一个 pose 就结束，而是要把相机、标记、底座和工具坐标系连成可验证的变换链。',
+      '视觉定位需要把相机、标记、底座和工具坐标系连成可验证的变换链，才能让位姿估计真正用于机械臂控制。',
       'Visual positioning does not end with a pose estimate; camera, marker, robot base and tool frames must form a verifiable transform chain.'
     ),
     takeaways: {
@@ -132,7 +132,7 @@ const ENGINEERING_NOTES = [
     icon: 'P2',
     category: 'product',
     pillar: 'product',
-    title: text('Prototype → EVT：工程化转折点', 'Prototype → EVT: The Engineering Transition'),
+    title: text('从原型到 EVT 工程验证', 'From Prototype to EVT'),
     description: text('从“功能能跑”走向“需求、接口和验证可重复”的阶段判断。', 'A stage gate from “it runs” to repeatable requirements, interfaces and validation.'),
     summary: text(
       '原型阶段允许快速替换方案；进入 EVT 后，重点转向接口冻结、风险暴露、测试覆盖和版本控制。',
@@ -249,17 +249,17 @@ export default function KnowledgeBase() {
 
   const copy = lang === 'en'
     ? {
-        label: 'Methods',
-        title: 'Beyond the projects, I document how I solve problems.',
-        subtitle: 'These twelve notes come from projects, internships and venture work, covering engineering validation as well as user research, product decisions and market analysis.',
+        label: 'What I’ve learned',
+        title: 'Field notes',
+        subtitle: 'Twelve notes from my projects, internships and venture work, covering engineering, user research, product decisions and market analysis.',
         count: 'field notes',
         takeaways: 'Working Notes',
         close: 'Close',
       }
     : {
-        label: '方法与笔记',
-        title: '项目之外，我也在整理解决问题的方法。',
-        subtitle: '这 12 篇笔记来自项目、实习和创业实践，既包含工程验证，也包含用户研究、产品判断和市场分析。',
+        label: '边做边学',
+        title: '实践笔记',
+        subtitle: '把项目、实习和创业中学到的方法记下来：从工程调试，到用户研究、产品判断与市场分析。',
         count: '篇方法笔记',
         takeaways: '实践要点',
         close: '关闭',
@@ -287,7 +287,7 @@ export default function KnowledgeBase() {
           <p className="section-subheading">{copy.subtitle}</p>
         </motion.div>
 
-        <div className="knowledge-filters" aria-label={lang === 'en' ? 'Filter methods' : '筛选方法论'}>
+        <div className="knowledge-filters" aria-label={lang === 'en' ? 'Filter notes' : '筛选实践笔记'}>
           {PILLARS.map((pillar) => (
             <button
               type="button"
@@ -328,10 +328,10 @@ export default function KnowledgeBase() {
                 >
                   <span className="kb-card-icon kb-card-icon--code">{item.icon}</span>
                   <span className="kb-card-body">
+                    <span className="kb-card-tag">{category[lang]}</span>
                     <span className="kb-card-title">{localize(item.title, lang)}</span>
                     <span className="kb-card-desc">{localize(item.description, lang)}</span>
                   </span>
-                  <span className="kb-card-tag">{category[lang]}</span>
                 </BorderGlow>
               </motion.div>
             );

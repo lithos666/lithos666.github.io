@@ -159,6 +159,36 @@
   background: #2997ff;
 }
 
+@media (min-width: 861px) {
+  .journey-section {
+    padding-top: clamp(88px, 8vw, 120px);
+    padding-bottom: clamp(88px, 8vw, 120px);
+  }
+
+  .journey-header {
+    margin-bottom: 64px;
+  }
+
+  .journey-header .section-heading {
+    font-size: clamp(2.8rem, 4.5vw, 3.75rem);
+    line-height: 1.14;
+    letter-spacing: -0.035em;
+  }
+
+  .journey-stage {
+    gap: clamp(48px, 5vw, 84px);
+    padding: 64px 0;
+  }
+
+  .journey-milestone {
+    padding-bottom: 52px;
+  }
+
+  .journey-milestone:last-child {
+    padding-bottom: 0;
+  }
+}
+
 @media (max-width: 760px) {
   .journey-section {
     padding: 96px 20px;

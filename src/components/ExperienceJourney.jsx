@@ -14,8 +14,8 @@ const JOURNEY = [
         role: text('Goodent 联合创始人 / 系统负责人', 'Goodent Co-founder / System Lead'),
         organization: 'Goodent',
         description: text(
-          '负责产品定义、系统架构与电机控制，推动智能牙科微动力系统完成三代原型，并进入工程验证与合规准备。',
-          'Leading product definition, system architecture and motor control for an intelligent dental power system through three prototype generations and into engineering validation.'
+          '我负责产品定义、系统架构与电机控制，和团队完成了三代牙科微动力系统原型，目前正在推进工程验证与合规准备。',
+          'I lead product definition, system architecture and motor control. Our team has completed three dental power system prototypes and is moving into engineering validation and compliance preparation.'
         ),
         outcome: text('50 万元种子轮融资', 'RMB 500k seed funding'),
       },
@@ -24,18 +24,18 @@ const JOURNEY = [
         role: text('牙科机器人系统实践', 'Dental Robotics System Practice'),
         organization: 'Xbotics Community',
         description: text(
-          '围绕 LeRobot、ArUco、主从遥操作与 ACT，建立从示教采集、视觉标定到数据分析的实验链路。',
-          'Building an experimental pipeline from demonstration capture and visual calibration to data analysis with LeRobot, ArUco, teleoperation and ACT.'
+          '我用 LeRobot、ArUco、主从遥操作与 ACT 搭建实验流程，连接示教采集、视觉标定和数据分析，探索牙科操作中的机器人应用。',
+          'I use LeRobot, ArUco, teleoperation and ACT to connect demonstration capture, visual calibration and data analysis in dental robotics experiments.'
         ),
         outcome: text('研究原型与数据管线', 'Research prototype and data pipeline'),
       },
       {
         type: text('国际学习', 'International Study'),
         role: text('SUTD 秋季交换学习', 'SUTD Fall Exchange'),
-        organization: 'Singapore University of Technology and Design',
+        organization: text('新加坡科技设计大学', 'Singapore University of Technology and Design'),
         description: text(
-          '通过学校交换项目选拔，获得 2026 年秋季赴新加坡科技设计大学学习的资格与资助。',
-          'Selected through the university exchange programme for a funded Fall 2026 semester at the Singapore University of Technology and Design.'
+          '我通过了学校交换项目选拔，获得 2026 年秋季赴新加坡科技设计大学学习的资格与资助。',
+          'I was selected through the university exchange programme for a funded Fall 2026 semester at the Singapore University of Technology and Design.'
         ),
         outcome: text('交换资格与资助', 'Funded exchange placement'),
       },
@@ -50,18 +50,18 @@ const JOURNEY = [
         role: text('国家级大创项目负责人', 'National Innovation Project Lead'),
         organization: text('兰精灵 · 智能养护花盆', 'Lanjingling · Smart Planter'),
         description: text(
-          '从用户需求出发，组织结构、传感、控制与两代原型迭代，并完成结项材料与答辩。',
-          'Led requirements, enclosure, sensing, control and two prototype iterations through final documentation and defense.'
+          '我从用户需求出发，组织结构设计、传感与控制开发，和团队完成两代原型，再整理结项材料并参加答辩。',
+          'I led requirements, enclosure design, sensing and control development. With the team, I completed two prototype iterations, final documentation and the project presentation.'
         ),
-        outcome: text('国家级大创优秀结项', 'Excellent national-project completion'),
+        outcome: text('国家级大创优秀结项', 'Excellent completion rating · National innovation programme'),
       },
       {
         type: text('课程与团队', 'Coursework · Team'),
         role: text('课程助教 / Robocon 队员', 'Teaching Assistant / Robocon Member'),
         organization: text('重庆大学', 'Chongqing University'),
         description: text(
-          '在课程支持与机器人团队中持续训练系统拆解、机械设计和跨角色协作。',
-          'Strengthened system decomposition, mechanical design and cross-functional collaboration through course support and the robotics team.'
+          '我在课程助教工作与机器人团队中练习系统分析和机械设计，也学习如何与不同分工的队友一起完成任务。',
+          'Through teaching assistance and the robotics team, I practiced system analysis and mechanical design, and learned to work with teammates across disciplines.'
         ),
         outcome: text('底盘、悬架与课程实践', 'Chassis, suspension and course practice'),
       },
@@ -76,8 +76,8 @@ const JOURNEY = [
         role: text('产品设计实习生 / 联合创始人', 'Product Design Intern / Co-founder'),
         organization: text('致行科技', 'Zhixing Technology'),
         description: text(
-          '参与越野车辆参数化建模、零件库、工业设计与竞品研究，并以联合创始人身份参与产品与项目推进。',
-          'Worked on parametric off-road vehicle modelling, part libraries, industrial design and competitor research while helping advance the product and venture as a co-founder.'
+          '我参与越野车辆参数化建模、零件库整理、工业设计与竞品研究，并以联合创始人的身份推进产品和项目。',
+          'I worked on parametric off-road vehicle modelling, part libraries, industrial design and competitor research, while helping develop the product and venture as a co-founder.'
         ),
         outcome: text('项目获得百万级天使轮融资', 'Venture secured seven-figure RMB angel funding'),
       },
@@ -92,8 +92,8 @@ const JOURNEY = [
         role: text('机器人工程本科生', 'B.Eng. Student, Robotics Engineering'),
         organization: text('重庆大学 · 国家卓越工程师学院', 'Chongqing University · National School of Excellent Engineers'),
         description: text(
-          '进入明月科创实验班，以真实项目连接机械、电子、控制、软件与产品表达。',
-          'Joined the Mingyue Innovation Class, using real projects to connect mechanics, electronics, control, software and product communication.'
+          '我进入明月科创实验班，通过真实项目学习机械、电子、控制与软件，也开始练习清楚地表达自己的设计。',
+          'I joined the Mingyue Innovation Class and learned mechanics, electronics, control and software through real projects, while practicing how to explain my designs clearly.'
         ),
         outcome: text('项目制工程学习起点', 'Starting point of project-based engineering'),
       },
@@ -111,14 +111,14 @@ export default function ExperienceJourney() {
   const copy = lang === 'en'
     ? {
         label: 'Journey',
-        title: 'From project-based study to product, venture and medical-device practice.',
-        subtitle: 'This timeline records the main problems I worked on each year and how my responsibilities changed along the way.',
+        title: 'My journey',
+        subtitle: 'How I moved from course projects to product development, team leadership and medical-device work.',
         index: 'Selected milestones · 2023—2026',
       }
     : {
-        label: '成长历程',
-        title: '从项目制学习，到产品、创业与医疗器械实践。',
-        subtitle: '这条时间线记录了每一年我主要在解决什么问题，也记录了我承担的责任如何变化。',
+        label: '一路走来',
+        title: '成长历程',
+        subtitle: '从课程项目到产品研发、团队协作和医疗器械实践，我逐步承担了更多责任。',
         index: '关键节点 · 2023—2026',
       };
 

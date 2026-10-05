@@ -3,14 +3,14 @@ import './ProjectCaseStudy.css';
 
 const LABELS = {
   zh: {
-    problem: 'Problem',
-    role: 'My Role',
-    approach: 'Engineering Approach',
-    prototype: 'Prototype Evolution',
-    validation: 'Validation',
-    result: 'Result',
-    stage: 'Current Stage',
-    evidence: 'Evidence',
+    problem: '要解决的问题',
+    role: '我的工作',
+    approach: '设计与实现',
+    prototype: '原型迭代',
+    validation: '验证方式',
+    result: '项目结果',
+    stage: '当前进展',
+    evidence: '项目材料',
   },
   en: {
     problem: 'Problem',
@@ -22,6 +22,11 @@ const LABELS = {
     stage: 'Current Stage',
     evidence: 'Evidence',
   },
+};
+
+const MEDIA_LABELS = {
+  zh: { image: '图片', video: '视频', file: '文件' },
+  en: { image: 'Image', video: 'Video', file: 'File' },
 };
 
 function localize(value, lang) {
@@ -53,6 +58,7 @@ export default function ProjectCaseStudy({ project }) {
   const prototype = localizedList(caseStudy.prototype, lang);
   const validation = localizedList(caseStudy.validation, lang);
   const result = localizedList(caseStudy.result, lang);
+  const technologies = localizedList(caseStudy.approach?.technologies, lang);
 
   return (
     <div className="pca-container">
@@ -79,7 +85,7 @@ export default function ProjectCaseStudy({ project }) {
         <span className="pca-kicker">{labels.approach}</span>
         <p className="pca-body-text">{localize(caseStudy.approach?.summary, lang)}</p>
         <div className="pca-tech-stack">
-          {caseStudy.approach?.technologies?.map((tech) => <span key={tech}>{tech}</span>)}
+          {technologies.map((tech) => <span key={tech}>{tech}</span>)}
         </div>
       </section>
 
@@ -115,7 +121,7 @@ export default function ProjectCaseStudy({ project }) {
           <div className="pca-evidence-grid">
             {caseStudy.evidence.map((item) => (
               <a href={item.href} target="_blank" rel="noopener noreferrer" key={item.href}>
-                <span>{item.type?.toUpperCase() || 'FILE'}</span>
+                <span>{MEDIA_LABELS[lang][item.type] || MEDIA_LABELS[lang].file}</span>
                 {localize(item.label, lang)}
               </a>
             ))}

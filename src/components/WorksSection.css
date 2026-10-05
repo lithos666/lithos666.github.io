@@ -214,9 +214,9 @@
 .card-role-line {
   margin: -4px 0 10px;
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.72rem;
   line-height: 1.55;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--text-secondary);
 }
 
 .card-description {
@@ -321,10 +321,10 @@
   gap: 6px;
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   flex-shrink: 0;
-  opacity: 0.6;
+  opacity: 1;
 }
 
 .work-card:hover .card-action {

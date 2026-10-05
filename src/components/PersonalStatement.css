@@ -6,7 +6,7 @@
 /* ── Container & Ambient Glows ── */
 .ps-section {
   position: relative;
-  padding: clamp(112px, 14vw, 190px) 24px;
+  padding: clamp(80px, 8vw, 120px) 24px;
   background: var(--section-bg);
   overflow: hidden;
 }
@@ -47,7 +47,7 @@
 .ps-header {
   text-align: left;
   max-width: 980px;
-  margin-bottom: clamp(80px, 9vw, 126px);
+  margin-bottom: clamp(48px, 5vw, 64px);
 }
 
 .ps-header .section-label {
@@ -61,7 +61,10 @@
 }
 
 .ps-header .section-heading {
-  margin-bottom: 24px;
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 20px;
   white-space: pre-line;
 }
 
@@ -131,48 +134,88 @@
 /* ── Engineering Focus Cards ── */
 /* Engineering Focus Cards */
 .ps-focus-cards {
-  margin-bottom: 80px;
+  margin-bottom: 48px;
 }
 
 .ps-group-label {
   margin: 0 0 18px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .ps-card-group {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
 }
 
 .ps-focus-card {
-  min-height: 206px;
+  min-width: 0;
   transition: border-color 0.3s ease;
 }
 
 .ps-focus-card > .border-glow-inner {
-  height: 100%;
-  padding: clamp(28px, 3vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px;
   overflow: hidden;
 }
 
+.ps-focus-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
 .ps-focus-index {
-  display: block;
-  margin-bottom: 18px;
+  flex-shrink: 0;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--accent-cyan);
+  font-size: 0.75rem;
+  color: var(--focus-color, var(--accent-cyan));
 }
 
 .ps-card-copy {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 0.88rem;
-  line-height: 1.75;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.ps-focus-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.ps-focus-tools span {
+  padding: 4px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.ps-focus-evidence {
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.ps-focus-evidence span {
+  margin-right: 8px;
+  color: var(--focus-color, var(--accent-cyan));
 }
 
 .ps-focus-card:hover {
@@ -186,9 +229,10 @@
 }
 
 .ps-card-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
   color: var(--text-primary);
   letter-spacing: -0.01em;
 }
@@ -258,7 +302,7 @@
 
 .ps-block-title {
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 24px;
   color: var(--text-primary);
   letter-spacing: -0.01em;
@@ -322,7 +366,7 @@
 
 .ps-highlight-title {
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 16px;
   color: var(--text-primary);
   line-height: 1.3;

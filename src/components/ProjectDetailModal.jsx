@@ -39,12 +39,14 @@ export default function ProjectDetailModal({ project, onClose }) {
   const { lang } = useI18n();
   const labels = lang === 'en'
     ? {
-        close: 'Close', overview: 'Project Overview', highlights: 'Highlights', documents: 'Evidence & Files',
-        previous: 'Previous media', next: 'Next media', noMedia: 'No media available',
+        close: 'Close project', overview: 'Project Overview', highlights: 'Highlights', documents: 'Project Files',
+        previous: 'Previous media', next: 'Next media', noMedia: 'No images or videos available',
+        video: 'Video', image: 'Image', selectMedia: 'Show media', enlarged: 'Enlarged image', closePreview: 'Close image preview', untitled: 'Untitled file',
       }
     : {
-        close: '关闭', overview: '项目概述', highlights: '核心亮点', documents: '证据与文件',
-        previous: '上一项媒体', next: '下一项媒体', noMedia: '暂无媒体',
+        close: '关闭项目', overview: '项目概述', highlights: '项目亮点', documents: '项目文件',
+        previous: '上一张图片或视频', next: '下一张图片或视频', noMedia: '暂无图片或视频',
+        video: '视频', image: '图片', selectMedia: '查看媒体', enlarged: '放大图片', closePreview: '关闭图片预览', untitled: '未命名文件',
       };
 
   // ── Props 校验与安全默认值 ──
@@ -70,10 +72,8 @@ export default function ProjectDetailModal({ project, onClose }) {
   };
 
   const getLocalizedHighlights = (project) => {
-    if (lang === 'en' && project.highlightsEn) {
-      return project.highlightsEn;
-    }
-    return project.highlights || [];
+    const value = getLocalizedField(project.highlightsEn, project.highlights);
+    return Array.isArray(value) ? value : [];
   };
 
   const [imageIndex, setImageIndex] = useState(0);
@@ -84,15 +84,23 @@ export default function ProjectDetailModal({ project, onClose }) {
   // ESC 关闭 + body 滚动锁定
   useEffect(() => {
     const handler = (e) => {
-      if (e.key === 'Escape') safeOnClose();
+      if (e.key !== 'Escape') return;
+      if (lightboxOpen) setLightboxOpen(false);
+      else safeOnClose();
     };
     window.addEventListener('keydown', handler);
-    document.body.style.overflow = 'hidden';
     return () => {
       window.removeEventListener('keydown', handler);
-      document.body.style.overflow = '';
     };
-  }, [safeOnClose]);
+  }, [safeOnClose, lightboxOpen]);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
 
   // 阻止详情页内滚轮事件冒泡到主页面
   const handleBodyWheel = (e) => {
@@ -113,8 +121,10 @@ export default function ProjectDetailModal({ project, onClose }) {
 
   // 安全获取文档列表
   const documents = Array.isArray(safeProject.documents) ? safeProject.documents : [];
-  const highlights = Array.isArray(safeProject.highlights) ? safeProject.highlights : [];
-  const tags = Array.isArray(safeProject.tags) ? safeProject.tags : [];
+  const localizedTags = getLocalizedField(safeProject.tagsEn, safeProject.tags);
+  const tags = Array.isArray(localizedTags) ? localizedTags : [];
+  const localizedTitle = getLocalizedField(safeProject.titleEn, safeProject.title);
+  const titleId = `project-detail-title-${safeProject.id || 'project'}`;
 
   return createPortal((
     <motion.div
@@ -128,6 +138,9 @@ export default function ProjectDetailModal({ project, onClose }) {
     >
       <motion.div
         className="pdm-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
         style={{
           '--pdm-accent': safeProject.color,
           '--pdm-accent-bg': safeProject.accentColor,
@@ -146,7 +159,7 @@ export default function ProjectDetailModal({ project, onClose }) {
             >
               {getLocalizedField(safeProject.categoryEn, safeProject.category)}
             </span>
-            <h2 className="pdm-title">{getLocalizedField(safeProject.titleEn, safeProject.title)}</h2>
+            <h2 className="pdm-title" id={titleId}>{localizedTitle}</h2>
             <p className="pdm-subtitle">{getLocalizedField(safeProject.subtitleEn, safeProject.subtitle)}</p>
           </div>
           <button className="pdm-close" onClick={safeOnClose} aria-label={labels.close}>
@@ -166,11 +179,11 @@ export default function ProjectDetailModal({ project, onClose }) {
                   className={`pdm-slide ${idx === imageIndex ? 'pdm-slide--active' : ''}`}
                 >
                   {isVideoSource(src) ? (
-                    <video src={src} controls playsInline preload="metadata" aria-label={`${safeProject.title} — video ${idx + 1}`} />
+                    <video src={src} controls playsInline preload="metadata" aria-label={`${localizedTitle} — ${labels.video} ${idx + 1}`} />
                   ) : (
                     <img
                       src={src}
-                      alt={`${safeProject.title} — ${idx + 1}`}
+                      alt={`${localizedTitle} — ${labels.image} ${idx + 1}`}
                       loading="lazy"
                       onClick={() => setLightboxOpen(true)}
                     />
@@ -215,6 +228,8 @@ export default function ProjectDetailModal({ project, onClose }) {
                     <button
                       key={idx}
                       className={`pdm-dot ${idx === imageIndex ? 'pdm-dot--active' : ''}`}
+                      aria-label={`${labels.selectMedia} ${idx + 1}`}
+                      aria-current={idx === imageIndex ? 'true' : undefined}
                       style={{
                         background: idx === imageIndex ? safeProject.color : 'rgba(255,255,255,0.15)',
                       }}
@@ -267,7 +282,7 @@ export default function ProjectDetailModal({ project, onClose }) {
 
           {/* Tags */}
           <div className="pdm-tags-row">
-            {((lang === 'en' && safeProject.tagsEn) ? safeProject.tagsEn : safeProject.tags).map((tag) => (
+            {tags.map((tag) => (
               <span
                 key={tag}
                 className="pdm-tag"
@@ -288,17 +303,17 @@ export default function ProjectDetailModal({ project, onClose }) {
               <div className="pdm-docs">
                 {documents.map((doc, i) => {
                   // 安全获取文档属性
-                  const localizedDocName = lang === 'en' ? doc.nameEn : doc.name;
-                  const docName = typeof localizedDocName === 'string'
+                  const localizedDocName = getLocalizedField(doc.nameEn, doc.name);
+                  const docName = typeof localizedDocName === 'string' && localizedDocName.trim()
                     ? localizedDocName
-                    : (lang === 'en' ? 'Untitled file' : '未命名文件');
+                    : labels.untitled;
                   const docPath = typeof doc.path === 'string' ? doc.path : '#';
 
                   // 根据扩展名选择图标
-                  const isVideo = /\.(mp4|avi|mov)$/i.test(docName);
-                  const isPdf = /\.pdf$/i.test(docName);
-                  const isPpt = /\.(pptx|ppt)$/i.test(docName);
-                  const isModel = /\.(step|STEP|stl|STL|iges|IGS|model)$/i.test(docName);
+                  const isVideo = /\.(mp4|avi|mov|webm)(?:$|\?)/i.test(docPath);
+                  const isPdf = /\.pdf(?:$|\?)/i.test(docPath);
+                  const isPpt = /\.(pptx|ppt)(?:$|\?)/i.test(docPath);
+                  const isModel = /\.(step|stl|iges|igs|model)(?:$|\?)/i.test(docPath);
 
                   return (
                     <a
@@ -368,11 +383,12 @@ export default function ProjectDetailModal({ project, onClose }) {
         <div className="pdm-lightbox" onClick={() => setLightboxOpen(false)}>
           <img
             src={validImages[imageIndex]}
-            alt={`${safeProject.title} — 放大`}
+            alt={`${localizedTitle} — ${labels.enlarged}`}
             className="pdm-lightbox-img"
           />
           <button
             className="pdm-lightbox-close"
+            aria-label={labels.closePreview}
             onClick={(e) => {
               e.stopPropagation();
               setLightboxOpen(false);

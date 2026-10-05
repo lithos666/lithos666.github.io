@@ -278,7 +278,7 @@ export default function CoverFlowCarousel({
             <span className="y1-tab-text">
               <span className="y1-tab-title">{getLocalizedField(project, 'titleEn', 'title')}</span>
               <span className="y1-tab-sub">
-                {(getLocalizedField(project, 'categoryEn', 'category') || '').split(' ')[0]}
+                {(getLocalizedField(project, 'categoryEn', 'category') || '').split('·')[0].trim()}
               </span>
             </span>
             {/* 使用唯一的 layoutId 避免冲突 */}
@@ -299,7 +299,7 @@ export default function CoverFlowCarousel({
         <button
           className="coverflow-arrow coverflow-arrow--left"
           onClick={() => goTo(activeIndex - 1)}
-          aria-label="上一项"
+          aria-label={lang === 'en' ? 'Previous project' : '上一个项目'}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
             <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
@@ -308,7 +308,7 @@ export default function CoverFlowCarousel({
         <button
           className="coverflow-arrow coverflow-arrow--right"
           onClick={() => goTo(activeIndex + 1)}
-          aria-label="下一项"
+          aria-label={lang === 'en' ? 'Next project' : '下一个项目'}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
             <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round"/>
@@ -390,7 +390,7 @@ export default function CoverFlowCarousel({
                     >
                       <img
                         src={project.images[0]}
-                        alt={getLocalizedField(project, 'titleEn', 'title') || 'Project'}
+                        alt={getLocalizedField(project, 'titleEn', 'title') || (lang === 'en' ? 'Project' : '项目')}
                         loading="lazy"
                         onError={handleImageError}
                       />
@@ -457,6 +457,8 @@ export default function CoverFlowCarousel({
             <button
               key={idx}
               className={`coverflow-dot ${idx === activeIndex ? 'coverflow-dot--active' : ''}`}
+              aria-label={`${lang === 'en' ? 'Show project' : '查看项目'} ${idx + 1}`}
+              aria-current={idx === activeIndex ? 'true' : undefined}
               onClick={() => goTo(idx)}
               style={{
                 background:

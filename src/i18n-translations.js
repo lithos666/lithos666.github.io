@@ -31,8 +31,8 @@ export const translations = {
     en: 'About'
   },
   'global.nav.knowledge': {
-    zh: '方法论',
-    en: 'Methods'
+    zh: '笔记',
+    en: 'Notes'
   },
   'global.nav.contact': {
     zh: '联系',
@@ -45,8 +45,8 @@ export const translations = {
 
   // Personal Statement (个人自述)
   'statement.section-label': {
-    zh: '个人自述',
-    en: 'Personal Statement'
+    zh: '关于我',
+    en: 'About Me'
   },
   'statement.title': {
     zh: '你好，我是',
@@ -54,41 +54,41 @@ export const translations = {
   },
   'statement.intro': {
     zh: '重庆大学国家卓越工程师学院 · 2023 级明月科创实验班',
-    en: 'Chongqing University National School of Exceptional Engineers · Mingyue Innovation Class of 2023'
+    en: 'Chongqing University · National School of Excellent Engineers · Mingyue Innovation Class of 2023'
   },
   'statement.paragraph-1': {
-    zh: '<GPA>{{gpa}}</GPA>, <Rank>{{rank}}</Rank>, 总平均成绩 {{avg-score}}，已通过<em>CET-4 / CET-6</em>。',
-    en: '<GPA>{{gpa}}</GPA>, ranked <Rank>{{rank}}</Rank>, with an average score of {{avg-score}}, passed <em>CET-4/6</em>'
+    zh: '<GPA>{{gpa}}</GPA>，排名 <Rank>{{rank}}</Rank>，平均成绩 {{avg-score}}，已通过<em>CET-4 / CET-6</em>。',
+    en: '<GPA>{{gpa}}</GPA>, ranked <Rank>{{rank}}</Rank>, with an average score of {{avg-score}}. I have passed <em>CET-4 / CET-6</em>.'
   },
   'statement.paragraph-2': {
-    zh: '入学以来，我持续把工程实践推进到真实产品与创业现场：作为<ZixingTech/>联合创始人参与的项目获得百万级天使轮融资；大学生创新创业项目获<ExcellentResult/>；主导<Goodent/>获得 Xbotpark 种子轮支持。另通过学校交换项目选拔获得<StudyAbroad/>资格与资助，将于 2026 年秋季赴<NewSUTD/>学习。',
-    en: 'Since enrollment, I have carried engineering practice into real products and ventures: the project I helped advance as a <ZixingTech/> co-founder secured seven-figure RMB angel funding; my student innovation project received <ExcellentResult/>; and <Goodent/> received seed backing from Xbotpark. Separately, I was selected for a funded Fall 2026 exchange semester at <NewSUTD/>.'
+    zh: '我也在尝试把原型做成真实产品。作为<ZixingTech/>联合创始人，我参与的项目获得了百万级天使轮融资；我负责的大学生创新创业项目获<ExcellentResult/>；主导的<Goodent/>获得 Xbotpark 种子轮支持。我还通过了学校交换项目选拔，获得<StudyAbroad/>资格与资助，计划于 2026 年秋季赴<NewSUTD/>学习。',
+    en: 'I am also learning to turn prototypes into real products. The venture I helped build as a <ZixingTech/> co-founder secured seven-figure RMB angel funding. My student innovation project received <ExcellentResult/>, and the <Goodent/> project I lead received seed backing from Xbotpark. I was also selected for a funded Fall 2026 exchange semester at <NewSUTD/>.'
   },
   'statement.paragraph-3': {
-    zh: '机械工程学生，三年间把课堂理论转化为 20 多个动手项目——从钢腱驱动的仿生机械臂，到经多物理场仿真验证的斯特林发动机；从处理 MIT-BIH 数据的心电信号管线，到承载语音控制智能小车的 PCB 电路板。实践横跨产品设计、机器人、物理仿真、DSP 信号处理、嵌入式系统与 AI 交互，每个项目都是可交付的成果——STEP 模型、Gerber 文件、C 库、商业计划书与答辩汇报。不只是学习工程，更在亲手建造它。',
-    en: 'As a mechanical engineering student, I converted classroom theory into more than 20 hands-on projects over three years — from bionic robotic arms driven by steel tendons to Stirling engines validated by multi-physics simulation; from ECG signal pipelines processing MIT-BIH data to PCB boards carrying voice-controlled smart cars. My practice spans product design, robotics, physical simulation, DSP signal processing, embedded systems, and AI interaction. Each project delivers tangible outcomes — STEP models, Gerber files, C libraries, business plans, and defense presentations. I don\'t just study engineering; I build it with my own hands.'
+    zh: '三年来，我完成了 20 多个动手项目：设计钢腱驱动的仿生机械臂，建模并仿真斯特林发动机，处理 MIT-BIH 心电数据，也为语音控制小车设计 PCB。机械、电子、控制和软件在这些项目中连到了一起。模型、代码、原型和实验记录，留下了我每一次尝试与改进的过程。',
+    en: 'Over three years, I have worked on more than 20 hands-on projects: a steel-tendon-driven robotic arm, a Stirling engine with multiphysics simulation, MIT-BIH ECG processing and a PCB for a voice-controlled car. These projects bring mechanics, electronics, control and software together. Models, code, prototypes and experiment records document what I tried and how I improved it.'
   },
 
   // Hero Section (首页)
   'hero.label': {
-    zh: '精选项目',
-    en: 'Featured Projects'
+    zh: '代表项目',
+    en: 'Selected Projects'
   },
   'hero.heading': {
-    zh: '工程与创新\n交汇于此',
-    en: 'Engineering Meets\nInnovation Here'
+    zh: '代表项目',
+    en: 'Selected Projects'
   },
   'hero.accent': {
     zh: '交汇于此',
     en: 'Here'
   },
   'hero.subheading': {
-    zh: '涵盖医疗器械创业、具身智能机器人、电机设计、机械设计热机仿真、快速原型制造与创新创业实践的项目精选集。',
-    en: 'A curated collection spanning medical device startups, embodied AI robots, motor design, thermal simulations, rapid prototyping, and innovation practice.'
+    zh: '从机械设计到智能硬件，这些项目记录了我如何把想法做成原型，再通过测试逐步改进。',
+    en: 'From mechanical design to intelligent hardware, these projects show how I build prototypes and improve them through testing.'
   },
   'hero.chip-portfolio': {
-    zh: '作品集 肖楚煜',
-    en: 'Portfolio Xiao Chuyu'
+    zh: '肖楚煜 · 作品集',
+    en: 'Xiao Chuyu · Portfolio'
   },
   'hero.chip-years': {
     zh: '2023 – 2026',
@@ -103,32 +103,32 @@ export const translations = {
     en: 'thosli666@gmail.com'
   },
   'hero.scroll-label': {
-    zh: '滚动',
-    en: 'Scroll'
+    zh: '向下探索',
+    en: 'Explore below'
   },
   'hero.positioning-eyebrow': {
     zh: '肖楚煜 · 重庆大学机器人工程',
     en: 'Xiao Chuyu · Robotics Engineering at Chongqing University'
   },
   'hero.positioning-title': {
-    zh: '从机械结构，\n到可用的智能系统',
-    en: 'From mechanical structures to intelligent systems that work.'
+    zh: '让想法成为\n可用的原型',
+    en: 'Turning ideas into\nworking prototypes'
   },
   'hero.positioning-summary': {
-    zh: '我是重庆大学机器人工程专业大三学生。三年项目制学习中，我持续把机械、电子、控制与软件做成可以测试、迭代的产品原型。',
-    en: 'I am a third-year Robotics Engineering student at Chongqing University. Through three years of project-based study, I have turned mechanics, electronics, control and software into prototypes that can be tested and improved.'
+    zh: '我是肖楚煜，重庆大学机器人工程专业大四学生，已通过推免获得硕士录取。我把机械、电子、控制与软件结合起来，动手做原型，测试问题，再一点点改进。',
+    en: 'I’m Xiao Chuyu, a fourth-year Robotics Engineering student at Chongqing University. I have secured admission to a master’s programme through recommendation. I bring mechanics, electronics, control and software together to build prototypes, test them and improve them step by step.'
   },
   'hero.proof-label': {
     zh: '关键经历',
-    en: 'Key evidence'
+    en: 'At a glance'
   },
   'hero.proof-education': {
-    zh: '重庆大学 · 机器人工程大三',
-    en: 'Chongqing University · Robotics Engineering Junior'
+    zh: '重庆大学 · 机器人工程大四',
+    en: 'Chongqing University · Robotics Engineering Senior'
   },
   'hero.proof-projects': {
-    zh: '20+ 项目制工程实践',
-    en: '20+ project-based builds'
+    zh: '20+ 动手工程项目',
+    en: '20+ hands-on engineering projects'
   },
   'hero.proof-funding': {
     zh: 'Goodent · 50 万元种子轮',
@@ -136,17 +136,25 @@ export const translations = {
   },
   'hero.cta-projects': {
     zh: '查看代表项目',
-    en: 'View case studies'
+    en: 'Explore my projects'
+  },
+  'hero.fallback-title': {
+    zh: '肖楚煜 · 作品集',
+    en: 'Xiao Chuyu · Portfolio'
+  },
+  'hero.fallback-message': {
+    zh: '页面暂时无法显示，请刷新后重试。',
+    en: 'This page could not be displayed. Please refresh and try again.'
   },
 
   // Works Section (作品展示)
   'works.section-heading': {
-    zh: '工程与创新\n交汇于此',
-    en: 'Engineering Meets\nInnovation Here'
+    zh: '代表项目',
+    en: 'Selected Projects'
   },
   'works.section-subheading': {
-    zh: '涵盖医疗器械创业、具身智能机器人、电机设计、机械设计热机仿真、快速原型制造与创新创业实践的项目精选集。',
-    en: 'A curated collection covering medical device entrepreneurship, embodied AI, motor design, thermal simulations, rapid prototyping, and innovation practice.'
+    zh: '六个项目，涵盖机械设计、仿真、控制、机器人与产品开发。点开查看我的职责、设计过程和现有成果。',
+    en: 'Six projects across mechanical design, simulation, control, robotics and product development. Open a project to see my role, design process and progress.'
   },
   'works.view': {
     zh: '查看',
@@ -156,15 +164,15 @@ export const translations = {
   // Project Translations - Goodent Dental
   'project.goodent.title': {
     zh: 'Goodent 牙科微动力系统',
-    en: 'Goodent Dental Micromotion System'
+    en: 'Goodent Dental Power System'
   },
   'project.goodent.category': {
     zh: '嵌入式系统 · 医疗器械 · 种子轮',
     en: 'Embedded Systems · Medical Devices · Seed Funding'
   },
   'project.goodent.description': {
-    zh: '面向临床诊疗的纯电控制智能牙科微动力系统。基于 STM32 与无刷直流电机实现高精度扭矩控制，集成多传感器融合反馈回路，完成从概念验证到种子轮融资的全链路产品化落地。',
-    en: 'Pure electric controlled intelligent dental micromotion system for clinical diagnosis and treatment. Based on STM32 and BLDC motor for high-precision torque control with multi-sensor fusion feedback loop.'
+    zh: '我负责产品定义、系统架构与电机控制，使用 STM32 和无刷直流电机开发牙科微动力系统。项目已完成三代原型，获得 50 万元种子轮支持，正在推进工程验证与合规准备。',
+    en: 'I lead product definition, system architecture and motor control for a dental power system built with STM32 and a BLDC motor. The project has completed three prototype generations, secured RMB 500k in seed funding and is moving into engineering validation and compliance preparation.'
   },
 
   // Project Translations - Stirling Engine
@@ -177,8 +185,8 @@ export const translations = {
     en: 'Mechanical Design · Thermodynamics · Multi-physics Simulation'
   },
   'project.stirling.description': {
-    zh: '完整的 Gamma 型斯特林发动机设计与分析项目。从参数化三维建模（41 个 SLDPRT 零件）到 COMSOL 流固耦合仿真、ADAMS 多体动力学验证，覆盖热机设计全流程。',
-    en: 'Complete Gamma-type Stirling engine design project from parametric 3D modeling to COMSOL FSI simulation and ADAMS dynamics verification.'
+    zh: '我完成了 Gamma 型斯特林发动机的参数化建模，包括 41 个 SLDPRT 零件，并用 COMSOL 和 ADAMS 分析流固耦合与机构运动，检查设计假设。',
+    en: 'I built a parametric Gamma-type Stirling engine model with 41 SLDPRT parts, then used COMSOL and ADAMS to examine fluid–structure interaction and mechanism motion against the design assumptions.'
   },
 
   // Project Translations - Pneumatic Car
@@ -191,8 +199,8 @@ export const translations = {
     en: 'Mechanical Engineering · 3D Printing · Vehicle Design'
   },
   'project.pneumatic.description': {
-    zh: '基于 3D 打印技术的气动动力小车完整工程项目。涵盖完整车体结构：变速箱、差速器、车架、发动机、方向盘、前后悬架系统，含有零件 bom，支持直接切片打印。',
-    en: 'Complete pneumatic vehicle engineering project based on 3D printing. Covers full vehicle structure including transmission, differential, chassis, engine, steering wheel, suspension systems.'
+    zh: '我为可 3D 打印的气动小车设计了变速箱、差速器、车架与悬架等结构，整理了零件清单和打印文件，让三维模型能够进入制造。',
+    en: 'I designed the transmission, differential, chassis and suspension for a 3D-printable pneumatic vehicle, then prepared the parts list and print files to take the model into fabrication.'
   },
 
   // Project Translations - Smart Flowerpot
@@ -205,8 +213,8 @@ export const translations = {
     en: 'Innovation & Entrepreneurship · IoT · Embedded Systems'
   },
   'project.flowerpot.description': {
-    zh: '国家级大学生创新创业训练计划优秀结项项目。面向家庭园艺的智能化植物养护花盆，集成自动浇灌、光照监测、温湿度调控等多传感器融合系统。',
-    en: 'National level student innovation program for intelligent plant care with automatic irrigation, light monitoring, and temperature-humidity regulation.'
+    zh: '我负责这款面向家庭园艺的智能花盆项目，组织结构设计、环境传感与自动养护系统的开发，完成两代原型和结项答辩，获国家级大创优秀结项。',
+    en: 'I led this smart-planter project for home gardening, coordinating enclosure design, environmental sensing and automated care. We completed two prototype generations and the final presentation, earning an Excellent completion rating in the national student innovation programme.'
   },
 
   // Project Translations - LeRobot Dental Robot
@@ -219,8 +227,8 @@ export const translations = {
     en: 'Embodied AI · Medical Robots · Imitation Learning'
   },
   'project.lerobot.description': {
-    zh: '基于 LeRobot 框架的牙科种植机器人操作演示系统。6 自由度机械臂通过 ARUCO 码视觉定位和 ACT 模仿学习实现泛化的种植操作动作。',
-    en: '6-DOF robotic arm with ARUCO vision positioning implementing ACT imitation learning for generalized planting operations.'
+    zh: '我基于 LeRobot 搭建牙科操作研究原型，将 6 自由度机械臂、ArUco 视觉定位和 ACT 模仿学习结合起来，探索示教数据如何转化为机械臂动作。',
+    en: 'I built a dental-manipulation research prototype with LeRobot, combining a six-degree-of-freedom arm, ArUco visual positioning and ACT imitation learning to explore how demonstrations translate into robot motion.'
   },
 
   // Project Translations - DIY BLDC Motor
@@ -233,8 +241,8 @@ export const translations = {
     en: 'Motor Design · 3D Printing · Embedded Control'
   },
   'project.bldc.description': {
-    zh: '基于 3D 打印结构的自制三相无刷直流电机：12 槽 16 极、空芯定子、星形接法，由无感航模电调 + ESP32-S3 驱动。',
-    en: 'Self-made three-phase BLDC motor with 3D printed structure: 12-slot 16-pole fractional slot, air-core stator, star connection, driven by sensorless hobby ESC + ESP32-S3.'
+    zh: '我设计并制作了一款三相无刷直流电机，使用 3D 打印结构、12 槽 16 极空芯定子和星形接法，再用无感航模电调与 ESP32-S3 调试驱动。',
+    en: 'I designed and built a three-phase BLDC motor using a 3D-printed structure, a 12-slot, 16-pole air-core stator and a star connection, then tested the drive with a sensorless hobby ESC and ESP32-S3.'
   },
 
   // More projects... (I'll add them in batches)
@@ -271,12 +279,12 @@ export const translations = {
 
   // Year Three Projects (大三项目)
   'yearthree.badge-text': {
-    zh: 'YEAR THREE',
+    zh: '大三',
     en: 'YEAR THREE'
   },
   'yearthree.title': {
-    zh: '大三学年 · 实践作品集',
-    en: 'Senior Year · Portfolio'
+    zh: '大三 · 项目实践',
+    en: 'Junior Year · Projects'
   },
   'yearthree.subtitle': {
     zh: '2025 冬 – 2026 夏 · 10 个项目 · 工效学 / 大创 / 数理方法 / 微电路 / 自动控制 / 数值分析 / 产品制造 / LeRobot / 人体网格应变 / BLDC 电机',
@@ -285,12 +293,12 @@ export const translations = {
 
   // Year One Section Translation
   'yearone.badge-text': {
-    zh: 'YEAR ONE',
+    zh: '大一',
     en: 'YEAR ONE'
   },
   'yearone.title': {
-    zh: '大一学年 · 实践作品集',
-    en: 'Freshman Year · Portfolio'
+    zh: '大一 · 项目实践',
+    en: 'Freshman Year · Projects'
   },
   'yearone.subtitle': {
     zh: '2024 – 2025 · 10 个项目 · 产品设计 / 实习 / 竞赛 / 物理仿真 / CAE 分析 / 数学应用 / 仿生学',
@@ -299,12 +307,12 @@ export const translations = {
 
   // Year Two Section Translation
   'yeartwo.badge-text': {
-    zh: 'YEAR TWO',
+    zh: '大二',
     en: 'YEAR TWO'
   },
   'yeartwo.title': {
-    zh: '大二上学期 · 实践作品集',
-    en: 'Sophomore Year · Portfolio'
+    zh: '大二 · 项目实践',
+    en: 'Sophomore Year · Projects'
   },
   'yeartwo.subtitle': {
     zh: '2025 春季 · 10 个项目 · 热机 / 机器人 / DSP / 3D 打印 / 渲染 / 医疗电子 / 访学',
@@ -317,8 +325,8 @@ export const translations = {
     en: 'Knowledge Base'
   },
   'knowledge.section-heading': {
-    zh: '知识体系',
-    en: 'Knowledge System'
+    zh: '实践笔记',
+    en: 'Field Notes'
   },
   'knowledge.card-1-title': {
     zh: '前端技术栈',
@@ -339,8 +347,8 @@ export const translations = {
     en: 'Contact'
   },
   'contact.heading': {
-    zh: '让我知道你来自何方',
-    en: 'Tell Me Where You\'re From'
+    zh: '联系我',
+    en: 'Get in Touch'
   },
   'contact.email': {
     zh: '电子邮箱',
@@ -379,7 +387,7 @@ export const translations = {
       'SolidWorks 参数化建模：鼻托 / 眼镜 v3 / 整体装配',
       '智能穿戴 AR 眼镜模型 — 独立设计模块',
       '商业计划书撰写 + 多轮迭代 PPT 汇报',
-      '团队协作：项目团队 leader'
+      '团队协作：项目负责人'
     ],
     en: [
       'SolidWorks Parametric Modeling: Nose bridge / Glasses v3 / Full assembly',

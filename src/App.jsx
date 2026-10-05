@@ -180,7 +180,7 @@ const Navbar = () => {
         <div className="navbar-inner">
           <a href="#hero" className="nav-logo" data-hover>
             <span className="logo-mark">X</span>
-            <span className="logo-text">Xiao Chuyu</span>
+            <span className="logo-text">{lang === 'zh' ? '肖楚煜' : 'Xiao Chuyu'}</span>
           </a>
           <div className="nav-gooey-wrapper" onClick={handleNavClick}>
             <GooeyNav

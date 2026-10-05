@@ -14,13 +14,13 @@
   --bg-card: rgba(29, 29, 31, 0.76);
 
   /* Scroll sections remain translucent so the fixed opening video stays visible. */
-  --section-bg: rgba(4, 5, 9, 0.7);
-  --section-bg-contact: linear-gradient(180deg, rgba(4, 5, 9, 0.72), rgba(0, 0, 0, 0.8) 100%);
+  --section-bg: rgba(4, 5, 9, 0.79);
+  --section-bg-contact: linear-gradient(180deg, rgba(4, 5, 9, 0.8), rgba(0, 0, 0, 0.88) 100%);
 
   /* Text — Apple HIG light-on-dark */
   --text-primary: #F5F5F7;
-  --text-secondary: rgba(245, 245, 247, 0.64);
-  --text-tertiary: rgba(245, 245, 247, 0.4);
+  --text-secondary: rgba(245, 245, 247, 0.74);
+  --text-tertiary: rgba(245, 245, 247, 0.56);
 
   /* Apple system accent colors */
   --accent-purple: #2997FF;
@@ -198,4 +198,18 @@ button {
     0 0 0 0.5px rgba(0, 0, 0, 0.1),
     0 8px 40px rgba(0, 0, 0, 0.28),
     inset 0 0.5px 0 rgba(255, 255, 255, 0.06);
+}
+
+@media (min-width: 861px) {
+  .section-heading {
+    font-size: clamp(2.8rem, 4.5vw, 3.75rem);
+    font-weight: 600;
+    line-height: 1.14;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  html[lang="zh-CN"] .section-heading {
+    letter-spacing: -0.02em;
+  }
 }

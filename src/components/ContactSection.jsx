@@ -6,11 +6,16 @@ const ContactSection = () => {
   const { lang } = useI18n();
   const copy = lang === 'en'
     ? {
-        eyebrow: 'Let’s talk',
-        title: 'Let’s talk about robotics,\nmedical devices and intelligent hardware.',
+        eyebrow: 'Let’s connect',
+        title: 'Get in touch',
         location: 'Chongqing, China',
         university: 'Chongqing University · Robotics Engineering',
-        subtitle: 'Robotics · Medical Devices · Intelligent Hardware',
+        subtitle: 'Let’s talk about robotics, medical devices, intelligent hardware, internships and project collaborations.',
+        emailLabel: 'Email',
+        locationLabel: 'Location',
+        universityLabel: 'University',
+        resumeLabel: 'Resume',
+        avatarAlt: 'Xiao Chuyu',
         resume: 'Download Resume PDF',
         top: 'Back to top',
         work: 'View projects',
@@ -18,14 +23,19 @@ const ContactSection = () => {
       }
     : {
         eyebrow: '保持联系',
-        title: '欢迎交流机器人、\n医疗器械与智能硬件。',
+        title: '联系我',
         location: '中国 · 重庆',
         university: '重庆大学 · 机器人工程',
-        subtitle: '机器人 · 医疗器械 · 智能硬件',
+        subtitle: '欢迎聊聊机器人、医疗器械与智能硬件，也欢迎联系实习与项目合作。',
+        emailLabel: '邮箱',
+        locationLabel: '所在地',
+        universityLabel: '学校与专业',
+        resumeLabel: '简历',
+        avatarAlt: '肖楚煜',
         resume: '下载简历 PDF',
         top: '返回顶部',
         work: '查看项目',
-        copyright: '© 2026 肖楚煜 · Portfolio',
+        copyright: '© 2026 肖楚煜 · 作品集',
       };
 
   const infoItems = [
@@ -36,7 +46,7 @@ const ContactSection = () => {
           <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
         </svg>
       ),
-      label: 'Email',
+      label: copy.emailLabel,
       value: 'thosli666@gmail.com',
       href: 'mailto:thosli666@gmail.com',
     },
@@ -47,7 +57,7 @@ const ContactSection = () => {
           <circle cx="12" cy="10" r="3"/>
         </svg>
       ),
-      label: 'Location',
+      label: copy.locationLabel,
       value: copy.location,
       href: null,
     },
@@ -58,7 +68,7 @@ const ContactSection = () => {
           <path d="M6 12v5c3 3 9 3 12 0v-5"/>
         </svg>
       ),
-      label: 'University',
+      label: copy.universityLabel,
       value: copy.university,
       href: null,
     },
@@ -80,7 +90,7 @@ const ContactSection = () => {
           <path d="M14 2v6h6M12 12v6m0 0-3-3m3 3 3-3" />
         </svg>
       ),
-      label: 'Resume',
+      label: copy.resumeLabel,
       value: copy.resume,
       href: '/resume/Xiao-Chuyu-Resume.pdf',
       download: true,
@@ -96,13 +106,14 @@ const ContactSection = () => {
       <div className="contact-container">
         <div className="contact-header">
           <div className="contact-avatar">
-            <img src="/avatar-new.png" alt="肖楚煜" />
+            <img src="/avatar-new.png" alt={copy.avatarAlt} width="1311" height="1200" />
           </div>
           <span className="contact-badge">{copy.eyebrow}</span>
           <h2 className="contact-title">{copy.title}</h2>
-          <p className="contact-subtitle">
-            {copy.subtitle} &nbsp;|&nbsp; thosli666@gmail.com
-          </p>
+          <p className="contact-subtitle">{copy.subtitle}</p>
+          <a className="contact-email" href="mailto:thosli666@gmail.com">
+            thosli666@gmail.com
+          </a>
         </div>
 
         <div className="contact-info-grid">
@@ -142,7 +153,7 @@ const ContactSection = () => {
       </footer>
 
       {/* 返回顶部按钮 */}
-      <a href="#hero" className="back-to-top">
+      <a href="#hero" className="back-to-top" aria-label={copy.top}>
         <span>↑</span>
       </a>
     </section>

@@ -267,19 +267,19 @@ const PROJECTS = [
   {
     id: 'lerobot',
     title: 'LeRobot · 牙科种植机器人',
-    subtitle: 'ARUCO视觉定位 · ACT模仿学习 · 强化学习泛化',
+    subtitle: 'ArUco 视觉定位 · ACT 模仿学习 · 策略探索',
     category: '具身智能 · 医疗机器人',
     year: '2026 春',
     color: '#FF7043',
     accentColor: 'rgba(255,112,67,0.10)',
-    tags: ['ARUCO定位', 'ACT控制', '强化学习', '牙科机器人', '种植手术'],
+    tags: ['ArUco 定位', 'ACT', '模仿学习', '牙科机器人', '遥操作'],
     description:
-      '基于 HuggingFace LeRobot 框架的牙科种植机器人操作演示系统。机械臂为 6 自由度构型：底座旋转、肩部俯仰、肘部俯仰、腕部俯仰、腕部旋转 5 个关节 + 1 个平行夹爪，总线舵机驱动。通过 ARUCO 码视觉定位确定最下方舵机（底座关节）的空间位姿，结合 ACT（Action Chunking Transformer）模仿学习与强化学习（RL）实现泛化的种植操作动作。',
+      '基于 Hugging Face LeRobot 的牙科种植操作研究原型。由总线舵机驱动的机械臂包含 5 个旋转关节与 1 个平行夹爪，通过主从臂遥操作采集示教，使用 RGB 相机与 ArUco 完成底座位姿标定，再用 ACT 模仿学习分析操作策略。目前以示教、回放和策略迭代为主，强化学习微调仍在探索中。',
     highlights: [
       '6-DOF 机械臂 — 底座旋转/肩俯仰/肘俯仰/腕俯仰/腕旋转 5 关节 + 平行夹爪，主从臂遥操作采集示教数据',
       '系统构成 — 主从双臂 + RGB 相机（顶视/腕部）+ ARUCO 标定码 + 种植操作台，LeRobot 数据管线统一采集回放',
       'ARUCO 定位 — 相机检测 ARUCO 码解算最下方舵机（底座）位姿，完成相机-机械臂坐标系标定与目标对齐',
-      'ACT + RL 控制流程 — ACT 从示教数据学习动作分块策略，RL 微调提升鲁棒性，实现不同位姿下泛化的种植动作',
+      '策略迭代 — ACT 从示教数据学习动作分块策略；强化学习微调与不同位姿下的泛化仍在探索中',
     ],
     images: [
       asset('/projects/3/dental-lerobot/lerobot.png'),
@@ -366,14 +366,14 @@ const PROJECTS = [
 
 const YEAR_THREE_EN = {
   'startup-flowerpot': {
-    titleEn: 'Lan Spirit Smart Planter',
+    titleEn: 'Lanjingling Smart Planter',
     subtitleEn: 'National Innovation Program · IoT · Embedded Systems',
     categoryEn: 'Product Innovation · IoT · Embedded Systems',
     yearEn: 'Fall 2025',
     tagsEn: ['SolidWorks', 'Arduino', 'IoT', 'Venture Design', 'Prototype Validation'],
     descriptionEn: 'An award-winning national student innovation project for an intelligent home-gardening planter. The system combines automatic irrigation, light monitoring, temperature and humidity regulation, and multi-sensor feedback in an iterated physical product.',
     highlightsEn: [
-      'Lan Spirit v1.2 STEP model with parametric fan housing and core structural components',
+      'Lanjingling v1.2 STEP model with parametric fan housing and core structural components',
       'Two physical prototype generations progressing from proof of concept to functional validation',
       'Complete close-out package with final report and presentation deck',
       'Venture-defense materials covering user needs, technical architecture, business model, and budget',
@@ -452,16 +452,16 @@ const YEAR_THREE_EN = {
   },
   lerobot: {
     titleEn: 'LeRobot Dental Implantation Robot',
-    subtitleEn: 'ArUco Localization · ACT Imitation Learning · Policy Generalization',
+    subtitleEn: 'ArUco Localization · ACT Imitation Learning · Policy Exploration',
     categoryEn: 'Embodied AI · Medical Robotics',
     yearEn: 'Spring 2026',
     tagsEn: ['ArUco Localization', 'ACT', 'Imitation Learning', 'Dental Robotics', 'Teleoperation'],
-    descriptionEn: 'A dental implantation manipulation demonstrator built on Hugging Face LeRobot. A six-degree-of-freedom arm combines master–slave teleoperation, RGB vision, ArUco-based base-pose calibration, and ACT policy learning to reproduce implantation motions across varied poses.',
+    descriptionEn: 'A dental implantation research prototype built on Hugging Face LeRobot. A bus-servo arm with five rotary joints and a parallel gripper combines leader-follower demonstration collection, RGB vision, ArUco base-pose calibration and ACT imitation learning. Work currently focuses on demonstrations, replay and policy iteration; reinforcement-learning fine-tuning remains exploratory.',
     highlightsEn: [
       'Six-DOF arm with five rotary joints and a parallel gripper, teleoperated for demonstration collection',
       'Unified LeRobot pipeline for dual-arm state, top-view and wrist-camera video, and synchronized replay',
       'ArUco-based camera-to-robot calibration and target alignment using the base-joint pose',
-      'ACT action-chunking policy with reinforcement-learning exploration for improved robustness',
+      'ACT action-chunking policy learning, with reinforcement-learning fine-tuning and generalization across poses still under exploration',
     ],
   },
   'body-mesh-strain': {

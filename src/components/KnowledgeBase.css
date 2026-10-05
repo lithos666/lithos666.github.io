@@ -112,8 +112,8 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 14px;
-  min-height: 174px;
-  padding: 26px;
+  min-height: 0;
+  padding: 24px;
   border-radius: inherit;
   overflow: hidden;
 }
@@ -164,11 +164,11 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .kb-card-title {
-  padding-right: 58px;
+  padding-right: 0;
   font-size: 1rem;
   font-weight: 650;
   color: var(--text-primary);
@@ -180,7 +180,7 @@
   margin-top: 6px;
   font-size: 0.8rem;
   font-weight: 400;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -189,12 +189,13 @@
 }
 
 .kb-card-tag {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  font-size: 0.62rem;
+  align-self: flex-start;
+  max-width: 100%;
+  margin-bottom: 4px;
+  font-size: 0.66rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
   padding: 3px 8px;
   border-radius: 6px;
   color: color-mix(in srgb, var(--kb-accent, #7C4DFF) 85%, white);
@@ -485,4 +486,15 @@
   .knowledge-grid { grid-template-columns: 1fr; }
   .knowledge-filter { flex: 1 1 auto; }
   .kb-card > .border-glow-inner { min-height: 0; }
+}
+
+@media (min-width: 861px) {
+  .knowledge-section {
+    padding-top: clamp(88px, 8vw, 120px);
+    padding-bottom: clamp(88px, 8vw, 120px);
+  }
+
+  .knowledge-header {
+    margin-bottom: 48px;
+  }
 }
