@@ -26,6 +26,14 @@ const NAV_SECTIONS = [
   { href: '#contact', labelKey: 'global.nav.contact' },
 ];
 
+const getNativeScrollTarget = target => {
+  const offset = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+  return Math.max(0, Math.min(
+    target.getBoundingClientRect().top + window.scrollY - offset,
+    document.documentElement.scrollHeight - window.innerHeight,
+  ));
+};
+
 // Minimal loading fallback
 const SectionSkeleton = () => (
   <div style={{ minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -44,6 +52,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const mobileToggleRef = React.useRef(null);
   const firstMobileLinkRef = React.useRef(null);
+  const pendingNavigationRef = React.useRef(null);
   const sheetId = React.useId();
   const { t, lang } = useI18n();
 
@@ -64,6 +73,13 @@ const Navbar = () => {
 
     const updateActiveSection = () => {
       animationFrame = 0;
+      const pendingNavigation = pendingNavigationRef.current;
+      if (pendingNavigation) {
+        if (!pendingNavigation.native) return;
+        const targetY = getNativeScrollTarget(pendingNavigation.target);
+        if (Math.abs(window.scrollY - targetY) > 3) return;
+        pendingNavigationRef.current = null;
+      }
       const pageBottom = window.scrollY + window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
 
@@ -90,6 +106,16 @@ const Navbar = () => {
       animationFrame = window.requestAnimationFrame(updateActiveSection);
     };
 
+    const cancelNavigation = () => {
+      pendingNavigationRef.current = null;
+      scheduleUpdate();
+    };
+    const cancelOnScrollKey = event => {
+      if (!event.defaultPrevented && ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) {
+        cancelNavigation();
+      }
+    };
+
     const main = document.querySelector('main');
     const resizeObserver = typeof ResizeObserver !== 'undefined' && main
       ? new ResizeObserver(scheduleUpdate)
@@ -105,6 +131,9 @@ const Navbar = () => {
     window.addEventListener('resize', scheduleUpdate);
     window.addEventListener('hashchange', scheduleUpdate);
     window.addEventListener('load', scheduleUpdate);
+    window.addEventListener('wheel', cancelNavigation, { passive: true });
+    window.addEventListener('touchstart', cancelNavigation, { passive: true });
+    window.addEventListener('keydown', cancelOnScrollKey);
 
     return () => {
       if (animationFrame) window.cancelAnimationFrame(animationFrame);
@@ -114,6 +143,9 @@ const Navbar = () => {
       window.removeEventListener('resize', scheduleUpdate);
       window.removeEventListener('hashchange', scheduleUpdate);
       window.removeEventListener('load', scheduleUpdate);
+      window.removeEventListener('wheel', cancelNavigation);
+      window.removeEventListener('touchstart', cancelNavigation);
+      window.removeEventListener('keydown', cancelOnScrollKey);
     };
   }, []);
 
@@ -155,9 +187,24 @@ const Navbar = () => {
 
     setActiveIndex(index);
     setMobileMenuOpen(false);
+    const navigation = { target, native: !window.__lenis };
+    pendingNavigationRef.current = navigation;
     window.history.replaceState(null, '', href);
     window.requestAnimationFrame(() => {
-      target.scrollIntoView({ behavior: 'smooth' });
+      if (pendingNavigationRef.current !== navigation) return;
+      if (window.__lenis) {
+        window.__lenis.resize();
+        window.__lenis.scrollTo(target, {
+          onComplete: () => {
+            if (pendingNavigationRef.current === navigation) pendingNavigationRef.current = null;
+          },
+        });
+      } else {
+        target.scrollIntoView({ behavior: 'smooth' });
+        if (Math.abs(window.scrollY - getNativeScrollTarget(target)) <= 3) {
+          pendingNavigationRef.current = null;
+        }
+      }
     });
   };
 
@@ -178,7 +225,7 @@ const Navbar = () => {
         transition={{ duration: 0.7, delay: 0.35, ease: [0.23, 1, 0.32, 1] }}
       >
         <div className="navbar-inner">
-          <a href="#hero" className="nav-logo" data-hover>
+          <a href="#hero" className="nav-logo" data-hover onClick={event => navigateToSection(event, '#hero', 0)}>
             <span className="logo-mark">X</span>
             <span className="logo-text">{lang === 'zh' ? '肖楚煜' : 'Xiao Chuyu'}</span>
           </a>

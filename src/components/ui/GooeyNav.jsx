@@ -35,6 +35,8 @@ const GooeyNav = ({
   const containerRef = useRef(null);
   const navRef = useRef(null);
   const filterRef = useRef(null);
+  const animatedIndexRef = useRef(null);
+  const animationTimeoutRef = useRef(null);
   const [internalActiveIndex, setInternalActiveIndex] = useState(initialActiveIndex);
   const activeIndex = controlledActiveIndex ?? internalActiveIndex;
 
@@ -52,36 +54,25 @@ const GooeyNav = ({
     for (let i = 0; i < particleCount; i++) {
       const t = animationTime * 2 + noise(timeVariance * 2);
       const p = createParticle(i, t, d, r, particleCount, colors);
-      element.classList.remove('active');
+      const particle = document.createElement('span');
+      const point = document.createElement('span');
+      particle.classList.add('particle');
+      particle.style.setProperty('--start-x', `${p.start[0]}px`);
+      particle.style.setProperty('--start-y', `${p.start[1]}px`);
+      particle.style.setProperty('--end-x', `${p.end[0]}px`);
+      particle.style.setProperty('--end-y', `${p.end[1]}px`);
+      particle.style.setProperty('--time', `${p.time}ms`);
+      particle.style.setProperty('--scale', `${p.scale}`);
+      particle.style.setProperty('--color', `var(--color-${p.color}, white)`);
+      particle.style.setProperty('--rotate', `${p.rotate}deg`);
 
-      setTimeout(() => {
-        const particle = document.createElement('span');
-        const point = document.createElement('span');
-        particle.classList.add('particle');
-        particle.style.setProperty('--start-x', `${p.start[0]}px`);
-        particle.style.setProperty('--start-y', `${p.start[1]}px`);
-        particle.style.setProperty('--end-x', `${p.end[0]}px`);
-        particle.style.setProperty('--end-y', `${p.end[1]}px`);
-        particle.style.setProperty('--time', `${p.time}ms`);
-        particle.style.setProperty('--scale', `${p.scale}`);
-        particle.style.setProperty('--color', `var(--color-${p.color}, white)`);
-        particle.style.setProperty('--rotate', `${p.rotate}deg`);
-
-        point.classList.add('point');
-        particle.appendChild(point);
-        element.appendChild(particle);
-        requestAnimationFrame(() => {
-          element.classList.add('active');
-        });
-        setTimeout(() => {
-          try {
-            element.removeChild(particle);
-          } catch {
-            // Do nothing
-          }
-        }, t);
-      }, 30);
+      point.classList.add('point');
+      particle.appendChild(point);
+      element.appendChild(particle);
     }
+    // Restart the pill only after positioning the layer at the clicked label.
+    void element.offsetWidth;
+    element.classList.add('active');
   };
 
   const updateEffectPosition = element => {
@@ -101,8 +92,8 @@ const GooeyNav = ({
   const handleClick = (e, index) => {
     const liEl = e.currentTarget.closest('li');
     if (!liEl) return;
-    if (activeIndex === index) return;
-
+    window.clearTimeout(animationTimeoutRef.current);
+    animatedIndexRef.current = index;
     setActiveIndex(index);
     updateEffectPosition(liEl);
 
@@ -112,7 +103,16 @@ const GooeyNav = ({
     }
 
     if (filterRef.current) {
-      makeParticles(filterRef.current);
+      const element = filterRef.current;
+      element.classList.remove('active');
+      element.style.opacity = '1';
+      makeParticles(element);
+      animationTimeoutRef.current = window.setTimeout(() => {
+        element.style.opacity = '0';
+        element.classList.remove('active');
+        element.querySelectorAll('.particle').forEach(particle => particle.remove());
+        animatedIndexRef.current = null;
+      }, animationTime * 2 + timeVariance);
     }
   };
 
@@ -126,12 +126,17 @@ const GooeyNav = ({
   useEffect(() => {
     if (!navRef.current || !containerRef.current) return;
 
+    // A manual scroll can change selection before the clicked burst finishes.
+    if (animatedIndexRef.current !== null && animatedIndexRef.current !== activeIndex && filterRef.current) {
+      filterRef.current.style.opacity = '0';
+      filterRef.current.classList.remove('active');
+      filterRef.current.querySelectorAll('.particle').forEach(particle => particle.remove());
+    }
+
     const positionActive = () => {
-      const activeLi = navRef.current?.querySelectorAll('li')[activeIndex];
+      const activeLi = navRef.current?.querySelectorAll('li')[animatedIndexRef.current ?? activeIndex];
       if (activeLi) {
         updateEffectPosition(activeLi);
-        // Reveal the particle/filter layer only after correct positioning.
-        if (filterRef.current) filterRef.current.style.opacity = '1';
       }
     };
 
@@ -142,7 +147,7 @@ const GooeyNav = ({
     }
 
     const resizeObserver = new ResizeObserver(() => {
-      const currentActiveLi = navRef.current?.querySelectorAll('li')[activeIndex];
+      const currentActiveLi = navRef.current?.querySelectorAll('li')[animatedIndexRef.current ?? activeIndex];
       if (currentActiveLi) {
         updateEffectPosition(currentActiveLi);
       }
@@ -151,6 +156,8 @@ const GooeyNav = ({
     resizeObserver.observe(containerRef.current);
     return () => resizeObserver.disconnect();
   }, [activeIndex]);
+
+  useEffect(() => () => window.clearTimeout(animationTimeoutRef.current), []);
 
   return (
     <div className="gooey-nav-container" ref={containerRef}>
