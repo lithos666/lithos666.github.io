@@ -8,8 +8,8 @@ export default function LanguageToggle() {
     <button
       className="lang-toggle"
       onClick={toggleLanguage}
-      aria-label={lang === 'zh' ? 'Switch to English' : '切换为中文'}
-      title={lang === 'zh' ? 'Switch to English' : '切换为中文'}
+      aria-label={lang === 'zh' ? '切换为英文' : 'Switch to Chinese'}
+      title={lang === 'zh' ? '切换为英文' : 'Switch to Chinese'}
     >
       <span className={`lang-toggle-lang ${lang === 'zh' ? 'lang-toggle-active' : ''}`}>CN</span>
       <span className="lang-toggle-divider" aria-hidden="true" />

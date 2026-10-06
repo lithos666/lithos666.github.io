@@ -29,7 +29,7 @@ const COPY = {
   en: {
     label: 'About',
     heading: 'From Idea to Prototype',
-    intro: 'Fourth-year Robotics Engineering Student at Chongqing University · Admitted to a Master’s Programme through Recommendation · Goodent Co-founder',
+    intro: 'Fourth-year Robotics Engineering Student at Chongqing University · Master’s Admission Secured by Recommendation · Goodent Co-founder',
     focus: 'Capability Map',
     evidenceLabel: 'In practice',
     buildTitle: 'How I Work',
@@ -118,7 +118,7 @@ const FOCUS_AREAS = [
       { zh: '竞品分析', en: 'Competitor Analysis' },
       { zh: '路演', en: 'Pitching' },
     ],
-    evidence: { zh: '致行科技、Goodent', en: 'ZixingTech · Goodent' },
+    evidence: { zh: '致行科技、Goodent', en: 'Zhixing Technology · Goodent' },
     color: '#FF9F0A',
     glow: '35 100 52',
   },
@@ -180,8 +180,8 @@ export default function PersonalStatement() {
           <div className="ps-stats-row">
             {[
               ['3.68', 'GPA'],
-              ['9/58', lang === 'en' ? 'Major Rank' : '专业排名'],
-              ['20+', lang === 'en' ? 'Built Projects' : '工程项目'],
+              ['9/58', lang === 'en' ? 'Rank in Major' : '专业排名'],
+              ['20+', lang === 'en' ? 'Engineering Projects' : '工程项目'],
               ['¥500K', lang === 'en' ? 'Seed Funding' : '种子轮融资'],
             ].map(([value, label], index) => (
               <div className="ps-stat-fragment" key={label}>

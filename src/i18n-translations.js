@@ -54,7 +54,7 @@ export const translations = {
   },
   'statement.intro': {
     zh: '重庆大学国家卓越工程师学院 · 2023 级明月科创实验班',
-    en: 'Chongqing University · National School of Excellent Engineers · Mingyue Innovation Class of 2023'
+    en: 'Chongqing University · National Elite Institute of Engineering · Mingyue Innovation Class of 2023'
   },
   'statement.paragraph-1': {
     zh: '<GPA>{{gpa}}</GPA>，排名 <Rank>{{rank}}</Rank>，平均成绩 {{avg-score}}，已通过<em>CET-4 / CET-6</em>。',
@@ -62,11 +62,11 @@ export const translations = {
   },
   'statement.paragraph-2': {
     zh: '我也在尝试把原型做成真实产品。作为<ZixingTech/>联合创始人，我参与的项目获得了百万级天使轮融资；我负责的大学生创新创业项目获<ExcellentResult/>；主导的<Goodent/>获得 Xbotpark 种子轮支持。我还通过了学校交换项目选拔，获得<StudyAbroad/>资格与资助，计划于 2026 年秋季赴<NewSUTD/>学习。',
-    en: 'I am also learning to turn prototypes into real products. The venture I helped build as a <ZixingTech/> co-founder secured seven-figure RMB angel funding. My student innovation project received <ExcellentResult/>, and the <Goodent/> project I lead received seed backing from Xbotpark. I was also selected for a funded Fall 2026 exchange semester at <NewSUTD/>.'
+    en: 'I am also learning to turn prototypes into real products. The venture I helped build as a <ZixingTech/> co-founder secured seven-figure RMB angel funding. My student innovation project received <ExcellentResult/>, and the <Goodent/> project I lead received seed backing from Xbotpark. I was also selected for a funded autumn 2026 exchange semester at <NewSUTD/>.'
   },
   'statement.paragraph-3': {
     zh: '三年来，我完成了 20 多个动手项目：设计钢腱驱动的仿生机械臂，建模并仿真斯特林发动机，处理 MIT-BIH 心电数据，也为语音控制小车设计 PCB。机械、电子、控制和软件在这些项目中连到了一起。模型、代码、原型和实验记录，留下了我每一次尝试与改进的过程。',
-    en: 'Over three years, I have worked on more than 20 hands-on projects: a steel-tendon-driven robotic arm, a Stirling engine with multiphysics simulation, MIT-BIH ECG processing and a PCB for a voice-controlled car. These projects bring mechanics, electronics, control and software together. Models, code, prototypes and experiment records document what I tried and how I improved it.'
+    en: 'Over three years, I have worked on more than 20 hands-on projects: a steel-tendon-driven robotic hand, a Stirling engine with multiphysics simulation, MIT-BIH ECG processing and a PCB for a voice-controlled car. These projects bring mechanics, electronics, control and software together. Models, code, prototypes and experiment records document what I tried and how I improved it.'
   },
 
   // Hero Section (首页)
@@ -116,7 +116,7 @@ export const translations = {
   },
   'hero.positioning-summary': {
     zh: '我是肖楚煜，重庆大学机器人工程专业大四学生，已通过推免获得硕士录取。我把机械、电子、控制与软件结合起来，动手做原型，测试问题，再一点点改进。',
-    en: 'I’m Xiao Chuyu, a fourth-year Robotics Engineering student at Chongqing University. I have secured admission to a master’s programme through recommendation. I bring mechanics, electronics, control and software together to build prototypes, test them and improve them step by step.'
+    en: 'I’m Xiao Chuyu, a fourth-year Robotics Engineering student at Chongqing University. I have been admitted to a master’s programme through a recommendation-based selection process. I bring mechanics, electronics, control and software together to build prototypes, test them and improve them step by step.'
   },
   'hero.proof-label': {
     zh: '关键经历',
@@ -124,7 +124,7 @@ export const translations = {
   },
   'hero.proof-education': {
     zh: '重庆大学 · 机器人工程大四',
-    en: 'Chongqing University · Robotics Engineering Senior'
+    en: 'Chongqing University · Fourth-year Robotics Engineering student'
   },
   'hero.proof-projects': {
     zh: '20+ 动手工程项目',
@@ -182,7 +182,7 @@ export const translations = {
   },
   'project.stirling.category': {
     zh: '机械设计 · 热力学 · 多物理场仿真',
-    en: 'Mechanical Design · Thermodynamics · Multi-physics Simulation'
+    en: 'Mechanical Design · Thermodynamics · Multiphysics Simulation'
   },
   'project.stirling.description': {
     zh: '我完成了 Gamma 型斯特林发动机的参数化建模，包括 41 个 SLDPRT 零件，并用 COMSOL 和 ADAMS 分析流固耦合与机构运动，检查设计假设。',
@@ -220,7 +220,7 @@ export const translations = {
   // Project Translations - LeRobot Dental Robot
   'project.lerobot.title': {
     zh: 'LeRobot 牙科种植机器人',
-    en: 'LeRobot Dental Implantation Robot'
+    en: 'LeRobot Dental Robotics Prototype'
   },
   'project.lerobot.category': {
     zh: '具身智能 · 医疗机器人 · 模仿学习',
@@ -274,7 +274,7 @@ export const translations = {
   },
   'status.social-practice': {
     zh: '社会实践',
-    en: 'Social Research'
+    en: 'Social Practice'
   },
 
   // Year Three Projects (大三项目)
@@ -284,11 +284,11 @@ export const translations = {
   },
   'yearthree.title': {
     zh: '大三 · 项目实践',
-    en: 'Junior Year · Projects'
+    en: 'Third Year · Projects'
   },
   'yearthree.subtitle': {
     zh: '2025 冬 – 2026 夏 · 10 个项目 · 工效学 / 大创 / 数理方法 / 微电路 / 自动控制 / 数值分析 / 产品制造 / LeRobot / 人体网格应变 / BLDC 电机',
-    en: 'Winter 2025 – Summer 2026 · 10 Projects · Ergonomics / Innovation Program / Math Methods / Circuits / Control Theory / Numerical Analysis / Product Manufacturing / LeRobot / Mesh Strain / BLDC Motor'
+    en: 'Winter 2025 – Summer 2026 · 10 Projects · Ergonomics / Innovation Programme / Mathematical Methods / Circuits / Control Theory / Numerical Analysis / Product Manufacturing / LeRobot / Mesh Strain / BLDC Motor'
   },
 
   // Year One Section Translation
@@ -298,11 +298,11 @@ export const translations = {
   },
   'yearone.title': {
     zh: '大一 · 项目实践',
-    en: 'Freshman Year · Projects'
+    en: 'First Year · Projects'
   },
   'yearone.subtitle': {
     zh: '2024 – 2025 · 10 个项目 · 产品设计 / 实习 / 竞赛 / 物理仿真 / CAE 分析 / 数学应用 / 仿生学',
-    en: '2024 – 2025 · 10 Projects · Product Design / Internship / Competition / Physics Simulation / CAE Analysis / Math Application / Bionics'
+    en: '2024 – 2025 · 10 Projects · Product Design / Internship / Competition / Physics Simulation / CAE Analysis / Mathematical Applications / Bionics'
   },
 
   // Year Two Section Translation
@@ -312,11 +312,11 @@ export const translations = {
   },
   'yeartwo.title': {
     zh: '大二 · 项目实践',
-    en: 'Sophomore Year · Projects'
+    en: 'Second Year · Projects'
   },
   'yeartwo.subtitle': {
     zh: '2025 春季 · 10 个项目 · 热机 / 机器人 / DSP / 3D 打印 / 渲染 / 医疗电子 / 访学',
-    en: '2025 Spring · 10 Projects · Thermal Engines / Robotics / DSP / 3D Printing / Rendering / Medical Electronics / Exchange'
+    en: 'Spring 2025 · 10 Projects · Thermal Engines / Robotics / DSP / 3D Printing / Rendering / Medical Electronics / Exchange'
   },
 
   // Knowledge Base (知识库)
@@ -380,7 +380,7 @@ export const translations = {
   },
   'y1.project.product-design.description': {
     zh: '面向游泳爱好者的智能辅助穿戴设备。完成从用户调研、需求定义、概念设计到三维建模的全流程产品开发。核心零部件包括鼻托支架、VR 眼镜造型等，并撰写完整商业计划书参加创新创业比赛。',
-    en: 'Intelligent wearable device for swimming enthusiasts. Completed full product development cycle from user research, requirement definition, concept design to 3D modeling. Core components include nose bridge bracket, VR glasses design, etc., with complete business plan submitted to innovation and entrepreneurship competitions.'
+    en: 'A smart wearable device for swimming enthusiasts. I completed the product-development cycle from user research and requirements definition to concept design and 3D modelling. Key elements include a nose-bridge bracket and the design of the VR glasses. I also prepared a complete business plan for innovation and entrepreneurship competitions.'
   },
   'y1.project.product-design.highlights': {
     zh: [
@@ -390,10 +390,10 @@ export const translations = {
       '团队协作：项目负责人'
     ],
     en: [
-      'SolidWorks Parametric Modeling: Nose bridge / Glasses v3 / Full assembly',
+      'SolidWorks parametric modelling: Nose bridge / Glasses v3 / Full assembly',
       'Smart wearable AR glasses model — Independent design module',
-      'Business plan writing + Multi-round iterative PPT presentations',
-      'Team collaboration: Project team leader'
+      'Business plan + Iterative slide presentations',
+      'Team role: Project lead'
     ]
   },
   'ui.status-practice': {

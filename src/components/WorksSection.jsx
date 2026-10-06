@@ -11,7 +11,7 @@ const text = (zh, en) => ({ zh, en });
 const CAPABILITY_PATH = [
   text('机械设计', 'Mechanical Design'),
   text('仿真分析', 'Simulation & Analysis'),
-  text('嵌入式与控制', 'Embedded & Control'),
+  text('嵌入式与控制', 'Embedded Systems & Control'),
   text('机器人', 'Robotics'),
   text('医疗器械', 'Medical Devices'),
   text('Goodent', 'Goodent'),
@@ -27,21 +27,21 @@ function getProjects(lang) {
     {
       id: 'goodent',
       title: localize(text('Goodent 牙科微动力系统', 'Goodent Dental Power System'), lang),
-      category: localize(text('医疗器械 · 电机控制 · 创业', 'Medical Devices · Motor Control · Venture'), lang),
+      category: localize(text('医疗器械 · 电机控制 · 创业', 'Medical Devices · Motor Control · Entrepreneurship'), lang),
       year: localize(text('2026–至今', '2026–Present'), lang),
-      status: localize(text('50 万元种子轮', 'RMB 500k Seed'), lang),
+      status: localize(text('50 万元种子轮', 'RMB 500k Seed Funding'), lang),
       color: '#32D8FF',
       accentColor: 'rgba(50,216,255,0.14)',
       description: localize(text(
         '我作为联合创始人负责产品定义、系统架构与电机控制。经过三代原型迭代，系统已进入工程验证准备阶段。',
-        'As co-founder, I lead product definition, system architecture and motor control. Three prototype iterations have brought the system to the engineering-validation preparation stage.'
+        'As co-founder, I lead product definition, system architecture and motor control. We have completed three prototype iterations and are preparing for engineering validation.'
       ), lang),
       tags: localize(text(['STM32', 'BLDC / PMSM', '扭矩估算', '医疗器械'], ['STM32', 'BLDC / PMSM', 'Torque Estimation', 'Medical Devices']), lang),
       images: [asset('/projects/3/Goodent/第三代样机.jpg')],
       caseStudy: {
         problem: text(
           '现有牙科动力系统主要提供稳定动力，医生仍高度依赖手感识别钻穿、卡针与异常负载，反馈不够结构化。',
-          'Existing dental power systems mainly provide stable motion, while clinicians still rely heavily on tactile feel to identify penetration, tool jamming and abnormal loads.'
+          'Existing dental power systems mainly provide consistent power output, while clinicians still rely heavily on tactile feedback to identify drill breakthrough, tool jamming and abnormal loads.'
         ),
         role: {
           zh: ['联合创始人', '产品定义', '系统架构', '电机控制'],
@@ -56,7 +56,7 @@ function getProjects(lang) {
         },
         prototype: {
           zh: ['V1：功能与驱动链路验证', 'V2：结构、散热与控制迭代', 'V3：系统集成与工程验证样机'],
-          en: ['V1: functional drive-chain proof', 'V2: mechanical, thermal and control iteration', 'V3: integrated engineering-validation prototype'],
+          en: ['V1: functional and motor-drive verification', 'V2: mechanical, thermal and control refinements', 'V3: integrated engineering-validation prototype'],
         },
         validation: {
           zh: ['扭矩与负载响应测试', '转速稳定性测试', '连续运行温升测试', '异常负载与停机逻辑验证'],
@@ -82,7 +82,7 @@ function getProjects(lang) {
       accentColor: 'rgba(255,138,69,0.14)',
       description: localize(text(
         '我完成了 41 个零件的参数化装配，并用 COMSOL 和 ADAMS 检查热流体响应与机构运动，再通过实物装配验证设计。',
-        'I created a 41-part parametric assembly, used COMSOL and ADAMS to examine thermal-fluid behavior and mechanism motion, and checked the design through a physical build.'
+        'I created a 41-part parametric assembly, used COMSOL and ADAMS to examine thermal-fluid behaviour and mechanism motion, and checked the design through a physical build.'
       ), lang),
       tags: localize(text(['SolidWorks', 'COMSOL', 'ADAMS', '3D 打印'], ['SolidWorks', 'COMSOL', 'ADAMS', '3D Printing']), lang),
       images: [
@@ -106,7 +106,7 @@ function getProjects(lang) {
             '我先确定 Gamma 构型，完成零件配合与运动关系设计，再用 COMSOL 检查热流体响应、用 ADAMS 分析机构动力学，最后进行实物装配。',
             'I defined the Gamma configuration and designed the part interfaces and motion relationships, then examined thermal-fluid response in COMSOL and mechanism dynamics in ADAMS before assembling the physical prototype.'
           ),
-          technologies: text(['41 件 CAD 装配', 'COMSOL 流固耦合', 'ADAMS', '拓扑优化', '3D 打印'], ['41-part CAD Assembly', 'COMSOL FSI', 'ADAMS', 'Topology Study', '3D Printing']),
+          technologies: text(['41 件 CAD 装配', 'COMSOL 流固耦合', 'ADAMS', '拓扑优化', '3D 打印'], ['41-part CAD Assembly', 'COMSOL FSI', 'ADAMS', 'Topology Optimisation', '3D Printing']),
         },
         validation: {
           zh: ['装配干涉与运动检查', '流固耦合仿真', '多体动力学验证', '实体原型装配'],
@@ -119,7 +119,7 @@ function getProjects(lang) {
         currentStage: text('课程项目完成 / 设计与仿真资料归档', 'Completed / Design and simulation evidence archived'),
         evidence: [
           { label: text('参数化装配渲染', 'Parametric assembly render'), href: asset('/projects/2/斯特林发动机/渲染模型1.jpg'), type: 'image' },
-          { label: text('拓扑优化结果', 'Topology study result'), href: asset('/projects/2/斯特林发动机/拓扑优化模型.png'), type: 'image' },
+          { label: text('拓扑优化结果', 'Topology optimisation result'), href: asset('/projects/2/斯特林发动机/拓扑优化模型.png'), type: 'image' },
         ],
       },
     },
@@ -133,7 +133,7 @@ function getProjects(lang) {
       accentColor: 'rgba(198,162,120,0.14)',
       description: localize(text(
         '我把传动、转向和悬架设计成可打印、可装配的模块，完成整车装配模型、零件集和 BOM，让制造与维护更清楚。',
-        'I designed printable, assemblable modules for the transmission, steering and suspension, then prepared the full vehicle assembly, part set and BOM for fabrication and maintenance.'
+        'I designed the transmission, steering and suspension as modules suitable for 3D printing and assembly, then prepared the complete assembly model, part set and BOM for fabrication and maintenance.'
       ), lang),
       tags: localize(text(['SolidWorks', '变速箱', '差速器', '悬架', 'BOM'], ['SolidWorks', 'Gearbox', 'Differential', 'Suspension', 'BOM']), lang),
       images: [
@@ -165,7 +165,7 @@ function getProjects(lang) {
         },
         result: {
           zh: ['完成整车装配模型与可打印零件集', '积累了模块化机械系统设计经验'],
-          en: ['Delivered a complete vehicle assembly and printable part set', 'Built reusable experience in modular mechanical-system design'],
+          en: ['Delivered a complete vehicle assembly and printable part set', 'Gained experience in modular mechanical-system design'],
         },
         currentStage: text('原型完成 / 制造文件归档', 'Prototype completed / Manufacturing files archived'),
         evidence: [
@@ -178,13 +178,13 @@ function getProjects(lang) {
       id: 'flowerpot',
       title: localize(text('兰精灵 · 智能养护花盆', 'Lanjingling Smart Planter'), lang),
       category: localize(text('IoT · 产品开发 · 创新创业', 'IoT · Product Development · Innovation'), lang),
-      year: localize(text('2025 秋', 'Fall 2025'), lang),
-      status: localize(text('优秀结项', 'Excellent Completion'), lang),
+      year: localize(text('2025 秋', 'Autumn 2025'), lang),
+      status: localize(text('优秀结项', 'Excellent Completion Rating'), lang),
       color: '#66D58A',
       accentColor: 'rgba(102,213,138,0.14)',
       description: localize(text(
         '我负责把养护需求转化为产品，整合环境传感、自动浇灌与结构设计。项目完成两代原型，获国家级大创优秀结项。',
-        'I led the translation of plant-care needs into a product, integrating environmental sensing, automatic irrigation and enclosure design. The project completed two prototype generations and earned an Excellent rating in the national student innovation program.'
+        'I led the translation of plant-care needs into a product, integrating environmental sensing, automatic irrigation and enclosure design. We built two prototype generations, and the project received an Excellent completion rating in the national student innovation programme.'
       ), lang),
       tags: localize(text(['Arduino', '传感器', 'IoT', '用户调研', '原型迭代'], ['Arduino', 'Sensors', 'IoT', 'User Research', 'Prototype Iteration']), lang),
       images: [
@@ -196,7 +196,7 @@ function getProjects(lang) {
       caseStudy: {
         problem: text(
           '家庭兰花养护依赖持续的浇灌、光照和温湿度管理，普通用户缺少稳定的监测与执行工具。',
-          'Home orchid care depends on consistent irrigation, light, temperature and humidity management, while most users lack reliable monitoring and actuation tools.'
+          'Home orchid care requires consistent management of watering, light, temperature and humidity, while users often lack reliable tools to monitor and manage these conditions.'
         ),
         role: {
           zh: ['项目负责人', '产品设计', '嵌入式集成', '答辩与商业方案'],
@@ -211,17 +211,17 @@ function getProjects(lang) {
         },
         prototype: {
           zh: ['V1：功能链路与基础结构', 'V2：产品外观、集成度与可靠性改进'],
-          en: ['V1: functional chain and base enclosure', 'V2: improved form, integration and reliability'],
+          en: ['V1: core functions and initial enclosure', 'V2: improved form, integration and reliability'],
         },
         validation: {
           zh: ['传感器与自动浇灌联调', '两代实物原型对比', '项目结项报告与现场答辩'],
-          en: ['Sensor and irrigation integration tests', 'Comparison of two physical prototypes', 'Final report and project defense'],
+          en: ['Sensor and irrigation integration tests', 'Comparison of two physical prototypes', 'Final report and project presentation'],
         },
         result: {
           zh: ['国家级大学生创新创业训练计划优秀结项', '完成从用户需求到可演示产品的完整流程'],
-          en: ['Excellent completion in the National College Student Innovation Program', 'Completed the workflow from user needs to a demonstrable product'],
+          en: ['Excellent completion rating in the national student innovation and entrepreneurship training programme', 'Completed the workflow from user needs to a demonstrable product'],
         },
-        currentStage: text('项目结项 / 原型与答辩资料归档', 'Completed / Prototype and defense materials archived'),
+        currentStage: text('项目结项 / 原型与答辩资料归档', 'Completed / Prototype and presentation materials archived'),
         evidence: [
           { label: text('产品原型', 'Product prototype'), href: asset('/projects/3/大创/产品.png'), type: 'image' },
           { label: text('实物照片', 'Physical build'), href: asset('/projects/3/大创/实物照片.jpg'), type: 'image' },
@@ -230,7 +230,7 @@ function getProjects(lang) {
     },
     {
       id: 'lerobot',
-      title: localize(text('LeRobot 牙科种植机器人', 'LeRobot Dental Robotics'), lang),
+      title: localize(text('LeRobot 牙科种植机器人', 'LeRobot Dental Robotics Prototype'), lang),
       category: localize(text('具身智能 · 视觉定位 · 模仿学习', 'Embodied AI · Visual Positioning · Imitation Learning'), lang),
       year: localize(text('2026 春', 'Spring 2026'), lang),
       status: localize(text('研究原型', 'Research Prototype'), lang),
@@ -238,7 +238,7 @@ function getProjects(lang) {
       accentColor: 'rgba(255,118,87,0.14)',
       description: localize(text(
         '我将 ArUco 标定、主从示教和 ACT 数据分析串联在 6 自由度机械臂上，搭建可采集、回放和分析的牙科操作实验系统。',
-        'I connected ArUco calibration, leader-follower demonstrations and ACT data analysis on a 6-DOF arm, creating a dental-manipulation experiment that supports recording, replay and analysis.'
+        'I integrated ArUco calibration, leader-follower demonstration collection and ACT data analysis into a robotic-arm setup for recording, replaying and analysing experimental dental procedures.'
       ), lang),
       tags: localize(text(['LeRobot', 'ACT', 'ArUco', '遥操作', '数据集分析'], ['LeRobot', 'ACT', 'ArUco', 'Teleoperation', 'Dataset Analysis']), lang),
       images: [
@@ -252,7 +252,7 @@ function getProjects(lang) {
       caseStudy: {
         problem: text(
           '牙科机器人需要在有限空间内理解目标位姿并复现精细操作，单纯脚本控制难以覆盖不同位置与操作者差异。',
-          'Dental robots must understand target pose and reproduce precise actions in a constrained workspace, where scripted motion alone does not generalize across positions and operators.'
+          'Dental robotics requires estimating the target pose and reproducing precise movements in a confined workspace; scripted motion alone has limited adaptability to different positions and operators.'
         ),
         role: {
           zh: ['系统集成', '视觉标定', '数据管线', '策略验证'],
@@ -261,13 +261,13 @@ function getProjects(lang) {
         approach: {
           summary: text(
             '我通过主从双臂采集示教，用 RGB 相机与 ArUco 对齐坐标，再通过 LeRobot 整理数据集，开展 ACT 动作分块策略的学习与分析。',
-            'I collected leader-follower demonstrations, aligned coordinates with RGB cameras and ArUco, organized the dataset in LeRobot, and explored ACT action-chunking policy learning and analysis.'
+            'I collected leader-follower demonstrations, aligned coordinates with RGB cameras and ArUco, organised the dataset in LeRobot, and explored ACT action-chunking policy learning and analysis.'
           ),
-          technologies: text(['6 自由度机械臂', 'ArUco', 'LeRobot', 'ACT', '遥操作', 'RGB 视觉'], ['6-DOF Arm', 'ArUco', 'LeRobot', 'ACT', 'Teleoperation', 'RGB Vision']),
+          technologies: text(['6 自由度机械臂', 'ArUco', 'LeRobot', 'ACT', '遥操作', 'RGB 视觉'], ['Robotic Arm', 'ArUco', 'LeRobot', 'ACT', 'Teleoperation', 'RGB Vision']),
         },
         validation: {
           zh: ['数据集分布检查', '关节轨迹分析', '平滑前后对比', '关键帧与任务阶段核对'],
-          en: ['Dataset distribution review', 'Joint-trajectory analysis', 'Before/after smoothing comparison', 'Keyframe and task-phase inspection'],
+          en: ['Dataset distribution review', 'Joint-trajectory analysis', 'Comparison before and after smoothing', 'Keyframe and task-phase inspection'],
         },
         result: {
           zh: ['完成可回放的牙科操作演示链路', '建立从示教采集到策略分析的完整数据流程'],
@@ -290,7 +290,7 @@ function getProjects(lang) {
       accentColor: 'rgba(255,208,74,0.14)',
       description: localize(text(
         '我完成了 12 槽 16 极空芯 V1 的制作与运行验证。目前正根据绕组、磁路和驱动调试的经验，迭代内转子 V2。',
-        'I built and ran the 12-slot/16-pole coreless V1. I am now using lessons from winding, magnetic layout and drive commissioning to iterate an inner-rotor V2.'
+        'I built and ran the 12-slot/16-pole coreless V1. I am now applying what I learned about winding, magnet layout and drive setup to develop an inner-rotor V2.'
       ), lang),
       tags: localize(text(['BLDC', '内转子', '绕组设计', 'ESP32-S3', 'ESC'], ['BLDC', 'Inner Rotor', 'Winding Design', 'ESP32-S3', 'ESC']), lang),
       images: [
@@ -309,7 +309,7 @@ function getProjects(lang) {
       caseStudy: {
         problem: text(
           '如何从可运行的教学型空芯电机出发，理解绕组、极槽配合与驱动链路，并进一步设计结构更紧凑的内转子方案？',
-          'How can a running educational coreless motor be used to understand winding, slot/pole pairing and the drive chain, then evolve into a more compact inner-rotor design?'
+          'How can a working educational coreless motor help me understand winding, slot/pole combinations and motor-drive integration, and inform a more compact inner-rotor design?'
         ),
         role: {
           zh: ['电机结构设计', '绕组方案', '3D 打印', '驱动联调'],
@@ -324,7 +324,7 @@ function getProjects(lang) {
         },
         prototype: {
           zh: ['V1：12 槽 16 极空芯电机，完成运行验证', 'V2：新内转子无刷电机，正在进行结构与绕组迭代'],
-          en: ['V1: running 12-slot/16-pole coreless motor', 'V2: new inner-rotor BLDC under mechanical and winding iteration'],
+          en: ['V1: running 12-slot/16-pole coreless motor', 'V2: inner-rotor BLDC with ongoing mechanical and winding refinements'],
         },
         validation: {
           zh: ['V1 运行视频与换向验证', '三相绕组与相序核对', 'V2 内转子结构演示', '绕组图与磁极方向复核'],
@@ -334,11 +334,11 @@ function getProjects(lang) {
           zh: ['完成一台可运行的自制 BLDC 原型', '开始从空芯 V1 向内转子 V2 迭代', '整理了可复用的模型、绕组图与调试记录'],
           en: ['Built a functioning DIY BLDC prototype', 'Established an iteration path from the coreless build to inner-rotor V2', 'Archived reusable models, winding diagrams and debugging notes'],
         },
-        currentStage: text('V1 已运行 / V2 内转子方案迭代中', 'V1 Running / V2 Inner-Rotor Design In Progress'),
+        currentStage: text('V1 已运行 / V2 内转子方案迭代中', 'V1 Operational / V2 Inner-Rotor Design in Progress'),
         evidence: [
           { label: text('V2 内转子演示视频', 'V2 inner-rotor prototype video'), href: asset('/projects/3/bldc-motor/v2/inner-rotor-prototype.mp4'), type: 'video' },
           { label: text('V2 绕组与磁极示意图', 'V2 winding and pole diagram'), href: asset('/projects/3/bldc-motor/v2/inner-rotor-winding-diagram.png'), type: 'image' },
-          { label: text('V1 运行记录', 'V1 running record'), href: asset('/projects/3/bldc-motor/videos/运行视频.gif'), type: 'image' },
+          { label: text('V1 运行记录', 'V1 operation demonstration'), href: asset('/projects/3/bldc-motor/videos/运行视频.gif'), type: 'image' },
         ],
       },
     },

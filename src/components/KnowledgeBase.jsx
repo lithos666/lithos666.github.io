@@ -14,7 +14,7 @@ const ENGINEERING_NOTES = [
     category: 'motor',
     pillar: 'engineering',
     title: text('无感 BLDC：从反电动势到换向', 'Sensorless BLDC: From Back-EMF to Commutation'),
-    description: text('整理反电动势检测、过零点、启动阶段与换向时序之间的关系。', 'A practical map of back-EMF detection, zero crossing, startup behavior and commutation timing.'),
+    description: text('整理反电动势检测、过零点、启动阶段与换向时序之间的关系。', 'A practical map of back-EMF detection, zero crossing, startup behaviour and commutation timing.'),
     summary: text(
       '无感控制的核心不是“没有传感器”，而是用电气状态重建转子位置。启动、低速与噪声环境是最需要单独处理的三个阶段。',
       'Sensorless control does not remove sensing; it reconstructs rotor position from electrical state. Startup, low speed and noisy operation require separate strategies.'
@@ -38,7 +38,7 @@ const ENGINEERING_NOTES = [
     ),
     takeaways: {
       zh: ['先画槽位与相序，再开始绕线', '每相首尾端统一命名并测量导通', '装磁前标记 N/S 极，避免局部反极'],
-      en: ['Draw slot and phase order before winding', 'Name every phase start/end and verify continuity', 'Mark N/S polarity before magnet installation'],
+      en: ['Draw the slot layout and phase sequence before winding', 'Label the start and end of each phase and verify continuity', 'Mark N/S polarity before magnet installation'],
     },
     related: { label: text('查看 V2 内转子设计', 'View V2 inner-rotor design'), href: '#works' },
   },
@@ -55,7 +55,7 @@ const ENGINEERING_NOTES = [
     ),
     takeaways: {
       zh: ['先限制电流并验证死区', '用示波器检查 PWM 与采样同步', '保护逻辑必须早于性能优化'],
-      en: ['Limit current and verify dead time first', 'Use an oscilloscope to check PWM/sampling synchronization', 'Protection logic comes before performance tuning'],
+      en: ['Limit current and verify dead time first', 'Use an oscilloscope to check PWM and sampling synchronisation', 'Protection logic comes before performance tuning'],
     },
     related: { label: text('查看 Goodent 案例', 'View Goodent case study'), href: '#works' },
   },
@@ -64,11 +64,11 @@ const ENGINEERING_NOTES = [
     icon: 'S1',
     category: 'simulation',
     pillar: 'engineering',
-    title: text('COMSOL 多物理场建模工作流', 'COMSOL Multiphysics Modeling Workflow'),
+    title: text('COMSOL 多物理场建模工作流', 'COMSOL Multiphysics Modelling Workflow'),
     description: text('从问题定义、边界条件、网格独立性到结果解释的工程流程。', 'An engineering workflow from problem definition and boundary conditions to mesh independence and interpretation.'),
     summary: text(
       '仿真可信度来自问题边界与验证链，而不是漂亮的云图。模型应先回答一个明确问题，再逐步增加物理场。',
-      'Simulation credibility comes from boundaries and validation, not colorful plots. Start with one clear question, then add physics only when justified.'
+      'Simulation credibility comes from boundaries and validation, not colourful plots. Start with one clear question, then add physics only when justified.'
     ),
     takeaways: {
       zh: ['先做最小可解释模型', '记录材料、边界与网格假设', '至少进行一次数量级或实验对照'],
@@ -125,7 +125,7 @@ const ENGINEERING_NOTES = [
       zh: ['需求应可测量并对应风险', '先写通过准则，再执行测试', '原始数据、异常与版本必须可追溯'],
       en: ['Requirements must be measurable and risk-linked', 'Write acceptance criteria before testing', 'Raw data, anomalies and versions must remain traceable'],
     },
-    related: { label: text('查看 Goodent 当前阶段', 'View Goodent current stage'), href: '#works' },
+    related: { label: text('查看 Goodent 当前阶段', 'View Goodent’s current stage'), href: '#works' },
   },
   {
     id: 'prototype-to-evt',
@@ -133,7 +133,7 @@ const ENGINEERING_NOTES = [
     category: 'product',
     pillar: 'product',
     title: text('从原型到 EVT 工程验证', 'From Prototype to EVT'),
-    description: text('从“功能能跑”走向“需求、接口和验证可重复”的阶段判断。', 'A stage gate from “it runs” to repeatable requirements, interfaces and validation.'),
+    description: text('从“功能能跑”走向“需求、接口和验证可重复”的阶段判断。', 'Moving from a working prototype to repeatable verification of requirements and interfaces.'),
     summary: text(
       '原型阶段允许快速替换方案；进入 EVT 后，重点转向接口冻结、风险暴露、测试覆盖和版本控制。',
       'Prototype work allows rapid architectural changes. EVT shifts the focus to interface control, risk discovery, test coverage and version discipline.'
@@ -204,7 +204,7 @@ const ENGINEERING_NOTES = [
     description: text('把技术可行性、用户证据、市场空间与阶段目标连接成一条可信叙事。', 'Connecting technical feasibility, customer evidence, market scope and stage goals into a credible venture narrative.'),
     summary: text(
       '融资材料不是把愿景写得更大，而是清楚说明已验证什么、尚未验证什么，以及下一笔资源如何降低关键风险。',
-      'Fundraising material should not simply enlarge the vision. It should show what is proven, what remains uncertain and how the next resources reduce the highest risks.'
+      'Fundraising material should not simply enlarge the vision. It should show what is proven, what remains uncertain and how the next round of funding will reduce key risks.'
     ),
     takeaways: {
       zh: ['用证据区分事实、假设与计划', '让资金用途对应下一阶段里程碑', '技术优势必须翻译为用户与商业价值'],

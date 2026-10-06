@@ -15,13 +15,13 @@ const JOURNEY = [
         organization: 'Goodent',
         description: text(
           '我负责产品定义、系统架构与电机控制，和团队完成了三代牙科微动力系统原型，目前正在推进工程验证与合规准备。',
-          'I lead product definition, system architecture and motor control. Our team has completed three dental power system prototypes and is moving into engineering validation and compliance preparation.'
+          'I lead product definition, system architecture and motor control. Our team has completed three generations of dental power system prototypes and is moving into engineering validation and compliance preparation.'
         ),
         outcome: text('50 万元种子轮融资', 'RMB 500k seed funding'),
       },
       {
-        type: text('研究实践 · 具身智能', 'Research Practice · Embodied AI'),
-        role: text('牙科机器人系统实践', 'Dental Robotics System Practice'),
+        type: text('研究实践 · 具身智能', 'Research · Embodied AI'),
+        role: text('牙科机器人系统实践', 'Dental Robotics System Development'),
         organization: 'Xbotics Community',
         description: text(
           '我用 LeRobot、ArUco、主从遥操作与 ACT 搭建实验流程，连接示教采集、视觉标定和数据分析，探索牙科操作中的机器人应用。',
@@ -31,11 +31,11 @@ const JOURNEY = [
       },
       {
         type: text('国际学习', 'International Study'),
-        role: text('SUTD 秋季交换学习', 'SUTD Fall Exchange'),
+        role: text('SUTD 秋季交换学习', 'SUTD Autumn Exchange'),
         organization: text('新加坡科技设计大学', 'Singapore University of Technology and Design'),
         description: text(
           '我通过了学校交换项目选拔，获得 2026 年秋季赴新加坡科技设计大学学习的资格与资助。',
-          'I was selected through the university exchange programme for a funded Fall 2026 semester at the Singapore University of Technology and Design.'
+          'I was selected through the university exchange programme for a funded autumn 2026 semester at the Singapore University of Technology and Design.'
         ),
         outcome: text('交换资格与资助', 'Funded exchange placement'),
       },
@@ -51,7 +51,7 @@ const JOURNEY = [
         organization: text('兰精灵 · 智能养护花盆', 'Lanjingling · Smart Planter'),
         description: text(
           '我从用户需求出发，组织结构设计、传感与控制开发，和团队完成两代原型，再整理结项材料并参加答辩。',
-          'I led requirements, enclosure design, sensing and control development. With the team, I completed two prototype iterations, final documentation and the project presentation.'
+          'I led requirements definition, enclosure design, sensing and control development. With the team, I completed two prototype iterations, final documentation and the project presentation.'
         ),
         outcome: text('国家级大创优秀结项', 'Excellent completion rating · National innovation programme'),
       },
@@ -61,7 +61,7 @@ const JOURNEY = [
         organization: text('重庆大学', 'Chongqing University'),
         description: text(
           '我在课程助教工作与机器人团队中练习系统分析和机械设计，也学习如何与不同分工的队友一起完成任务。',
-          'Through teaching assistance and the robotics team, I practiced system analysis and mechanical design, and learned to work with teammates across disciplines.'
+          'Through teaching assistance and the robotics team, I practised system analysis and mechanical design, and learned to work with teammates across disciplines.'
         ),
         outcome: text('底盘、悬架与课程实践', 'Chassis, suspension and course practice'),
       },
@@ -90,10 +90,10 @@ const JOURNEY = [
       {
         type: text('教育', 'Education'),
         role: text('机器人工程本科生', 'B.Eng. Student, Robotics Engineering'),
-        organization: text('重庆大学 · 国家卓越工程师学院', 'Chongqing University · National School of Excellent Engineers'),
+        organization: text('重庆大学 · 国家卓越工程师学院', 'Chongqing University · National Elite Institute of Engineering'),
         description: text(
           '我进入明月科创实验班，通过真实项目学习机械、电子、控制与软件，也开始练习清楚地表达自己的设计。',
-          'I joined the Mingyue Innovation Class and learned mechanics, electronics, control and software through real projects, while practicing how to explain my designs clearly.'
+          'I joined the Mingyue Innovation Class and learned mechanics, electronics, control and software through real projects, while practising how to explain my designs clearly.'
         ),
         outcome: text('项目制工程学习起点', 'Starting point of project-based engineering'),
       },
