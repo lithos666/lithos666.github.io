@@ -15,6 +15,8 @@
   display: flex;
   position: relative;
   transform: translate3d(0, 0, 0.01px);
+  /* Keep labels above the sibling particle/filter stacking context. */
+  z-index: 2;
 }
 
 .gooey-nav-container nav ul {
@@ -67,6 +69,10 @@
 .gooey-nav-container nav ul li.active {
   color: black;
   text-shadow: none;
+}
+
+.gooey-nav-container nav ul li.active a {
+  color: black;
 }
 
 .gooey-nav-container nav ul li.active::after {

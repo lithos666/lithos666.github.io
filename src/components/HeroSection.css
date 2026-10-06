@@ -65,21 +65,20 @@
 .hero-section {
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 600px;
+  min-height: max(600px, 100svh);
   overflow: hidden;
 }
 
 /* ── Overlay — Apple glassmorphism, ultra-minimal ── */
 .hero-overlay {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  min-height: inherit;
   z-index: 10;
   pointer-events: none;
   padding: clamp(24px, 4vw, 56px) clamp(28px, 5vw, 64px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  row-gap: 32px;
 }
 
 /* Glass chip — White accent style */
@@ -116,14 +115,17 @@
 
 /* Top chip */
 .hero-top-chip {
-  align-self: flex-end;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
 }
 
+/* Keep the introduction in flow so longer translations cannot cover the footer. */
 .hero-positioning {
-  position: absolute;
-  left: clamp(28px, 6vw, 88px);
-  top: 50%;
-  transform: translateY(-42%);
+  position: relative;
+  grid-row: 2;
+  align-self: center;
+  margin-left: calc(clamp(28px, 6vw, 88px) - clamp(28px, 5vw, 64px));
   width: min(760px, 72vw);
   pointer-events: auto;
   color: #fff;
@@ -239,6 +241,7 @@
 
 /* Bottom row */
 .hero-bottom-row {
+  grid-row: 3;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -311,7 +314,7 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .hero-overlay { padding: 18px; }
+  .hero-overlay { padding: 72px 18px 18px; row-gap: 24px; }
   .glass-chip { padding: 7px 13px; border-radius: 10px; }
   .chip-label { font-size: 0.52rem; }
   .chip-year { font-size: 0.55rem; }
@@ -320,9 +323,8 @@
   .scroll-label { font-size: 0.6rem; }
 
   .hero-positioning {
-    left: 18px;
-    top: 47%;
-    width: calc(100% - 36px);
+    margin-left: 0;
+    width: 100%;
   }
 
   .hero-positioning h1 {
@@ -335,12 +337,16 @@
 }
 
 @media (max-width: 1120px) {
+  .hero-overlay { padding-top: 88px; }
+
   .hero-top-chip {
     display: none;
   }
 }
 
 @media (max-width: 480px) {
+  .hero-overlay { padding-top: 72px; }
+
   .hero-bottom-row {
     flex-direction: column;
     gap: 10px;
