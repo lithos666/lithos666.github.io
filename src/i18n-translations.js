@@ -287,8 +287,22 @@ export const translations = {
     en: 'Third Year · Projects'
   },
   'yearthree.subtitle': {
-    zh: '2025 冬 – 2026 夏 · 10 个项目 · 工效学 / 大创 / 数理方法 / 微电路 / 自动控制 / 数值分析 / 产品制造 / LeRobot / 人体网格应变 / BLDC 电机',
-    en: 'Winter 2025 – Summer 2026 · 10 Projects · Ergonomics / Innovation Programme / Mathematical Methods / Circuits / Control Theory / Numerical Analysis / Product Manufacturing / LeRobot / Mesh Strain / BLDC Motor'
+    zh: '2025 冬 – 2026 夏 · 11 个项目 · 工效学 / 大创 / 数理方法 / 微电路 / 自动控制 / 数值分析 / 产品制造 / LeRobot / 人体网格应变 / BLDC 电机 / 3D 打印枪',
+    en: 'Winter 2025 – Summer 2026 · 11 Projects · Ergonomics / Innovation Programme / Mathematical Methods / Circuits / Control Theory / Numerical Analysis / Product Manufacturing / LeRobot / Mesh Strain / BLDC Motor / M14 Model'
+  },
+
+  // Year Four Projects
+  'yearfour.badge-text': {
+    zh: '大四',
+    en: 'YEAR FOUR'
+  },
+  'yearfour.title': {
+    zh: '大四 · 实践课程',
+    en: 'Fourth Year · Practical Coursework'
+  },
+  'yearfour.subtitle': {
+    zh: '两项课程实践 · 便携式 MRI / BCG 非接触式设备',
+    en: 'Two course projects · Portable MRI / Contactless BCG Device'
   },
 
   // Year One Section Translation

@@ -137,6 +137,8 @@ function getProjects(lang) {
       ), lang),
       tags: localize(text(['SolidWorks', '变速箱', '差速器', '悬架', 'BOM'], ['SolidWorks', 'Gearbox', 'Differential', 'Suspension', 'BOM']), lang),
       images: [
+        asset('/projects/2/气动小车/assembly-cad.png'),
+        asset('/projects/2/气动小车/assembly-render.png'),
         asset('/projects/2/气动小车/气动小车.png'),
         asset('/projects/2/气动小车/气动小车1.png'),
         asset('/projects/2/气动小车/气动小车2.png'),
@@ -169,7 +171,7 @@ function getProjects(lang) {
         },
         currentStage: text('原型完成 / 制造文件归档', 'Prototype completed / Manufacturing files archived'),
         evidence: [
-          { label: text('整车模型', 'Vehicle assembly'), href: asset('/projects/2/气动小车/气动小车.png'), type: 'image' },
+          { label: text('整车模型', 'Vehicle assembly'), href: asset('/projects/2/气动小车/assembly-cad.png'), type: 'image' },
           { label: 'BOM', href: asset('/projects/2/气动小车/bom.jpg'), type: 'image' },
         ],
       },

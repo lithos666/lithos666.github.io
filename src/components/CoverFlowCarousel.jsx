@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
-import { motion, AnimatePresence, useMotionValue } from 'framer-motion';
+import { motion, AnimatePresence, animate, useMotionValue } from 'framer-motion';
 import { useI18n } from '../i18n-context';
 import ProjectDetailModal from './ProjectDetailModal';
 import MetallicPaint from './ui/MetallicPaint';
@@ -84,7 +84,6 @@ export default function CoverFlowCarousel({
   const dragX = useMotionValue(0);
   const [isDragging, setIsDragging] = useState(false);
   const [coverFlowSize, setCoverFlowSize] = useState(getResponsiveCoverFlow);
-  const dragStartX = useRef(0);
   const { lang, t } = useI18n();
 
   useEffect(() => {
@@ -120,11 +119,14 @@ export default function CoverFlowCarousel({
   const goTo = useCallback((idx) => {
     if (!Number.isFinite(idx)) return;
     const total = projects.length;
+    if (total === 0) return;
     // 循环处理：超出范围则回绕到另一端
     if (idx < 0) idx = total - 1;
     if (idx >= total) idx = 0;
+    // Every navigation method starts from the same centered track position.
+    dragX.jump(0);
     setActiveIndex(idx);
-  }, [projects.length]);
+  }, [dragX, projects.length]);
 
   // ── 卡片样式计算 (纯函数, 无副作用) ──
   const getCardStyle = useCallback((index) => {
@@ -189,7 +191,7 @@ export default function CoverFlowCarousel({
       goTo(info.velocity.x > 0 ? activeIndex - 1 : activeIndex + 1);
     }
     // 使用 animate 实现平滑回弹，而非直接 set(0)
-    dragX.animate(0, {
+    animate(dragX, 0, {
       type: 'spring',
       stiffness: COVER_FLOW.SPRING_STIFFNESS,
       damping: COVER_FLOW.SPRING_DAMPING,
@@ -317,13 +319,13 @@ export default function CoverFlowCarousel({
 
         <motion.div
           className="coverflow-track"
-          x={dragX}
+          style={{ x: dragX }}
           drag="x"
+          dragMomentum={false}
           dragConstraints={COVER_FLOW.DRAG_CONSTRAINT}
           dragElastic={COVER_FLOW.DRAG_ELASTICITY}
           onDragStart={() => {
             setIsDragging(true);
-            dragStartX.current = dragX.get();
           }}
           onDragEnd={onDragEnd}
         >
@@ -356,10 +358,9 @@ export default function CoverFlowCarousel({
                   damping: COVER_FLOW.SPRING_DAMPING,
                   mass: COVER_FLOW.SPRING_MASS,
                 }}
-                onClick={() => {
-                  // 拖拽位移超过阈值时不触发点击导航，避免与拖拽冲突
-                  const dragDelta = Math.abs(dragX.get() - dragStartX.current);
-                  if (dragDelta < 5) goTo(index);
+                onTap={(event) => {
+                  // Motion filters out taps that became drags before selecting a card.
+                  if (!event.target.closest('button, a')) goTo(index);
                 }}
               >
                 <div className="coverflow-inner">
@@ -394,6 +395,16 @@ export default function CoverFlowCarousel({
                         loading="lazy"
                         onError={handleImageError}
                       />
+                    </div>
+                  )}
+                  {isActive && project.mediaPlaceholder && !project.images?.[0] && (
+                    <div className="cf-preview-placeholder">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="3" />
+                        <circle cx="8" cy="8" r="1.5" />
+                        <path d="m21 15-5-5L5 21" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span>{getLocalizedField(project, 'mediaPlaceholderEn', 'mediaPlaceholder')}</span>
                     </div>
                   )}
 
@@ -431,6 +442,7 @@ export default function CoverFlowCarousel({
                     <button
                       className="cf-btn"
                       style={{ background: project.color }}
+                      onPointerDown={(event) => event.stopPropagation()}
                       onClick={(e) => {
                         e.stopPropagation();
                         setSelectedProject({

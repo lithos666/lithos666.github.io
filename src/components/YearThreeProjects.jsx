@@ -362,6 +362,44 @@ const PROJECTS = [
       { name: 'Base Ring-Body.stl', nameEn: 'Base Ring-Body.stl', path: asset('/projects/3/bldc-motor/models/Base Ring-Body.stl') },
     ],
   },
+  // ══════════════════════════════════════════════════
+  // ⑪ 3D 打印枪 — M14 外观模型（大三项目）
+  // 资源位置: /projects/3/m14-model/
+  // ══════════════════════════════════════════════════
+  {
+    id: 'm14-model',
+    title: '3D 打印枪',
+    titleEn: '3D-Printed M14 Model',
+    subtitle: 'M14 外观模型 · 1:1 长度复刻',
+    subtitleEn: 'M14 Visual Model · Full-Scale Length',
+    category: '外观建模 · 3D 打印',
+    categoryEn: 'Visual Modelling · 3D Printing',
+    year: '大三项目',
+    yearEn: 'Third-Year Project',
+    color: '#B0BEC5',
+    accentColor: 'rgba(176,190,197,0.10)',
+    tags: ['M14', '3D 打印', '外观建模', '1:1 长度'],
+    tagsEn: ['M14', '3D Printing', 'Visual Modelling', 'Full-Scale Length'],
+    description:
+      '这个项目围绕 M14 射手步枪的外观模型展开，整体长度按 1:1 比例复刻。通过模型视图和参考叠图，展示模型外观与参考图之间的对应关系。',
+    descriptionEn:
+      'This project explores a visual model of an M14 marksman rifle, matching its overall length at a 1:1 scale. A model view and a reference overlay show how its appearance relates to the visual reference.',
+    highlights: [
+      'M14 射手步枪外观模型',
+      '整体长度按 1:1 比例复刻',
+      '模型视图与参考叠图两种展示',
+    ],
+    highlightsEn: [
+      'Visual model of an M14 marksman rifle',
+      'Overall length reproduced at a 1:1 scale',
+      'Model view and reference overlay',
+    ],
+    images: [
+      asset('/projects/3/m14-model/m14-model-view.png'),
+      asset('/projects/3/m14-model/m14-reference-overlay.png'),
+    ],
+    documents: [],
+  },
 ];
 
 const YEAR_THREE_EN = {
@@ -500,7 +538,7 @@ const LOCALIZED_PROJECTS = PROJECTS.map(project => ({
 }));
 
 /** 大三实践项目 ID 集合 */
-const YEAR_THREE_PRACTICE_IDS = new Set(['ergonomics', 'startup-flowerpot', 'lerobot', 'bldc-motor']);
+const YEAR_THREE_PRACTICE_IDS = new Set(['ergonomics', 'startup-flowerpot', 'lerobot', 'bldc-motor', 'm14-model']);
 
 /** 大三项目状态检测: 区分实践项目 / 课程项目 */
 const detectYearThreeStatus = (project) => {

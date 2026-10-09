@@ -13,6 +13,7 @@ import './App.css';
 const YearOneProjects = lazy(() => import('./components/YearOneProjects'));
 const YearTwoProjects = lazy(() => import('./components/YearTwoProjects'));
 const YearThreeProjects = lazy(() => import('./components/YearThreeProjects'));
+const YearFourProjects = lazy(() => import('./components/YearFourProjects'));
 const ExperienceJourney = lazy(() => import('./components/ExperienceJourney'));
 const KnowledgeBase = lazy(() => import('./components/KnowledgeBase'));
 const ContactSection = lazy(() => import('./components/ContactSection'));
@@ -322,6 +323,9 @@ export default function App() {
           </Suspense>
           <Suspense fallback={<SectionSkeleton />}>
             <YearThreeProjects />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton />}>
+            <YearFourProjects />
           </Suspense>
           <Suspense fallback={<SectionSkeleton />}>
             <ExperienceJourney />
